@@ -1,0 +1,425 @@
+@font-face {
+    font-family: 'Demodocos4';
+    src: url('Demodocos4.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+[contenteditable]{
+    outline: 0px solid transparent;
+    
+}
+
+body {
+  margin: 0 auto;
+  width: 1300px;
+  /*background: rgb(204,204,204); */
+}
+.menu_bt, .menu_btA, .menu_btB, .menu_btV, .menu_btpre {
+	border: none;
+	font-size: 25px;
+	background: rgba(17, 17, 17, 0);
+	color: grey;	
+	font-family: Arial, sans-serif;	
+	 outline: none;
+    border: none	
+}
+.menu_btA {
+	margin-left: 70px;		
+}
+.menu_btB {
+	margin-left: 10px;
+	}
+.menu_btV {
+	float:right;
+	margin-right: 40px;	
+}
+ .linePre {
+	float:right;
+	margin-right:100px;	
+	}
+.menu_bt:hover, .menu_btA:hover, .menu_btB:hover, .menu_btV:hover,.menu_btpre:hover {
+	color: white;
+	}
+
+
+
+
+
+.MainSlideBut, .PreSlideBut, .IoSlideBut, .PastSlideBut, .GenSlideBut, .SaveSlideBut, .MainSlideButBIB, .MainSlideButLog {
+	bottom: 0;
+	left: 0;
+	float: left;
+	position: fixed;
+	height: 40px;
+    width: 40px;
+	border-radius: 50%;
+    margin-bottom: 15px;
+    margin-left: 15px;
+    outline: none;
+    border: none;	
+}
+
+.MainSlideBut{
+	background-color: rgba(17, 17, 17, 0.9);
+	color: rgb(17, 17, 17, 0);
+	z-index: 1;
+	
+}
+.PreSlideBut {
+	background-color: blue;
+    z-index: 0;
+    
+}
+.PastSlideBut {
+	background-color: green;
+    z-index: 0;
+    
+}
+.IoSlideBut {
+	background-color: red;
+  z-index: 5;
+
+}
+
+.GenSlideBut {
+	background-color: silver;
+  z-index: 0;
+
+}
+
+.SaveSlideBut {
+	background-color: red;
+  z-index: 0;
+
+}
+.MainSlideButBIB {
+	background-color: gold;
+	color:AntiqueWhite;
+  z-index: 1;
+
+}
+.MainSlideButLog {
+	background-color: gold;
+	color:AntiqueWhite;
+  z-index: 1;
+
+}
+
+
+.MainSlideBut:hover {
+	background-color: black;
+	outline: none;
+}
+.PreSlideBut:hover {
+	background-color: rgb(0, 0, 128);
+	outline: none;
+}
+.PastSlideBut:hover {
+	background-color: rgb(0, 77, 0);
+	outline: none;
+}
+.IoSlideBut:hover {
+	background-color: rgb(153, 0, 0);
+	outline: none;
+}
+.GenSlideBut:hover {
+	background-color: rgb(89, 89, 89);
+	outline: none;
+}
+.SaveSlideBut:hover {
+	background-color: rgb(153, 0, 0);
+	outline: none;
+}
+
+.MainSlideButBIB:hover {
+	background-color: GoldenRod;
+	color:GoldenRod;
+	outline: none;
+}
+.MainSlideButLog:hover {
+	background-color: GoldenRod;
+	color:GoldenRod;
+	outline: none;
+}
+
+
+.menu_bt:focus, menu_btA:focus, .menu_btB:focus, .menu_btV:focus, .menu_btpre:focus, .MainSlideBut:focus, .PreSlideBut:focus, .IoSlideBut:focus, .PastSlideBut:focus, .GenSlideBut:focus, .MainSlideButBIB:focus, .MainSlideButLog:focus {
+	outline:0;
+	}
+#5:focus{
+outline:0;	
+}
+
+
+.sidenav {
+  height: 50px;
+  width: 0;
+  position: fixed;
+  float: left;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(17, 17, 17, 0.9);
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 20px;
+    }
+
+
+
+
+.term{
+	color:grey;
+	z-index: 0;
+	font-family: Courier;
+	
+}
+
+
+
+.menu_bt_label {
+	margin-left: 20px;
+     cursor: pointer;
+    color: grey;
+    font-weight: normal;
+    border: none;
+	font-size: 25px;
+	background: rgba(17, 17, 17, 0);
+	font-family: Arial, sans-serif;
+	
+
+    
+}
+.menu_bt_label:hover {
+    color: white;
+}
+
+.menu_bt_label2:hover {
+    color: white;
+    }
+.input-file {
+    display: none;
+    
+    
+}
+
+.menu_bt2 {
+	border: none;
+	font-size: 25px;
+	background: rgba(17, 17, 17, 0);
+	color: grey;	
+	font-family: Arial, sans-serif;
+	padding-left: 80px;
+}
+
+
+.menu_bt2:hover {
+	color: white;
+	}
+.menu_bt_PO {
+	border: none;
+	font-size: 25px;
+	background: rgba(17, 17, 17, 0);
+	color: grey;	
+	font-family: Arial, sans-serif;
+position:absolute;
+outline: none;
+}
+
+
+.menu_bt_PO:hover {
+	color: white;
+}
+
+
+
+.menu_bt_prime {
+	border: none;
+	font-size: 25px;
+	background: rgba(17, 17, 17, 0);
+	color: grey;	
+	font-family: Arial, sans-serif;
+	
+	
+}
+.menu_bt_prime:hover {
+	color: white;
+}
+
+a {
+  cursor: pointer;
+}
+.italic{
+  font-style: italic; 
+}
+.bold{
+  font-weight: bold; 
+}
+.underline {
+text-decoration:underline;
+}
+.line{
+text-decoration:line-through;
+}
+.justify {
+    text-align: justify;
+    }
+ alignCenter {
+    text-align: center;
+}
+
+.interline{
+	line-height: 40px;
+}
+.times {
+    font-family: "Arial";
+}
+
+
+#editor {
+  /* le tour qui encadre*/
+  box-shadow: 0 0 2px #CCC;
+  min-height: 1200px;
+  overflow: auto;
+  /*background-color: white;*/
+  padding: 1em;
+  margin-top: 20px;
+ resize: horizontal;
+  outline: none;
+}
+
+
+.select_css {
+	color: grey;
+	background: rgba(17, 17, 17, 0);
+		font-size: 25px;
+		border: grey;
+		outline: black;
+		appearance: none;
+		 background-image:#000000;
+	}
+.select_css:focus {
+	color: grey;
+	background: rgba(17, 17, 17, 0);
+		font-size: 25px;
+		border: grey;
+		appearance: none;
+		
+		 background-image:#000000;
+	}
+	.select_css:hover {
+	color: white;
+	background: rgba(17, 17, 17, 0);
+		font-size: 25px;
+		border: grey;
+		appearance: none;
+		 background-image:#000000;
+	}
+.select_css:active {
+	color: white;
+	background: rgba(17, 17, 17, 0);
+		font-size: 25px;
+		border: grey;
+		appearance: none;
+		 background-image:#000000;
+		
+	}
+h4 {
+font-weight: 700;
+margin-top: 10px;
+margin-bottom: 15px;
+
+}	
+.ParamTitle{
+	margin-left: 20px;
+	overflow: hidden;
+}
+.inputparam{
+	margin-top: 5px;
+margin-bottom: 5px;
+}
+.inputparamP{
+	margin-top: 5px;
+margin-bottom: 5px;
+ width: 100%;
+padding-right: 5px;
+}
+.inputparamS{
+	float:left;
+ margin-left: 125px;
+}			
+.label-file {
+	font-family: Arial, sans-serif;
+    cursor: pointer;
+    color: grey;
+     outline: none;
+    float:left;
+    font-size: 25px;
+ margin-left: 100px;
+ margin-right: 20px;
+}
+.label-file:hover {
+    color: white;
+     outline: none;
+}
+
+
+.input-file {
+    display: none;
+}
+
+input[type="file"] {
+    display: none;
+    }
+.inputnav{
+		
+	
+}
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid silver;
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+background: rgba(17, 17, 17, 0);
+outline: none;
+color: grey;
+font-family: Arial, sans-serif;
+font-size: 25px;
+}
+
+.log{
+	margin:20px;
+	
+}
+
+/*
+#police {
+	margin-left: 20px;
+	overflow: hidden;
+	
+}#para {
+	margin-left: 20px;
+	overflow: hidden;
+}
+#page {
+	margin-left: 20px;
+	overflow: hidden;
+}
+#ecrire {
+	margin-left: 20px;
+	overflow: hidden;
+}
+*/
+
+#path_print{
+	visibility:visible;
+}
+#file_name_set{
+	margin-right: 0px;
+	display: inline-block;
+}
+.lontext{
+	width: 450px;
+}

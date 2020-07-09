@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="meascript.js"></script>
+</head>
+<body>
+	<p> Vitesse de défilement :
+		<select  onchange="tachios_func.call(this, event)">
+	<option id="selectedtach" value="defaultValue">Unset</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="60">60</option>
+    <option value="70">70</option>
+    <option value="80">80</option>
+    <option value="90">90</option>
+    <option value="100">100</option>
+        </select> <input type="text" class="input_style" id="Input_tachios">
+        </p>
+				
+		<p> Couleur de la page :
+		<select  onchange="fond_colorMA.call(this, event)">
+	<option id="selectedCFMA" value="defaultValue">Unset</option>
+    <option value="white">Blanc</option>
+    <option value="blue">Bleu</option>
+    <option value="yellow">Jaune</option>
+    <option value="black">Noir</option>
+    <option value="pink">Rose</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="purple">Violet</option>
+        </select> <input type="text" class="input_style" id="Input_FDC">
+        </p>
+<p> Couleur du texte
+		<select onchange="font_colorMA.call(this, event)">
+	<option id="selectedCMA" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+		<input type="text" class="input_style" id="Input_FTC">
+		</p>
+		
+		<p>Taille de la police
+			<select onchange="font_sizeMA.call(this, event)">
+	<option id="selectedSMA" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option>
+     </select>
+     <input type="text" class="input_style" id="Input_S2MA">
+<script>
+	window.onload = function() {
+// 2 charger valeur 			
+
+
+document.getElementById("selectedCFMA").text = localStorage.getItem("colorf_sMA");
+document.getElementById("selectedCMA").text = localStorage.getItem("color_sMA");
+document.getElementById("selectedSMA").text = localStorage.getItem("size_s2MA");
+document.getElementById("selectedtach").text = localStorage.getItem("tachios");
+
+
+//document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
+
+i
+
+if (localStorage.getItem("colorf_sMA") === null) {
+  document.getElementById("selectedCFMA").text = " ";
+}
+
+
+if (localStorage.getItem("color_sMA") === null) {
+  document.getElementById("selectedCMA").text = " ";
+}
+if (localStorage.getItem("size_s2MA") === null) {
+  document.getElementById("selectedSMA").text = " ";
+}
+
+if (localStorage.getItem("tachios") === null) {
+  document.getElementById("selectedtach").text = " ";
+}
+/*
+if (localStorage.getItem("data_name") === null) {
+    localStorage.setItem("data_name", "temp_mea"); 
+}	
+*/
+	
+
+
+
+	
+}	
+</script>
+</body>
+</html>

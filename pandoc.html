@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="meascript.js"></script></head>
+<body>
+	<span>localisation de Pandoc </span><br>
+	<input type="text" class="inputparam" id="InputPandocLocal"><button type="button"onclick="LocalPandoc()">Set</button><br>
+
+	<span>Passer des paramètres lors de la compilation des PDF </span><br>
+	<input type="text" class="inputparamP" id="InputPandocPdf"><button type="button"onclick="AddVarPdf()">Add</button>
+	<h4 id="ShowPandocPdf"></h4>
+	<script>
+		window.onload = function() {
+			
+			document.getElementById("InputPandocLocal").value = localStorage.getItem("PandocPath");
+document.getElementById("InputPandocPdf").value = localStorage.getItem("PandocPdf");
+document.getElementById("ShowPandocPdf").innerHTML = localStorage.getItem("PandocPdf");
+		}
+		
+	</script>
+</body>
+</html>

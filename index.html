@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="meastyle.css">
+	<script type="text/javascript" src="meascript.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="PastePerfect.js"></script>
+	
+	</head>
+	<body id="bbb">
+		</div>	
+		
+<div class="content">
+<input type="button" id="Slide_Button" class="MainSlideBut" value="" onclick="openNav(); toggle(this);">
+
+		<div id="mySidenav" class="sidenav">
+ 
+<label for="fileDialog" class="menu_btA">Écrire</label>
+<input id="fileDialog" type="file" class="input-file" nwsaveas="Sans titre.txt">
+
+
+
+<label for="file" class="menu_btB">Lire</label>
+<!-- <input id="file" class="input-file" type="file" onchange="openFile(event)"> -->
+<!-- <input id="file" class="input-file" type="file" iframe onchange="ReadInput()"> -->
+<input id="file" class="input-file"type="file" onclick="chooseFile('#file')"/>
+<input type="button" id="1" class="menu_bt" value="Compiler" onclick="openNavIO();">
+<input type="button" id="1" class="menu_bt" value="Génétique" onclick="openNavGe();">
+<input type="button" id="1" class="menu_bt" value="Bibliographie" onclick="ShowBibFile();">
+<input type="button" id="1" class="menu_bt" value="Coller" onclick="openNavPast();">
+<input type="button" id="1" class="menu_bt" value="Présentation" onclick="openNavPre();">
+<input type="button" id="1" class="menu_btV" value="Variables" onclick="open_para();">
+
+</div>
+
+<div id="mySidenavIO" class="sidenav">
+<input type="button" id="IOBUT" class="IoSlideBut" onclick="closeNavIO()">
+<input type="button" id="1" class="menu_btA" value="Docx" onclick="GenDocx();">
+<input type="button" id="1" class="menu_bt" value="Pdf" onclick="GenPdf();">
+<input type="button" id="1" class="menu_bt" value="Pptx" onclick="GenSlide();">
+<span id="ShowTerm" class="term"></span>
+</div>
+<div id="mySidenavGe" class="sidenav">
+<input type="button" id="GENBUT" class="GenSlideBut" onclick="closeNavGe()">
+<input type="button" id="1" class="menu_btA" value="Addere" onclick="GitAdd();">
+<input type="button" id="1" class="menu_bt" value="Committere" onclick="GitCommit();">
+<input type="button" id="1" class="menu_bt" value="Meminisse" onclick="GitLog();">
+<span id="ShowTermGen" class="term"></span>
+</div>
+
+
+</div>
+<div id="mySidenavPre" class="sidenav">
+<input type="button" id="PREBUT" class="PreSlideBut" onclick="closeNavPre()">
+<span id="toogle">
+	<input type="button" id="5" class="menu_btA" value="Chante" onclick="toggle2();">
+	</span>
+	<span class="linePre">
+<label for="taille"class="menu_btpre">Taille</label>	
+<input type="range" id="em" min="1" value="5" max="10" step="0.5" oninput="outputTaille(value)">
+	<output for="taille" id="taillelevel">0</output>
+	
+<label for="vitesse" class="menu_btpre">Vitesse</label>
+<input type="range" id="speed" min="1" value=VitesseRouleau max="100" step="10" oninput="outputTachios(value)">
+	<output for="vitesse" id="speedlevel">0</output>
+	</span>
+	
+</div>
+	
+
+<div id="mySidenavPast" class="sidenav">
+<input type="button" id="PASTBUT" class="PastSlideBut" onclick="closeNavPast()">
+<input type="button" id="1" class="menu_btA" value="Note" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Note); ">
+<input type="button" id="1" class="menu_bt" value="YAML" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(YAML); ">
+<input type="button" id="1" class="menu_bt" value="Slide" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Slide); ">
+<input type="button" id="1" class="menu_bt" value="Lorem" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Lorem); ">
+</div>
+<div id="mySidenavSave" class="sidenav">
+<input type="button" id="SAVEBUT" class="SaveSlideBut" onclick="closeNavSav()">
+
+<label for="folderinput2" class="label-file">Répertoire</label>
+<input class="label-file" type="file" id="folderinput2" nwdirectory>
+<input type="text" class="inputnav" id="TempSaveNameInput">
+<input type="button"class="menu_bt" autofocus value="Écrire" onclick="SaveMe()">
+
+
+</div>
+
+		<div id="editor" contenteditable="true">
+  <p id="WISINWYG">
+	 
+	    </p>
+</div>
+<script>
+
+
+
+
+var ShortSave = {
+  key : "Ctrl+S",
+  active : function() {
+	  //checkmodif();
+	  feedback();
+	
+	  if (localStorage.getItem("ctrls")== "true"){
+		  
+				 saveHopeR2();
+				 GitAdd();
+				 GitCommit();
+			}	
+					
+			else{
+				 saveHopeR2();
+			}
+	 
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    // :(, fail to register the |key| or couldn't parse the |key|.
+    console.log(msg);
+  }
+  
+};
+
+
+var ShortNote = {
+  key : "Ctrl+Alt+F",
+  active : function() {
+	  pasteHtmlAtCaret(Note);
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    // :(, fail to register the |key| or couldn't parse the |key|.
+    console.log(msg);
+  }
+};
+
+
+
+var ShortPast = {
+  key : "Ctrl+Alt+V",
+  active : function() {
+	  getclip();
+	  var printbib = localStorage.getItem("bibref");
+	  pasteHtmlAtCaret(printbib);
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    // :(, fail to register the |key| or couldn't parse the |key|.
+    console.log(msg);
+  }
+};
+
+	var ShortNoteMean = {
+  key : "Ctrl+Alt+G",
+  active : function() {
+	  getclip();
+	  var printNoteM = localStorage.getItem("bibMean");
+	var alea = Math.floor((Math.random() * 5000) + 1);
+	var printN= "[^"+printNoteM+alea+"]";
+	
+pasteHtmlAtCaret(printN);
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    // :(, fail to register the |key| or couldn't parse the |key|.
+    console.log(msg);
+  }
+};
+	
+var shortcut = new nw.Shortcut(ShortSave);
+nw.App.registerGlobalHotKey(shortcut);
+var shortcut2 = new nw.Shortcut(ShortNote);
+nw.App.registerGlobalHotKey(shortcut2);
+var shortcut3 = new nw.Shortcut(ShortPast);
+nw.App.registerGlobalHotKey(shortcut3);	
+var shortcut4 = new nw.Shortcut(ShortNoteMean);
+nw.App.registerGlobalHotKey(shortcut4);	
+
+	
+	
+	
+	
+		document.querySelector("#folderinput2")
+     .addEventListener("change", function() {
+       var folderPath = this.value;   
+       localStorage.removeItem("TempFolderPath");
+    localStorage.setItem("TempFolderPath", folderPath);  
+     });
+     
+     
+     
+     
+   
+
+function SaveMe(){
+	     localStorage.removeItem("TempFilName");
+	var TempFilVar = document.getElementById("TempSaveNameInput").value;
+    localStorage.setItem("TempFilName", TempFilVar); 	
+
+	     saveHopeT2();
+	     closeNavSav();
+     }
+	
+	
+function chooseFile(name) {
+	  var fs = require("fs");	
+var path = require("path");
+    var chooser = document.querySelector(name);
+    chooser.addEventListener("change", function(evt) {
+      console.log(this.value);
+      var input = this.value;
+      
+      var InputPath = path.dirname(input); 
+      var InputNameSolo = path.basename(input);
+      var InputNameNoExt = path.basename(input, path.extname(input));
+
+      localStorage.removeItem("InputFile");
+	localStorage.setItem("InputFile", input);
+	localStorage.removeItem("FilePathCook");
+	localStorage.setItem("FilePathCook", InputPath);
+	
+	localStorage.removeItem("InputNameSoloC");
+	localStorage.setItem("InputNameSoloC", InputNameSolo);
+	
+	localStorage.removeItem("InputNameNoExtC");
+	localStorage.setItem("InputNameNoExtC", InputNameNoExt);
+document.title = localStorage.getItem("InputFile");
+var path_file = localStorage.getItem("FilePathCook").trim();
+var name_file = localStorage.getItem("InputNameSoloC").trim();
+
+var process = require("child_process");
+process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_file ,function (err,stdout,stderr) {
+    if (err) {
+	    
+	   l
+    } else {
+    	var SizeVar = stdout;
+        localStorage.removeItem("SizeFileCook");
+	localStorage.setItem("SizeFileCook", SizeVar);//document.getElementById("showgit").innerHTML=stdout;
+        
+        
+    }
+})
+
+
+
+
+	fs.readFile(input, function (err, data) {
+  if (err) throw err;
+  console.log(data);
+           document.getElementById("editor").innerText = data; 
+           fs.writeFile("temp_rest", data, (err) => {  
+       if (err) throw err; });      
+}); 
+    }, false);
+  }
+	
+ 
+var VitesseRouleau = localStorage.getItem("tachios");
+	
+	function TournRouleau() {
+	var canto = document.getElementById("editor");
+    window.scrollBy(1, 1);
+    scrolldelay = setTimeout(TournRouleau,VitesseRouleau);
+    
+     }
+
+function PauseRouleau() {
+	clearTimeout(scrolldelay);
+}
+		function toggle2()
+		
+            { event.keyCode == 32;
+	           	           	           
+	           
+              if(document.getElementById("5").value=="Pause")
+              {
+               document.getElementById("5").value="Chante";
+               
+               PauseRouleau();
+                             }
+              else
+              {
+                document.getElementById("5").value="Pause";
+                
+                TournRouleau();
+              }
+            }
+    
+   
+ function pre(){
+	 document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
+	 document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_sMA");
+	 document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
+	 document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
+	 document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
+	 document.getElementById("bbb").style.width = "auto"; 
+ }
+ 
+
+ 
+ 
+    window.onunload = function(){
+	     if (localStorage.getItem("OpenStartCook")== "false"){
+	   localStorage.removeItem("InputFile");
+	  }
+/*
+	   localStorage.removeItem("TempFilName");
+	   localStorage.removeItem("TempFolderPath");
+*/
+      saveHopeS();
+	    if (localStorage.getItem("check_out_s") == "true")
+	{ function delay(ms) {
+    var start = +new Date;
+    while ((+new Date - start) < ms);
+}
+ 
+delay(1500);
+
+	    saveHopeT();
+	    
+	  
+	}
+	 if (localStorage.getItem("InputFile") == null)
+	{ function delay(ms) {
+    var start = +new Date;
+    while ((+new Date - start) < ms);
+}
+ 
+delay(1500);
+
+	    saveHopeS2();
+	    
+	  
+	}
+//AtNew();
+	  
+	  
+		}
+	
+
+
+	
+
+    window.onload = function() {
+
+	    
+	   window.addEventListener("storage", refresh);	
+
+
+document.getElementById("editor").style.textAlign = localStorage.getItem("align_s");
+document.getElementById("editor").style.color = localStorage.getItem("color_s");
+document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
+document.getElementById("editor").style.textIndent = localStorage.getItem("indent_s");
+document.getElementById("editor").style.fontWeight = localStorage.getItem("bold_s");
+document.getElementById("editor").style.fontStyle = localStorage.getItem("ital_s");
+document.getElementById("editor").style.textDecoration = localStorage.getItem("deco_s");
+document.getElementById("editor").style.fontFamily = localStorage.getItem("font_s");
+document.getElementById("editor").style.fontSize = localStorage.getItem("size_s");
+document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
+document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_s2");
+document.getElementById("editor").style.zoom = localStorage.getItem("zoom_s");
+//localStorage.getItem("chkGit");
+
+
+var fs = require("fs");	
+var path = require("path");	
+// var name_file = localStorage.getItem("data_name").trim();
+// var path_file = localStorage.getItem("fogit").trim();	
+// var MajRest = path_file+"/"+name_file;
+// var Locate = localStorage.getItem("InputFile");		
+                  
+		fs.readFile("temp_rest", function (err, data) {
+  if (err) throw err;
+  console.log(data);
+  document.getElementById("editor").innerText = data;
+
+}); 
+
+
+
+/*
+fs.readFile("temp_rest", function (err, data) {
+  if (err) throw err;
+  console.log(data);
+  document.getElementById("editor").innerText = data;
+});
+*/  
+
+}	
+	
+	function refresh(event) {
+	var fs = require("fs");
+	var gui = require("nw.gui");
+	var path = require('path');
+
+		var namedata2write = "temp_rest";	
+		
+		
+var text_to_save = document.getElementById("editor").innerText;
+fs.writeFile(namedata2write, text_to_save, (err) => {  
+       if (err) throw err;
+});
+	
+	window.location.reload();
+
+        
+	}
+	
+
+
+
+
+
+
+             
+
+
+ 
+	
+	
+	
+
+
+
+
+var fs = require("fs");
+var gui = require("nw.gui");
+/*
+var doc_to_html = document.getElementById("editor").innerHtml;	
+var div = document.getElementById("editor");
+*/
+var openFile = function(event) {
+        var input = event.target;
+        var reader = new FileReader();
+        reader.onload = function(){
+          var text = reader.result;
+          var node = document.getElementById("editor");
+          node.innerText = text;
+          console.log(reader.result.substring(0, 200));
+        };
+        reader.readAsText(input.files[0]);
+      };
+//div.addEventListener('keydown', onKeyDown);
+
+function outputZoom(inputZoom) {
+	var editor=document.getElementById("editor");
+	document.querySelector('#level').value = inputZoom;
+	editor.style.zoom = inputZoom ;	
+	//var inputZoom = document.getElementById("zoomfield").value;	
+}
+
+///function outputUpdate(vol) {
+	//document.querySelector('#volume').value = vol;
+//}
+
+function Fenetre(){
+nw.Window.open('index.html', {title: 'bob'}, function(new_win) {
+  
+  // do something with the newly created window
+});
+}
+
+        
+	        
+   function FileDialog(inputId, callback) {
+	   
+	        var fd = this;
+     fd.chooser = document.querySelector(inputId);
+     fd.chooser.addEventListener("change", function() {
+       var path = this.value;
+       callback(path);
+       fd.chooser.value = '';
+     });
+     fd.open = function () {
+       fd.chooser.click();
+     };
+return fd; }
+   var myFileDialog = new FileDialog('#fileDialog', function (path) {
+	   var doc_to_save = document.getElementById("editor").innerText;	
+     fs.writeFile (path, doc_to_save, 'utf8', (err) => {  
+    // throws an error, you could also catch it here
+    if (err) throw err;
+
+    // success case, the file was saved
+    console.log('Lyric saved!');
+});
+     console.log(path);
+   });
+   
+   
+	
+/*
+
+function KeyPress(e) {
+      var evtobj = window.event? event : e
+      if (evtobj.keyCode == 83 && evtobj.ctrlKey) 
+      saveHope();
+}
+
+document.onkeydown = KeyPress;
+*/   
+
+	   
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="meascript.js"></script>
+</head>
+<body>
+	<span>Localisation du fichier au format BetterBibTeX JSON </span><br>
+	<input type="text" class="inputparam" id="InputBibTeX"><button type="button"onclick="AddBib()">Add</button><br>
+	<script>
+		window.onload = function() {
+			document.getElementById("InputBibTeX").value = localStorage.getItem("BibPath");
+
+			
+		}
+	</script>
+</body>
+</html>

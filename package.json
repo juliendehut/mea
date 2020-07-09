@@ -1,0 +1,25 @@
+{
+  "name": "mea",
+  "version": "0.0.7",
+  "description": "markdow editor for academics",
+  "bg-script" : "start.js",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dehut",
+  "license": "ISC",
+  "window": {
+    "title": "mĕa ",
+    "id": "main",
+    "nodejs": "true",
+    "width": 1455,
+    "height": 768,
+    "position": "center",
+    "min_width": 400,
+    "min_height": 200
+  },
+  "webkit": {
+    "plugin": false
+  }
+}

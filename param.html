@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<htmllang="fr">
+<head>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+#wrapper{
+
+    background-color:pink;
+    display: flex;
+}
+
+#left{
+     flex: 1; 
+     left:0;
+     width:150px;    
+    
+     height:100vh;
+     position:fixed;
+     top:0;
+}
+
+#center {
+     margin-left:180px;
+     margin-right: 180px;
+     flex: 3;
+     
+}
+.vertical-menu a {
+  color: black;
+  display: block;
+  padding-bottom: 12px;
+  padding-top: 12px;
+  text-decoration: none;
+  margin-left: 10px;
+  font-family: Arial;
+font-size: 20px;
+ }
+ .vertical-menu a:hover {
+  background-color: silver;
+  color: white;
+  margin-left: 10px;
+}
+iframe{
+
+	height: 600px;
+	width: 600px;
+
+
+	border: none;
+}
+
+</style>
+</head>
+<body>
+      <div id="wrapper">
+        <div id="left" >
+	        <div class="vertical-menu">
+
+	<a href="editeur.html" target="ShowParam">Éditeur</a>
+  <a href="pres.html" target="ShowParam">Présentation</a>
+  <a href="ecrire.html" target="ShowParam">Écrire</a>
+  <a href="git.html" target="ShowParam">GIT</a>
+  <a href="pandoc.html" target="ShowParam">Pandoc</a>
+  <a href="bibliop.html" target="ShowParam">Bibliographie</a>
+        </div>        
+        </div>
+	        
+	     
+	     
+	     
+	     </div>
+        <div id="center">
+	        <iframe name="ShowParam" src="editeur.html"></iframe>
+
+        </div>
+        <script>
+        
+        </script>
+        </div>
+          </body>
+   </html> 

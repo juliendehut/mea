@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+<script type="text/javascript" src="meascript.js"></script>
+<style>
+	input[type="file"] {
+    display: none;
+}
+.TempFolder {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.TempFolder:hover{
+	background-color: silver;
+	color: white;
+	border: 1px solid black;
+}
+</style>
+</head>
+<body>
+	<p class="lontext">le raccourci Ctrl+S ne sera actif qu'au redémarrage après des changements effectués ici.</p> 
+	<span>Emplacement des écritures temporaires :</span>
+	
+	<label for="folder_input" class="TempFolder">
+     Localiser
+</label>
+<input id="folder_input" type="file" nwdirectory/>
+	
+	
+     
+
+
+
+	<p>Écrire à la fin de l'exécution<input type="checkbox" id="Check_exit_sav" onclick="check_save_exit()"></p>
+	
+	
+	<p>Écrire périodiquement <input type="checkbox" id="Check_box_time" onclick="check_save_time()">
+		<span>Période :</span>
+		<select onchange="Set_save_time.call(this, event)">
+	<option id="selectedSaveTime" value="defaultValue">Unset</option>
+    <option value="60000">1min</option>
+    <option value="300000">5min</option>
+    <option value="600000">10min</option>
+    <option value="1800000">30min</option>
+    <option value="360000">60min</option>
+     </select></p>
+     
+     
+     	
+<!--<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button>-->
+	
+<!-- 	<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button></span><br><br> -->
+	
+		&
+
+
+
+		<p id="open">Lire les dernières données écrites à l'ouverture
+		<input type="checkbox" id="OpenFileAtStart" onclick="OpenFileAtStartFX()" onsubmit="return false;"></p>
+
+		</div>
+		<div>
+			<br>
+	<span id="path_print"></span>/
+
+<span id="file_name_set"></span>
+		</div>
+	
+
+	<script>
+document.querySelector("#folder_input")
+     .addEventListener("change", function() {
+       var folderPath = this.value;   
+       localStorage.removeItem("folder_path");
+    localStorage.setItem("folder_path", folderPath);  
+     });
+		window.onload = function() {
+
+		
+document.getElementById("path_print").innerHTML = localStorage.getItem("folder_path").trim();
+document.getElementById("file_name_set").innerHTML = localStorage.getItem("data_name").trim();
+document.getElementById("selectedSaveTime").text = localStorage.getItem("save_time_data");
+
+	if (localStorage.getItem("save_time_data") === null) {
+  document.getElementById("selectedSaveTime").text = " "; }	
+
+					
+			if (localStorage.getItem("check_out_s")== "true"){
+				document.getElementById("Check_exit_sav").checked = true;
+			}			
+			else{
+				document.getElementById("Check_exit_sav").checked = false;
+
+			}
+					
+		if (localStorage.getItem("check_save_C")== "true"){
+				document.getElementById("Check_box_time").checked = true;
+			}			
+			else{
+				document.getElementById("Check_box_time").checked = false;
+			}
+			
+		
+		if (localStorage.getItem("OpenStartCook")== "true"){
+				document.getElementById("OpenFileAtStart").checked = true;
+			}			
+			else{
+				document.getElementById("OpenFileAtStart").checked = false;
+
+			}
+
+		
+		
+	
+}	
+
+
+	</script>
+</body>
+</html>

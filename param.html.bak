@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title>Paramètres</title>
+	<meta name="description" content="" />
+  	<meta name="keywords" content="" />
+	<meta name="robots" content="" />
+<link rel="stylesheet" href="meastyle.css">
+
+<script type="text/javascript" src="app.js"></script>
+	<style>
+		body{
+			margin-left: 15px;
+			margin-right: auto;
+			overflow-x: hidden;
+		}
+		input[type=text] {
+ 
+  padding-bottom: 0px;
+  margin-bottom: 5px;
+background: white;
+color: black;
+font-family: Arial, sans-serif;
+font-size: 12px;
+}
+input[type="file"] {
+    display: block;
+    }
+	</style>
+
+</head>
+<body>
+	
+	<div id="police">
+		<h3 class="ParamTitle">Éditeur</h3>
+		<p>Police
+			
+			<select onchange="font_family.call(this, event)">
+	<option id="selected" value="defaultValue">Unset</option>
+    <option value="Arial">Arial</option>
+    <option value="Calibri">Calibri</option>
+    <option value="Comic Sans MS">Comic Sans MS</option>
+    <option value="Times">Times</option>
+    <option value="Courier">Courier</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Cambria">Cambria</option>
+    <option value="Demodocos4">Demodocos4</option>
+
+    </select>
+
+		</p>
+		<p>Taille de la police
+			<select onchange="font_size.call(this, event)">
+	<option id="selectedS" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option><input type="text" id="input_size">
+        <div id="loose"></div>
+    </select>
+
+		</p>
+		<p>Graisse
+			<select onchange="text_bold.call(this, event)">
+	<option id="selectedB" value="defaultValue">Unset</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+    <option value="700">700</option>
+    <option value="800">800</option>
+    <option value="900">900</option>
+    </select>
+
+		</p>
+		<p>Italique
+			<select onchange="text_italic.call(this, event)">
+	<option id="selectedIT" value="defaultValue">Unset</option>
+    <option value="normal">Normal</option>
+    <option value="italic">Italique</option>
+    <option value="oblique">Oblique</option>
+    </select>
+		
+		<p>Décoration
+		<select onchange="text_deco.call(this, event)">
+	<option id="selectedD" value="defaultValue">Unset</option>
+    <option value="none">Normal</option>
+    <option value="underline">Soulignement</option>
+    <option value="overline">Ligne au dessus</option>
+    <option value="line-through">Barré</option>
+    </select>	
+		</p>
+			<p> Couleur du texte
+		<select onchange="font_color.call(this, event)">
+	<option id="selectedC" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+         <input type="text" class="input_style" id="Input_FTTC">	
+		
+	</div>	
+<hr>
+	<div id="para">
+		<p> Orientation du texte
+	<select onchange="align_style.call(this, event)">
+	<option id="selectedA" value="defaultValue">Unset</option>
+    <option value="left">Gauche</option>
+    <option value="right">Droite</option>
+    <option value="center">Center</option>
+    <option value="justify">Justifier</option>
+    </select>
+		</p>
+		<p> Interligne
+	<select onchange="inter_height.call(this, event)">
+	<option id="selectedI" value="defaultValue">Unset</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    </select><input type="text" class="input_style" id="Input_inter">
+		</p>
+		<p> Espacement de première ligne
+			<select onchange="text_indent.call(this, event)">
+	<option id="selectedIN" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option>
+    <option value="70px">70px</option>
+    <option value="80px">80px</option>
+    <option value="90px">90px</option>
+    <option value="100px">100px</option>
+    </select></select><input type="text" class="input_style" id="Input_espace_prems">
+
+		</p>
+	</div>
+	<hr>
+	<div id="page">
+		<p>
+		<p> Couleur de la page
+		<select onchange="fond_color.call(this, event)">
+	<option id="selectedCF" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>	
+        <input type="text" class="input_style" id="Input_FTC2">	
+		</p>
+		<p> Couleur du fond
+		<select onchange="fond_color2.call(this, event)">
+	<option id="selectedCF2" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+        <input type="text" class="input_style" id="Input_FDC2">	
+		</p>
+<!--
+		<p>
+			zoom
+			<input type="range" id="zoom" min="0" value="0" max="10" step="0.5" oninput="outputZoomP(value)">
+	<output for="zoom" id="level">0</output>
+		</p>
+-->
+	</div>
+	<hr>
+	<div id="pre">
+		<h3 class="ParamTitle">Présentation</h3>
+		<p> Vitesse de défilement :
+		<select  onchange="tachios_func.call(this, event)">
+	<option id="selectedtach" value="defaultValue">Unset</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+    <option value="40">40</option>
+    <option value="50">50</option>
+    <option value="60">60</option>
+    <option value="70">70</option>
+    <option value="80">80</option>
+    <option value="90">90</option>
+    <option value="100">100</option>
+        </select> <input type="text" class="input_style" id="Input_tachios">
+        </p>
+				
+		<p> Couleur de la page :
+		<select  onchange="fond_colorMA.call(this, event)">
+	<option id="selectedCFMA" value="defaultValue">Unset</option>
+    <option value="white">Blanc</option>
+    <option value="blue">Bleu</option>
+    <option value="yellow">Jaune</option>
+    <option value="black">Noir</option>
+    <option value="pink">Rose</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="purple">Violet</option>
+        </select> <input type="text" class="input_style" id="Input_FDC">
+        </p>
+<p> Couleur du texte
+		<select onchange="font_colorMA.call(this, event)">
+	<option id="selectedCMA" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+		<input type="text" class="input_style" id="Input_FTC">
+		</p>
+		
+		<p>Taille de la police
+			<select onchange="font_sizeMA.call(this, event)">
+	<option id="selectedSMA" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option>
+     </select>
+     <input type="text" class="input_style" id="Input_S2MA">
+<hr>
+</div>
+<div id="ecrire">
+
+     <h3 class="ParamTitle">Écrire</h3> 
+     
+     <p>Emplacement des écritures temporaires</p>
+	<span><input class="inputparam" type="file" id="folder_input" nwdirectory><br><br> 
+     <p class="lontext">le raccourci Ctrl+S ne sera actif qu'au redémarrage après des changements effectués ici.</p> 
+<!--<button type="button"onclick="saveHope2()">chemin</button>
+<!--<input type="file" id="filepicker" name="fileList" webkitdirectory />-->
+
+
+	<p>Écrire à la fin de l'exécution<input type="checkbox" id="Check_exit_sav" onclick="check_save_exit()"></p>
+	
+	
+	<p>Écrire périodiquement <input type="checkbox" id="Check_box_time" onclick="check_save_time()">
+		<select onchange="Set_save_time.call(this, event)">
+	<option id="selectedSaveTime" value="defaultValue">Unset</option>
+    <option value="60000">1min</option>
+    <option value="300000">5min</option>
+    <option value="600000">10min</option>
+    <option value="1800000">30min</option>
+    <option value="360000">60min</option>
+     </select></p>
+     
+     
+     	
+<!--<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button>-->
+	
+<!-- 	<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button></span><br><br> -->
+	
+	
+<span id="path_print"></span>/
+
+<span id="file_name_set"></span>
+
+
+		<p id="open">Lire les dernières données écrites à l'ouverture
+		<input type="checkbox" id="OpenFileAtStart" onclick="OpenFileAtStartFX()" onsubmit="return false;"></p>
+
+		</div>
+	
+	 	<span id="param_check"></span>
+	<span id="param_check2"></span>	
+	<span id="param_check3"></span>	
+	<span id="param_check4"></span>
+	
+	<hr>
+<div>
+	<h3 class="ParamTitle">GIT</h3>
+<span>localisation de GiT </span><br>
+	<input type="text" class="inputparam" id="InputGitLocal"><button type="button"onclick="LocalGit()">Set</button><br>
+		<h4>Créer et initialiser un dépôt</h4>
+		<span>Choisir l'emplacement</span><br><br>
+		<span><input class="inputparam" type="file" id="FolderGit" nwdirectory><br><br>
+		<span>Choisir le nom du dossier</span><br>
+	<input type="text" class="inputparam" id="InputGit"><button type="button"onclick="CreateInitRepo()">set & init</button><button type="button"onclick="SetGitVar()">set</button></span><br>
+<br>
+		
+	<p id="open">Le raccourci Ctrl+S<br> écrit, add et commit en une seule action :
+		<input type="checkbox" id="SaveAddCommitCheck" onclick="SaveAddCommitFc()" onsubmit="return false;"></p>
+
+	
+	
+	
+	
+	<span class="lontext" id="showgit"></span>
+	
+	
+	
+	
+</div>
+<hr>
+<div>
+	<h3 class="ParamTitle">Pandoc</h3>
+	<span>localisation de Pandoc </span><br>
+	<input type="text" class="inputparam" id="InputPandocLocal"><button type="button"onclick="LocalPandoc()">Set</button><br>
+
+	<span>Passer des paramètres lors de la compilation des PDF </span><br>
+	<input type="text" class="inputparamP" id="InputPandocPdf"><button type="button"onclick="AddVarPdf()">Add</button>
+</div>
+<br>
+<br>
+<hr>
+<div>
+	<h3 class="ParamTitle">Bibliographie</h3>
+	<span>Localisation du fichier au format BetterBibTeX JSON </span><br>
+	<input type="text" class="inputparam" id="InputBibTeX"><button type="button"onclick="AddBib()">Add</button><br>
+</div>
+<br>
+<br>
+<hr>
+	<!--<input type="button" id="1" class="menu_bt_prime" value="Justifié" onclick="justify_style();">
+	<input type="button" id="1" class="menu_bt_prime" value="green" onclick="color_gren();">-->
+	<button type="button"onclick="clear_stor()">clear</button>
+<button type="button"onclick="close_para()">fermer</button>
+
+   <br>
+   <br> 
+<script>
+	
+document.getElementById("param_check3").innerHTML = localStorage.getItem("OpenStartCook");
+		
+		if (localStorage.getItem("OpenStartCook")== "true"){
+				document.getElementById("OpenFileAtStart").checked = true;
+			}			
+			else{
+				document.getElementById("OpenFileAtStart").checked = false;
+
+			}
+document.querySelector("#folder_input")
+     .addEventListener("change", function() {
+       var folderPath = this.value;   
+       localStorage.removeItem("folder_path");
+    localStorage.setItem("folder_path", folderPath);  
+     });
+
+
+	    //1 veille sur l'input
+	  //window.onload = localStorage.setItem("param", "unset");
+document.getElementById("Input_FDC").addEventListener("input", fond_color_inputMA);
+document.getElementById("Input_FTC").addEventListener("input", font_colorMA_input);
+document.getElementById("Input_FTTC").addEventListener("input", font_color_input);
+document.getElementById("Input_S2MA").addEventListener("input", font_sizeMA_input);
+document.getElementById("Input_FDC2").addEventListener("input", fond_MARGE_color_input);
+document.getElementById("Input_FTC2").addEventListener("input", fond_color_input);
+document.getElementById("input_size").addEventListener("input", font_size_input);
+document.getElementById("Input_inter").addEventListener("input", inter_height_input);
+document.getElementById("Input_espace_prems").addEventListener("input", prem_line_input);
+document.getElementById("Input_tachios").addEventListener("input", tachios_input);
+//document.getElementById("input_name").addEventListener("input", set_name);
+
+
+window.onload = function() {
+// 2 charger valeur 			
+
+document.getElementById("selected").text = localStorage.getItem("font_s");
+
+document.getElementById("selectedA").text = localStorage.getItem("align_s");
+document.getElementById("selectedC").text = localStorage.getItem("color_s");
+document.getElementById("selectedI").text = localStorage.getItem("inter_s");
+document.getElementById("selectedIN").text = localStorage.getItem("indent_s");
+document.getElementById("selectedB").text = localStorage.getItem("bold_s");
+document.getElementById("selectedIT").text = localStorage.getItem("ital_s");
+document.getElementById("selectedD").text = localStorage.getItem("deco_s");
+document.getElementById("selectedS").text = localStorage.getItem("size_s");
+document.getElementById("selectedCF").text = localStorage.getItem("colorf_s");
+document.getElementById("selectedCF2").text = localStorage.getItem("colorf_s2");
+document.getElementById("selectedCFMA").text = localStorage.getItem("colorf_sMA");
+document.getElementById("selectedCMA").text = localStorage.getItem("color_sMA");
+document.getElementById("selectedSMA").text = localStorage.getItem("size_s2MA");
+document.getElementById("selectedtach").text = localStorage.getItem("tachios");
+document.getElementById("path_print").innerHTML = localStorage.getItem("folder_path").trim();
+document.getElementById("file_name_set").innerHTML = localStorage.getItem("data_name").trim();
+document.getElementById("FolderGit").innerHTML= localStorage.getItem("filgit").trim();
+
+document.getElementById("InputPandocLocal").value = localStorage.getItem("PandocPath");
+document.getElementById("InputPandocPdf").value = localStorage.getItem("PandocPdf");
+document.getElementById("InputGitLocal").value = localStorage.getItem("GitPath");
+document.getElementById("InputBibTeX").value = localStorage.getItem("BibPath");
+
+//document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
+
+if (localStorage.getItem("font_s") === null) {
+  document.getElementById("selected").text = " ";
+}	
+
+if (localStorage.getItem("align_s") === null) {
+  document.getElementById("selectedA").text = " ";
+}	
+
+if (localStorage.getItem("color_s") === null) {
+  document.getElementById("selectedC").text = " ";
+}	
+if (localStorage.getItem("inter_s") === null) {
+  document.getElementById("selectedI").text = " ";
+}
+if (localStorage.getItem("indent_s") === null) {
+  document.getElementById("selectedIN").text = " ";
+}	
+if (localStorage.getItem("bold_s") === null) {
+  document.getElementById("selectedB").text = " ";
+}	
+if (localStorage.getItem("ital_s") === null) {
+  document.getElementById("selectedIT").text = " ";
+}
+if (localStorage.getItem("deco_s") === null) {
+  document.getElementById("selectedD").text = " ";
+}	
+if (localStorage.getItem("size_s") === null) {
+  document.getElementById("selectedS").text = " ";
+}	
+if (localStorage.getItem("colorf_s") === null) {
+  document.getElementById("selectedCF").text = " ";
+}
+
+if (localStorage.getItem("colorf_sMA") === null) {
+  document.getElementById("selectedCFMA").text = " ";
+}
+
+
+if (localStorage.getItem("color_sMA") === null) {
+  document.getElementById("selectedCMA").text = " ";
+}
+if (localStorage.getItem("size_s2MA") === null) {
+  document.getElementById("selectedSMA").text = " ";
+}
+if (localStorage.getItem("colorf_s2") === null) {
+  document.getElementById("selectedCF2").text = " ";
+}
+if (localStorage.getItem("tachios") === null) {
+  document.getElementById("selectedtach").text = " ";
+}
+/*
+if (localStorage.getItem("data_name") === null) {
+    localStorage.setItem("data_name", "temp_mea"); 
+}	
+*/
+	
+
+document.getElementById("param_check").innerHTML = localStorage.getItem("check_out_s");
+					
+			if (localStorage.getItem("check_out_s")== "true"){
+				document.getElementById("Check_exit_sav").checked = true;
+			}			
+			else{
+				document.getElementById("Check_exit_sav").checked = false;
+
+			}
+			document.getElementById("param_check2").innerHTML = localStorage.getItem("check_save_C");
+		
+		if (localStorage.getItem("check_save_C")== "true"){
+				document.getElementById("Check_box_time").checked = true;
+			}			
+			else{
+				document.getElementById("Check_box_time").checked = false;
+			}
+
+
+
+if (localStorage.getItem("ctrls")== "true"){
+				document.getElementById("SaveAddCommitCheck").checked = true;
+			}			
+			else{
+				document.getElementById("SaveAddCommitCheck").checked = false;
+			}
+
+
+
+
+document.getElementById("selectedSaveTime").text = localStorage.getItem("save_time_data");
+		
+		
+		if (localStorage.getItem("save_time_data") === null) {
+  document.getElementById("selectedSaveTime").text = " ";
+}	
+
+
+	
+}	
+
+	  function close_para(){
+	close(); 
+	 
+ }	    	
+ 
+ function clear_stor() {
+    //localStorage.clear();
+    localStorage.removeItem("align_s");
+    localStorage.removeItem("inter_s");
+    localStorage.removeItem("indent_s");
+    localStorage.removeItem("bold_s");
+    localStorage.removeItem("ital_s");
+    localStorage.removeItem("deco_s");
+    localStorage.removeItem("font_s");
+    localStorage.removeItem("size_s");
+    localStorage.removeItem("color_s");
+    localStorage.removeItem("colorf_s");
+	localStorage.removeItem("zoom_s");
+	localStorage.removeItem("colorf_sMA");
+	localStorage.removeItem("color_sMA");
+	localStorage.removeItem("size_s2MA");
+	localStorage.removeItem("colorf_s2");
+	localStorage.removeItem("tachios");
+	localStorage.removeItem("check_save_C");
+	localStorage.removeItem("save_time_data");
+	localStorage.removeItem("folder_path");
+	localStorage.removeItem("data_name");
+	localStorage.removeItem("ctrls");
+
+	location.reload(); 
+	}
+
+
+//sauvegarde avant fermeture	
+		function check_save_exit() {
+	localStorage.removeItem("check_out_s");
+	var CheckSaveVar = document.getElementById("Check_exit_sav").checked;
+	    localStorage.setItem("check_out_s", CheckSaveVar);  	
+  //document.getElementById("param_check").innerHTML = localStorage.getItem("check_out_s");
+  }
+
+
+function check_save_time() {
+	localStorage.removeItem("check_save_C");
+	var CheckSaveVar = document.getElementById("Check_box_time").checked;
+	    localStorage.setItem("check_save_C", CheckSaveVar);  	
+  //document.getElementById("param_check2").innerHTML = localStorage.getItem("check_save_C");
+  }
+///ouverture nouvelle page ou pas
+function OpenFileAtStartFX(){
+	localStorage.removeItem("OpenStartCook");
+var CheckOpFvar = document.getElementById("OpenFileAtStart").checked;
+localStorage.setItem("OpenStartCook", CheckOpFvar);
+
+
+}
+
+function Set_save_time(){
+	localStorage.removeItem("save_time_data");
+	var save_timeIn = this.options[this.selectedIndex].value;
+	localStorage.setItem("save_time_data", save_timeIn);  
+}
+	
+//fonction pour attribuer un nom aux données sauvegardées aka fichiers
+function set_name(){
+	localStorage.removeItem("data_name");
+		var Name_cookie_var = document.getElementById("input_name").value;
+    localStorage.setItem("data_name", Name_cookie_var);  	
+   //document.getElementById("param_check3").innerHTML = localStorage.getItem("data_name");
+ 
+}
+
+/*
+function Setrepo(){
+	localStorage.removeItem("fogit");
+	var gitfol = document.getElementById("FolderGit").value;
+    localStorage.setItem("fogit", gitfol); 
+     	
+    localStorage.removeItem("filgit");
+	var pathgitfold = document.getElementById("InputGit").value;
+    localStorage.setItem("filgit", pathgitfold);  
+	CreateInitRepo();
+	
+	}
+*/
+// variables de Git et Pandoc
+function LocalPandoc(){
+	localStorage.removeItem("PandocPath");
+		var Name_cookie_var = document.getElementById("InputPandocLocal").value;
+    localStorage.setItem("PandocPath", Name_cookie_var);
+}
+function AddVarPdf(){
+	localStorage.removeItem("PandocPdf");
+		var Name_cookie_var = document.getElementById("InputPandocPdf").value;
+    localStorage.setItem("PandocPdf", Name_cookie_var);
+}
+function LocalGit(){
+	localStorage.removeItem("GitPath");
+		var Name_cookie_var = document.getElementById("InputGitLocal").value;
+    localStorage.setItem("GitPath", Name_cookie_var);
+}
+// Lien Zotero
+function AddBib(){
+	localStorage.removeItem("BibPath");
+		var Name_cookie_var = document.getElementById("InputBibTeX").value;
+    localStorage.setItem("BibPath", Name_cookie_var);
+}
+
+// CTRL S -> write+add+commit
+function SaveAddCommitFc(){
+	localStorage.removeItem("ctrls");
+		var Name_cookie_var = document.getElementById("SaveAddCommitCheck").checked;
+    localStorage.setItem("ctrls", Name_cookie_var);
+	
+}
+
+ //3 fonction pour input
+ 
+//Marathon add input
+ function fond_color_inputMA(){
+	localStorage.removeItem("colorf_sMA");
+		var colorf_valMA = document.getElementById("Input_FDC").value;
+    localStorage.setItem("colorf_sMA", colorf_valMA);  
+   
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+function fond_color_input(){
+	localStorage.removeItem("colorf_s");
+		var colorf_valA = document.getElementById("Input_FTC2").value;
+    localStorage.setItem("colorf_s", colorf_valA);  
+   
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}
+function fond_MARGE_color_input(){
+	localStorage.removeItem("colorf_s2");
+		var colorf_valB = document.getElementById("Input_FDC2").value;
+    localStorage.setItem("colorf_s2", colorf_valB);  
+   
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}				
+function font_colorMA_input(){
+	localStorage.removeItem("color_sMA");
+		var color_val2 = document.getElementById("Input_FTC").value;
+    localStorage.setItem("color_sMA", color_val2);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}
+function font_color_input(){
+	localStorage.removeItem("color_s");
+		var color_val2B = document.getElementById("Input_FTTC").value;
+    localStorage.setItem("color_s", color_val2B);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}
+
+function font_sizeMA_input(){
+	localStorage.removeItem("size_s2MA");
+		var size_val2MA = document.getElementById("Input_S2MA").value;
+    localStorage.setItem("size_s2MA", size_val2MA);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+function font_size_input(){
+	localStorage.removeItem("size_s");
+		var size_val2MAAZ = document.getElementById("input_size").value;
+    localStorage.setItem("size_s", size_val2MAAZ);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+function inter_height_input(){
+	localStorage.removeItem("inter_s");
+		var size_val2MAAZ2 = document.getElementById("Input_inter").value;
+    localStorage.setItem("inter_s", size_val2MAAZ2);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+function prem_line_input(){
+	localStorage.removeItem("indent_s");
+		var size_valind = document.getElementById("Input_espace_prems").value;
+    localStorage.setItem("indent_s", size_valind);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+	function tachios_input(){
+	localStorage.removeItem("tachios");
+		var size_valtac = document.getElementById("Input_tachios").value;
+    localStorage.setItem("tachios", size_valtac);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+function tachios_func(){
+	localStorage.removeItem("tachios");
+		var size_valtac2 = document.getElementById("selectedtach").value;
+    localStorage.setItem("tachios", size_valtac2);  
+   //color_sMA", color_val2
+    //document.getElementById("chant").style.backgroundColor = localStorage.getItem("colorf_s");
+}	
+
+//editor
+
+ 
+	function color_gren(){
+		localStorage.setItem("color_div", "green");
+document.getElementById("editor").style.color = localStorage.getItem("color_div");
+	}
+	
+
+
+	function align_style(event) {
+    var align = this.options[this.selectedIndex].value;
+    localStorage.setItem("align_s", align);  
+    document.getElementById("editor").style.color = localStorage.getItem("align_s");        
+	
+}      
+
+
+function inter_height(event) {
+	var inter_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("inter_s", inter_val);  
+    document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");  	
+}      
+
+function text_indent(event) {
+	var indentation = this.options[this.selectedIndex].value;
+    localStorage.setItem("indent_s", indentation);  
+    document.getElementById("editor").style.textIndent = localStorage.getItem("indent_s");  	
+}      
+function text_bold(){
+		var bold_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("bold_s", bold_val);  
+    document.getElementById("editor").style.fontWeight = localStorage.getItem("bold_s");
+}
+function text_italic(){
+		var ital_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("ital_s", ital_val);  
+    document.getElementById("editor").style.fontStyle = localStorage.getItem("ital_s");
+}
+function text_deco(){
+		var deco_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("deco_s", deco_val);  
+    document.getElementById("editor").style.textDecoration = localStorage.getItem("deco_s");
+}
+
+//ICIIIIIIII
+
+
+function font_family(){
+		var font_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("font_s", font_val);  
+    document.getElementById("editor").select().style.fontFamily = localStorage.getItem("font_s");
+    
+    //document.getElementById("police_type").innerHTML = localStorage.getItem("font_s");
+}
+function font_size(){
+		var size_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("size_s", size_val);  
+    document.getElementById("editor").style.fontSize = localStorage.getItem("size_s");
+}
+function font_sizeMA(){
+		var size_val2MA = this.options[this.selectedIndex].value;
+    localStorage.setItem("size_s2MA", size_val2MA);  
+    document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
+}
+
+//function font_size2(){
+//		var size_val2 = document.getElementById("selectedS2").value;
+  //  localStorage.setItem("size_s2", size_val2);  
+  //  document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2");
+    //document.getElementById("loose").innerHTML = localStorage.getItem("size_s2");
+//}
+
+function font_color(){
+		var color_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("color_s", color_val);  
+    document.getElementById("editor").style.color = localStorage.getItem("color_s");
+}
+function font_colorMA(){
+		var color_val2 = this.options[this.selectedIndex].value;
+    localStorage.setItem("color_sMA", color_val2);  
+    document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
+}
+function fond_color(){
+		var colorf_val = this.options[this.selectedIndex].value;
+    localStorage.setItem("colorf_s", colorf_val);  
+    document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
+    
+    
+    }
+    function fond_colorMA(){
+		var colorf_valMA = this.options[this.selectedIndex].value;
+    localStorage.setItem("colorf_sMA", colorf_valMA);  
+    document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
+    
+    }
+    function fond_color2(){
+		var colorf_val2 = this.options[this.selectedIndex].value;
+    localStorage.setItem("colorf_s2", colorf_val2);  
+    document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_s2");
+    
+    
+    }
+function outputZoomP(inputZoomP) {
+	var editor=document.getElementById("editor");
+	document.querySelector('#level').value = inputZoomP;
+	localStorage.setItem("zoom_s", inputZoomP);
+	
+	editor.style.zoom = inputZoomP ;	
+	//var inputZoom = document.getElementById("zoomfield").value;	
+}
+
+</script>
+</body>
+</html>

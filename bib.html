@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="meastyle.css">
+	<script type="text/javascript" src="meascript.js"></script>
+<style>
+	body{
+		overflow: scroll;
+	}
+	.bibref{
+		float: left;
+		margin-left: 10px;
+		
+	}
+	.bibrefa{
+		float: left;
+		margin-left: 10px;
+		font-style: italic;
+		
+	}
+	#ShowRef{
+	  position: fixed;
+	  background-color: white;
+  top: 0;
+  width: 100%;
+  color: black;
+	}
+	
+	#demo, #demo2, #demo3, #demo4, #demo5, #demo6{
+visibility: hidden;
+	color:red;	
+	}
+</style>
+</head>
+<body>
+
+
+</style>
+</head>
+
+
+<body id="bbbi">
+<div id="ShowRef">
+	<p id="demo" class="bibref">
+
+<p id="demo2"></p>
+
+
+<p id="demo3" class="bibref"></p>
+<p id="demo4" class="bibref"></p>
+
+<p id="demo5" class="bibref"></p>
+<p id="demo6" class="bibref"></p>
+<p id="demo7" class="bibrefa"></p>
+
+
+<p id="demo8" class="bibref"></p>
+
+
+<p id="demo8b" class="bibref"></p>
+<p id="demo8c"class="bibref"></p>
+<p id="demo9"class="bibref"></p>
+
+</div>
+  <div class="content">
+<input type="button" id="Slide_ButtonBib" class="MainSlideButBIB" value="" onclick="openNavBib(); toggleBib(this);">
+
+		<div id="mySidenavbib" class="sidenav">
+ 
+<input type="button" id="1" class="menu_btA" value="Rechercher" onclick="showbib();">
+<input type="text" id="BibInputBox" />
+<input type="button" id="1" class="menu_btB" value="Actualiser" onclick="freshbib();">
+<input type="button" id="6" class="menu_bt" value="Altérer" onclick="editbib();">
+<input type="button" id="1" class="menu_btV" value="Fermer" onclick="closebib();">
+
+ </div>
+
+   
+	<p id="bib" class="log" contenteditable="false"></p>
+
+
+
+
+	
+	<script>
+		
+		function editbib()
+		
+            { 
+	           	           	           
+	           
+              if(document.getElementById("6").value=="Altérer")
+              {
+               document.getElementById("6").value="Conserver";
+               
+              document.getElementById("bib").setAttribute("contenteditable", true);
+    
+              
+              
+              
+                             }
+              else
+              {
+                document.getElementById("6").value="Altérer";
+                var fs = require("fs");	
+var path = require("path");              
+              var namedata2write = localStorage.getItem("BibPath");
+let text_to_save = document.getElementById("bib").innerText;
+fs.writeFile(namedata2write, text_to_save, (err) => {  
+       if (err) throw err;
+});
+
+                
+                document.getElementById("bib").setAttribute("contenteditable", false);              }
+            }
+
+		
+		
+		
+		
+		
+		
+function toggleBib(button)
+            {
+              if(document.getElementById("Slide_ButtonBib").value=="1")
+              {
+               document.getElementById("Slide_ButtonBib").value="2";
+               openNavBib();
+                             }
+              else
+              {
+                document.getElementById("Slide_ButtonBib").value="1";
+                closeNavBib();
+                             }
+            }
+		
+		
+		
+function MainBUTBib() {
+  var x = document.getElementById("Slide_ButtonBib");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function openNavBib() {
+  document.getElementById("mySidenavbib").style.width = "100%";
+  document.getElementById("mySidenavbib").style.height = "50px";
+ }
+		
+function closeNavBib() {
+  document.getElementById("mySidenavbib").style.width = "0";
+  document.getElementById("Slide_ButtonBib").style.display = "block";
+ }
+
+function freshbib(){
+	window.location.reload();
+	
+}		
+function closebib(){
+	close();
+}		
+
+		
+/*
+function showbib(){
+var BibPathV = localStorage.getItem("BibPath");
+		
+	var fs = require("fs");	
+var path = require("path");	
+
+	fs.readFile(BibPathV, function (err, data) {
+  if (err) throw err;
+  console.log(data);
+//   document.getElementById("editor").innerText = data;
+var text = data;
+
+obj = JSON.parse(text);
+
+
+
+
+//document.getElementById("demo").innerHTML = obj.items[0].title+ " " + obj.items[0].citationKey;	
+//document.getElementById("demo2").innerHTML = obj.items[0].creators[0].lastName;	
+
+
+var CK = [...new Set(obj.items.map(it => it.citationKey))];
+var TI = [...new Set(obj.items.map(it => it.title))];
+var AU = [...new Set(obj.items.map(it => it.creators))];
+
+var res = CK.filter(it => it.includes("ale"));
+var res2 = TI.filter(it => it.includes("ou"));
+//document.getElementById("demo2").innerHTML = res;
+//document.getElementById("demo3").innerHTML = res2;
+var InputBib = document.getElementById("BibInputBox").value;
+
+	
+var res3 = TI.filter(it => it.includes(InputBib));	
+
+let res4 = TI.filter(it => new RegExp(InputBib, "i").test(it));
+
+document.getElementById("demo4").innerHTML = res3;
+document.getElementById("demo7").innerHTML = res4;
+
+var One = document.getElementById("demo7").innerText;
+var position = TI.indexOf(One);
+var position2 = AU.indexOf(One);
+  //document.getElementById("demo6").innerHTML = position;
+document.getElementById("demo8").innerHTML = obj.items[position].creators[position].firstName+" "+obj.items[position].creators[position].lastName;
+//document.getElementById("demo8b").innerHTML = obj.items[position].title;
+document.getElementById("demo8c").innerHTML = obj.items[position].citationKey;
+//document.getElementById("demo5").innerHTML = InputBib;
+document.getElementById("demo9").innerHTML = obj.items[position].title+ " " + obj.items[position].citationKey;
+});
+
+
+
+}
+*/
+
+function showbib(){
+
+		
+	var fs = require("fs");	
+var path = require("path");	
+
+	fs.readFile("/Users/ichimusai/Documents/temp/bis/smal.json", function (err, data) {
+  if (err) throw err;
+  console.log(data);
+//   document.getElementById("editor").innerText = data;
+var text = data;
+
+obj = JSON.parse(text);
+
+
+
+
+document.getElementById("demo").innerHTML = obj.items[0].title+ " " + obj.items[0].citationKey;	
+
+var CK = [...new Set(obj.items.map(it => it.citationKey))];
+var TI = [...new Set(obj.items.map(it => it.title))];
+
+//var res = CK.filter(it => it.includes("pan"));
+//var res2 = TI.filter(it => it.includes("lessons"));
+//document.getElementById("demo2").innerHTML = res;
+//document.getElementById("demo3").innerHTML = res2;
+var InputBib = document.getElementById("BibInputBox").value;
+
+	
+var res3 = TI.filter(it => it.includes(InputBib));	
+
+let res4 = TI.filter(it => new RegExp(InputBib, "i").test(it));
+
+document.getElementById("demo4").innerHTML = res3;
+document.getElementById("demo7").innerHTML = res4;
+
+var One = document.getElementById("demo7").innerText;
+var position = TI.indexOf(One);
+  document.getElementById("demo6").innerHTML = position;
+document.getElementById("demo8").innerHTML = obj.items[position].citationKey;
+
+//document.getElementById("demo5").innerHTML = InputBib;
+
+});
+
+
+
+}
+
+
+		
+
+var BibPathV = localStorage.getItem("BibPath");
+ 
+var fs = require("fs");	
+var path = require("path");
+
+fs.readFile(BibPathV, function (err, data) {
+  if (err) throw err;
+  console.log(data);
+           document.getElementById("bib").innerText = data; 
+
+}); 
+
+
+window.onload = function() {
+
+document.getElementById("mySidenavbib").style.width = "100%";
+ document.getElementById("mySidenavbib").style.height = "50px";
+
+document.getElementById("bib").style.textAlign = localStorage.getItem("align_s");
+document.getElementById("bib").style.color = localStorage.getItem("color_s");
+document.getElementById("bib").style.lineHeight = localStorage.getItem("inter_s");
+//document.getElementById("Log").style.textIndent = localStorage.getItem("indent_s");
+document.getElementById("bib").style.fontWeight = localStorage.getItem("bold_s");
+document.getElementById("bib").style.fontStyle = localStorage.getItem("ital_s");
+document.getElementById("bib").style.textDecoration = localStorage.getItem("deco_s");
+document.getElementById("bib").style.fontFamily = localStorage.getItem("font_s");
+
+document.getElementById("bib").style.fontSize = localStorage.getItem("size_s");
+document.getElementById("bib").style.backgroundColor = localStorage.getItem("colorf_s");
+document.getElementById("bbbi").style.backgroundColor = localStorage.getItem("colorf_s2");
+//document.getElementById("Log").style.zoom = localStorage.getItem("zoom_s");
+document.getElementById("demo8").style.fontFamily = localStorage.getItem("font_s");
+document.getElementById("demo8c").style.fontFamily = localStorage.getItem("font_s");
+//document.getElementById("demo8").style.fontSize = localStorage.getItem("size_s");
+//document.getElementById("demo8c").style.fontSize = localStorage.getItem("size_s");
+
+}	
+
+
+
+
+
+   
+	</script>
+</body>
+</html>

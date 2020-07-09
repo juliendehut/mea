@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="meastyle.css">
+	<script type="text/javascript" src="meascript.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="PastePerfect.js"></script>
+	<style>
+/*
+	input[type="file"] {
+    display: none;
+}
+*/
+</style>
+</head>
+<body>
+	<p>Localisation et nom </p>
+	<span><label><input class="inputparam" type="file" id="folder_input" nwdirectory>Répertoire</label><br><br>
+	<input type="text" id="TempSaveNameInput">
+	<button type="button"onclick="SaveMe()">Écrire</button>
+	<script>
+	document.querySelector("#folder_input")
+     .addEventListener("change", function() {
+       var folderPath = this.value;   
+       localStorage.removeItem("TempFolderPath");
+    localStorage.setItem("TempFolderPath", folderPath);  
+     });	
+     
+     
+     function SaveMe(){
+	     LocalSaveTemp();
+	     saveHopeT2();
+     }
+     
+     
+		function LocalSaveTemp(){
+			
+	localStorage.removeItem("TempFilName");
+	var TempFilVar = document.getElementById("TempSaveNameInput").value;
+    localStorage.setItem("TempFilName", TempFilVar); 	
+}
+
+	</script>
+</body>
+</html>

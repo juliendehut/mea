@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+	<title></title>
+<script type="text/javascript" src="meascript.js"></script>
+</head>
+<body><p>Police
+	<select onchange="font_family.call(this, event)">
+	<option id="selected" value="defaultValue">Unset</option>
+    <option value="Arial">Arial</option>
+    <option value="Calibri">Calibri</option>
+    <option value="Comic Sans MS">Comic Sans MS</option>
+    <option value="Times">Times</option>
+    <option value="Courier">Courier</option>
+    <option value="Times New Roman">Times New Roman</option>
+    <option value="Cambria">Cambria</option>
+    <option value="Demodocos4">Demodocos4</option>
+
+    </select>
+
+		</p>
+		<p>Taille de la police
+			<select onchange="font_size.call(this, event)">
+	<option id="selectedS" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option><input type="text" id="input_size">
+        <div id="loose"></div>
+    </select>
+
+		</p>
+		<p>Graisse
+			<select onchange="text_bold.call(this, event)">
+	<option id="selectedB" value="defaultValue">Unset</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+    <option value="400">400</option>
+    <option value="500">500</option>
+    <option value="600">600</option>
+    <option value="700">700</option>
+    <option value="800">800</option>
+    <option value="900">900</option>
+    </select>
+
+		</p>
+		<p>Italique
+			<select onchange="text_italic.call(this, event)">
+	<option id="selectedIT" value="defaultValue">Unset</option>
+    <option value="normal">Normal</option>
+    <option value="italic">Italique</option>
+    <option value="oblique">Oblique</option>
+    </select>
+		
+		<p>Décoration
+		<select onchange="text_deco.call(this, event)">
+	<option id="selectedD" value="defaultValue">Unset</option>
+    <option value="none">Normal</option>
+    <option value="underline">Soulignement</option>
+    <option value="overline">Ligne au dessus</option>
+    <option value="line-through">Barré</option>
+    </select>	
+		</p>
+			<p> Couleur du texte
+		<select onchange="font_color.call(this, event)">
+	<option id="selectedC" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+         <input type="text" class="input_style" id="Input_FTTC">	
+		
+	</div>	
+<hr>
+	<div id="para">
+		<p> Orientation du texte
+	<select onchange="align_style.call(this, event)">
+	<option id="selectedA" value="defaultValue">Unset</option>
+    <option value="left">Gauche</option>
+    <option value="right">Droite</option>
+    <option value="center">Center</option>
+    <option value="justify">Justifier</option>
+    </select>
+		</p>
+		<p> Interligne
+	<select onchange="inter_height.call(this, event)">
+	<option id="selectedI" value="defaultValue">Unset</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    </select><input type="text" class="input_style" id="Input_inter">
+		</p>
+		<p> Espacement de première ligne
+			<select onchange="text_indent.call(this, event)">
+	<option id="selectedIN" value="defaultValue">Unset</option>
+    <option value="10px">10px</option>
+    <option value="20px">20px</option>
+    <option value="30px">30px</option>
+    <option value="40px">40px</option>
+    <option value="50px">50px</option>
+    <option value="60px">60px</option>
+    <option value="70px">70px</option>
+    <option value="80px">80px</option>
+    <option value="90px">90px</option>
+    <option value="100px">100px</option>
+    </select></select><input type="text" class="input_style" id="Input_espace_prems">
+
+		</p>
+	</div>
+	<hr>
+	<div id="page">
+		<p>
+		<p> Couleur de la page
+		<select onchange="fond_color.call(this, event)">
+	<option id="selectedCF" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>	
+        <input type="text" class="input_style" id="Input_FTC2">	
+		</p>
+		<p> Couleur du fond
+		<select onchange="fond_color2.call(this, event)">
+	<option id="selectedCF2" value="defaultValue">Unset</option>
+    <option value="black">Noir</option>
+    <option value="blue">Bleu</option>
+    <option value="red">Rouge</option>
+    <option value="green">Vert</option>
+    <option value="yellow">Jaune</option>
+    <option value="white">Blanc</option>
+        </select>
+        <input type="text" class="input_style" id="Input_FDC2">	
+		</p>
+<script>
+
+document.getElementById("Input_FTTC").addEventListener("input", font_color_input);
+
+document.getElementById("Input_FDC2").addEventListener("input", fond_MARGE_color_input);
+document.getElementById("Input_FTC2").addEventListener("input", fond_color_input);
+document.getElementById("input_size").addEventListener("input", font_size_input);
+document.getElementById("Input_inter").addEventListener("input", inter_height_input);
+document.getElementById("Input_espace_prems").addEventListener("input", prem_line_input);
+
+	
+	window.onload = function() {
+			
+document.getElementById("selected").text = localStorage.getItem("font_s");
+document.getElementById("selectedA").text = localStorage.getItem("align_s");
+document.getElementById("selectedC").text = localStorage.getItem("color_s");
+document.getElementById("selectedI").text = localStorage.getItem("inter_s");
+document.getElementById("selectedIN").text = localStorage.getItem("indent_s");
+document.getElementById("selectedB").text = localStorage.getItem("bold_s");
+document.getElementById("selectedIT").text = localStorage.getItem("ital_s");
+document.getElementById("selectedD").text = localStorage.getItem("deco_s");
+document.getElementById("selectedS").text = localStorage.getItem("size_s");
+document.getElementById("selectedCF").text = localStorage.getItem("colorf_s");
+document.getElementById("selectedCF2").text = localStorage.getItem("colorf_s2");
+
+
+
+
+if (localStorage.getItem("font_s") === null) {
+  document.getElementById("selected").text = " ";
+}	
+
+if (localStorage.getItem("align_s") === null) {
+  document.getElementById("selectedA").text = " ";
+}	
+
+if (localStorage.getItem("color_s") === null) {
+  document.getElementById("selectedC").text = " ";
+}	
+if (localStorage.getItem("inter_s") === null) {
+  document.getElementById("selectedI").text = " ";
+}
+if (localStorage.getItem("indent_s") === null) {
+  document.getElementById("selectedIN").text = " ";
+}	
+if (localStorage.getItem("bold_s") === null) {
+  document.getElementById("selectedB").text = " ";
+}	
+if (localStorage.getItem("ital_s") === null) {
+  document.getElementById("selectedIT").text = " ";
+}
+if (localStorage.getItem("deco_s") === null) {
+  document.getElementById("selectedD").text = " ";
+}	
+if (localStorage.getItem("size_s") === null) {
+  document.getElementById("selectedS").text = " ";
+}	
+if (localStorage.getItem("colorf_s") === null) {
+  document.getElementById("selectedCF").text = " ";
+}
+
+if (localStorage.getItem("colorf_s2") === null) {
+  document.getElementById("selectedCF2").text = " ";
+}
+	
+
+		
+		if (localStorage.getItem("save_time_data") === null) {
+  document.getElementById("selectedSaveTime").text = " ";
+}	
+
+
+	
+}	
+
+
+
+
+</script>
+	</div>
+</body>
+</html>
