@@ -550,11 +550,11 @@ fs.writeFile(folderPathL+ "/"+ namedata2write+ "tmp", text_to_save, (err) => {
 
 
 function saveHopeT(){
-		const fs = require('fs');
-		var folderPathL = localStorage.getItem("folder_path");
-		var namedata2write = localStorage.getItem("data_name");
+    const fs = require('fs');
+		var path_file = localStorage.getItem("folder_path");
+		var namedata2write = localStorage.getItem("InputNameSoloC").trim();
 let text_to_save = document.getElementById("editor").innerText;
-fs.writeFile(folderPathL+ "/"+ namedata2write+ "tmp2" , text_to_save, (err) => {  
+fs.writeFile(path_file+ "/"+namedata2write+ "tmp" , text_to_save, (err) => {  
        if (err) throw err;
 });
 }
@@ -562,7 +562,7 @@ fs.writeFile(folderPathL+ "/"+ namedata2write+ "tmp2" , text_to_save, (err) => {
 
 function saveHopeS(){
 		const fs = require('fs');
-		var namedata2write3 = "temp_rest";
+		var namedata2write3 = localStorage.getItem("InputFile")
 		let text_to_save = document.getElementById("editor").innerText;
 fs.writeFileSync(namedata2write3, text_to_save, (err) => {  
        if (err) throw err;
@@ -571,12 +571,58 @@ fs.writeFileSync(namedata2write3, text_to_save, (err) => {
 
 function saveHopeS2(){
 		const fs = require('fs');
-		var folderPathL = localStorage.getItem("folder_path");
-		var namedata2write3 = folderPathL+"/meaexittemp";
+		var path_file = localStorage.getItem("folder_path");
+		var namedata2write3 = "meatemp";
 		let text_to_save = document.getElementById("editor").innerText;
-fs.writeFileSync(namedata2write3, text_to_save, (err) => {  
+fs.writeFileSync(path_file+ "/"+namedata2write3, text_to_save, (err) => {  
        if (err) throw err;
 });
+}
+
+function saveNullTime(){
+  if (localStorage.getItem("InputFile") == null)
+	{
+  const fs = require('fs');
+  var path_fileA = localStorage.getItem("folder_path");
+  var namedata2writeN = "MeaTemp";
+  let text_to_save = document.getElementById("editor").innerText;
+fs.writeFileSync(path_fileA+ "/"+namedata2writeN, text_to_save, (err) => {  
+     if (err) throw err;
+});
+}
+else {
+  const fs = require('fs');
+  var path_fileB = localStorage.getItem("folder_path");
+  var namedata2writeN1 = localStorage.getItem("InputNameNoExtC")+".tmp";
+  
+  let text_to_save = document.getElementById("editor").innerText;
+fs.writeFileSync(path_fileB+ "/"+namedata2writeN1, text_to_save, (err) => {  
+     if (err) throw err;
+});
+}
+}
+
+function saveNullExit(){
+  if (localStorage.getItem("InputFile") == null)
+	{
+  const fs = require('fs');
+  var path_file = localStorage.getItem("folder_path");
+  var namedata2write3 = "MeaTempEX";
+  let text_to_save = document.getElementById("editor").innerText;
+fs.writeFileSync(path_file+ "/"+namedata2write3, text_to_save, (err) => {  
+     if (err) throw err;
+});
+}
+else {
+  const fs = require('fs');
+  var path_fileB = localStorage.getItem("folder_path");
+  var namedata2writeN1 = localStorage.getItem("InputNameNoExtC")+"2"+".tmp";
+  
+  let text_to_save = document.getElementById("editor").innerText;
+fs.writeFileSync(path_fileB+ "/"+namedata2writeN1, text_to_save, (err) => {  
+     if (err) throw err;
+});
+}
 }
 
 
@@ -602,7 +648,7 @@ var Run_save = localStorage.getItem("check_save_C");
 if (Run_save == "true"){
 	
 	var milliseconds = localStorage.getItem("save_time_data");	
-	window.setInterval(saveHopeT, milliseconds);
+	window.setInterval(saveNullTime, milliseconds);
 		}			
 			
 
@@ -837,16 +883,16 @@ function open_para() {
  }
 //COMPILATION
 function GenDocx(){
-var name_file = localStorage.getItem("data_name").trim();
+//var name_file = localStorage.getItem("data_name").trim();
 var path_file = localStorage.getItem("folder_path").trim();
-var gitpath = localStorage.getItem("GitPath").trim();
+//var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
 
 //var set_location = path_file+name_file;
 var process = require("child_process");
 //process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
-process.exec(pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + filepath + " -o " + filepath + ".docx",function (err,stdout,stderr) {
+process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath + " -o " + filepath + ".docx",function (err,stdout,stderr) {
 
     if (err) {
 	    document.getElementById("ShowTerm").innerHTML= stderr;
@@ -857,7 +903,7 @@ process.exec(pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + filep
 })
 }
 function GenSlide(){
-var name_file = localStorage.getItem("data_name").trim();
+//var name_file = localStorage.getItem("data_name").trim();
 var path_file = localStorage.getItem("folder_path").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
@@ -878,7 +924,7 @@ process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",functi
 }
 
 function GenPdf(){
-var name_file = localStorage.getItem("data_name").trim();
+//var name_file = localStorage.getItem("data_name").trim();
 var path_file = localStorage.getItem("folder_path").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();

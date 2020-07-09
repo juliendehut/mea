@@ -49,14 +49,7 @@
     <option value="360000">60min</option>
      </select></p>
      
-     
-     	
-<!--<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button>-->
-	
-<!-- 	<input type="text" id="input_name"><button type="button"onclick="set_name()">set name</button></span><br><br> -->
-	
-		&
-
+    
 
 
 		<p id="open">Lire les dernières données écrites à l'ouverture
@@ -79,22 +72,19 @@ document.querySelector("#folder_input")
     localStorage.setItem("folder_path", folderPath);  
      });
 		window.onload = function() {
-
-		
 document.getElementById("path_print").innerHTML = localStorage.getItem("folder_path").trim();
-document.getElementById("file_name_set").innerHTML = localStorage.getItem("data_name").trim();
+//document.getElementById("file_name_set").innerHTML = localStorage.getItem("data_name").trim();
 document.getElementById("selectedSaveTime").text = localStorage.getItem("save_time_data");
 
 	if (localStorage.getItem("save_time_data") === null) {
   document.getElementById("selectedSaveTime").text = " "; }	
 
 					
-			if (localStorage.getItem("check_out_s")== "true"){
-				document.getElementById("Check_exit_sav").checked = true;
+if (localStorage.getItem("check_out_s")== "true"){
+	document.getElementById("Check_exit_sav").checked = true;
 			}			
 			else{
 				document.getElementById("Check_exit_sav").checked = false;
-
 			}
 					
 		if (localStorage.getItem("check_save_C")== "true"){

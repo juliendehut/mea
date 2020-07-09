@@ -301,17 +301,11 @@ function PauseRouleau() {
  }
  
 
- 
- 
-    window.onunload = function(){
+ window.onunload = function(){
 	     if (localStorage.getItem("OpenStartCook")== "false"){
-	   localStorage.removeItem("InputFile");
+	   
 	  }
-/*
-	   localStorage.removeItem("TempFilName");
-	   localStorage.removeItem("TempFolderPath");
-*/
-      saveHopeS();
+
 	    if (localStorage.getItem("check_out_s") == "true")
 	{ function delay(ms) {
     var start = +new Date;
@@ -320,26 +314,54 @@ function PauseRouleau() {
  
 delay(1500);
 
-	    saveHopeT();
-	    
+saveNullExit();
 	  
 	}
-	 if (localStorage.getItem("InputFile") == null)
-	{ function delay(ms) {
-    var start = +new Date;
-    while ((+new Date - start) < ms);
-}
- 
-delay(1500);
-
-	    saveHopeS2();
-	    
-	  
-	}
-//AtNew();
-	  
-	  
+	localStorage.removeItem("InputFile");	    
+  	  
 		}
+
+
+
+ 
+//     window.onunload = function(){
+// 	     if (localStorage.getItem("OpenStartCook")== "false"){
+// 	   localStorage.removeItem("InputFile");
+// 	  }
+// /*
+// 	   localStorage.removeItem("TempFilName");
+// 	   localStorage.removeItem("TempFolderPath");
+// */
+// saveNullExit();      
+// //saveHopeT();
+// 	    if (localStorage.getItem("check_out_s") == "true")
+// 	{ function delay(ms) {
+//     var start = +new Date;
+//     while ((+new Date - start) < ms);
+// }
+ 
+// delay(1500);
+
+// saveNullExit();
+	    
+	  
+// 	}
+// 	 if (localStorage.getItem("InputFile") == null)
+// 	{ function delay(ms) {
+//     var start = +new Date;
+//     while ((+new Date - start) < ms);
+// }
+ 
+// delay(1500);
+
+// 	    //saveHopeS2();
+// 	    saveNullExit();
+	  
+// 	}
+// //AtNew();
+	  
+	  
+// 		}
 	
 
 
