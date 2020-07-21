@@ -1,7 +1,59 @@
 var gui = require("nw.gui");
 
  
+function chooseFile(name) {
+  var fs = require("fs");	
+var path = require("path");
+  var chooser = document.querySelector(name);
+  chooser.addEventListener("change", function(evt) {
+    console.log(this.value);
+    var input = this.value;
+    // if docx ici sur l'input.
+    // introduire une call back, en tout cas un moyen de dire à l'app que la conversion est achevée
+    var InputPath = path.dirname(input); 
+    var InputNameSolo = path.basename(input);
+    var InputNameNoExt = path.basename(input, path.extname(input));
+    var InputNameExt = path.extname(input);
 
+    localStorage.removeItem("InputFile");
+localStorage.setItem("InputFile", input);
+localStorage.removeItem("FilePathCook");
+localStorage.setItem("FilePathCook", InputPath);
+
+localStorage.removeItem("InputNameSoloC");
+localStorage.setItem("InputNameSoloC", InputNameSolo);
+
+localStorage.removeItem("InputNameNoExtC");
+localStorage.setItem("InputNameNoExtC", InputNameNoExt);
+
+localStorage.removeItem("InputNameExtC");
+localStorage.setItem("InputNameExtC", InputNameExt);
+document.title = localStorage.getItem("InputFile");
+var path_file = localStorage.getItem("FilePathCook").trim();
+var name_file = localStorage.getItem("InputNameSoloC").trim();
+
+var process = require("child_process");
+process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_file ,function (err,stdout,stderr) {
+  if (err) {
+//a reprendre ???    
+   l
+  } else {
+    var SizeVar = stdout;
+      localStorage.removeItem("SizeFileCook");
+localStorage.setItem("SizeFileCook", SizeVar);//document.getElementById("showgit").innerHTML=stdout;
+      
+      
+  }
+})
+fs.readFile(input, function (err, data) {
+if (err) throw err;
+console.log(data);
+         document.getElementById("editor").innerText = data; 
+         fs.writeFile("temp_rest", data, (err) => {  
+     if (err) throw err; });      
+}); 
+  }, false);
+}
 
 
 
@@ -948,6 +1000,78 @@ process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath + " -o " + filepath 
     }
 })
 }
+//import
+function Importdocx() {
+  var fs = require("fs");	
+var path = require("path");
+  var chooser2 = document.querySelector("#file2");
+  chooser2.addEventListener("change", function(evt) {
+    console.log(this.value);
+    var input = this.value;
+    var InputPath = path.dirname(input); 
+    var InputNameSolo = path.basename(input);
+    var InputNameNoExt = path.basename(input, path.extname(input));
+    var InputNameExt = path.extname(input);
+
+    localStorage.removeItem("InputFile2");
+localStorage.setItem("InputFile2", input);
+localStorage.removeItem("FilePathCook2");
+localStorage.setItem("FilePathCook2", InputPath);
+
+localStorage.removeItem("InputNameSoloC2");
+localStorage.setItem("InputNameSoloC2", InputNameSolo);
+
+localStorage.removeItem("InputNameNoExtC2");
+localStorage.setItem("InputNameNoExtC2", InputNameNoExt);
+
+localStorage.removeItem("InputNameExtC2");
+localStorage.setItem("InputNameExtC2", InputNameExt);
+//document.title = localStorage.getItem("InputFile2");
+var path_file = localStorage.getItem("InputFile2").trim();
+//var name_file = localStorage.getItem("InputNameSoloC2").trim();
+var pandocpath = localStorage.getItem("PandocPath").trim();
+
+var process = require("child_process");
+process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + path_file + " -o " + path_file + ".md",function (err,stdout,stderr) {
+  if (err) {
+    document.getElementById("ShowTerm").innerHTML= stderr;
+  } else {
+    document.getElementById("ShowTerm").innerHTML=stdout;
+  }
+})
+ 
+  }, false);
+}
+/* function Importdocx(name2){
+  var fs = require("fs");	
+var path = require("path");
+  var chooser = document.querySelector(name2);
+  chooser.addEventListener("change2", function(evt) {
+    console.log(this.value);
+    var input = this.value;
+    
+    var InputPath = path.dirname(input); 
+    var pandocpath = localStorage.getItem("PandocPath").trim();
+    //var InputNameSolo = path.basename(input);
+    localStorage.removeItem("ImportDocxCook");
+    localStorage.setItem("ImportDocxCook", InputPath);
+    var path_file = localStorage.getItem("FilePathCook").trim();
+    //var InputNameNoExt = path.basename(input, path.extname(input));
+    //var InputNameExt = path.extname(input);
+var process = require("child_process");
+process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + path_file + " -o " + path_file + ".md",function (err,stdout,stderr) {
+
+  if (err) {
+          document.getElementById("ShowTerm").innerHTML= stderr;
+          
+        } else {
+            document.getElementById("ShowTerm").innerHTML=stdout;
+        }
+    });
+})
+ 
+  } */
+
 function GitAdd(){
 var fs = require("fs");
 var path = require("path");

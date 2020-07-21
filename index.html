@@ -26,7 +26,7 @@
 <!-- <input id="file" class="input-file" type="file" onchange="openFile(event)"> -->
 <!-- <input id="file" class="input-file" type="file" iframe onchange="ReadInput()"> -->
 <input id="file" class="input-file"type="file" onclick="chooseFile('#file')"/>
-<input type="button" id="1" class="menu_bt" value="Compiler" onclick="openNavIO();">
+<input type="button" id="1" class="menu_bt" value="Traduire" onclick="openNavIO();">
 <input type="button" id="1" class="menu_bt" value="Génétique" onclick="openNavGe();">
 <input type="button" id="1" class="menu_bt" value="Bibliographie" onclick="ShowBibFile();">
 <input type="button" id="1" class="menu_bt" value="Coller" onclick="openNavPast();">
@@ -40,6 +40,12 @@
 <input type="button" id="1" class="menu_btA" value="Docx" onclick="GenDocx();">
 <input type="button" id="1" class="menu_bt" value="Pdf" onclick="GenPdf();">
 <input type="button" id="1" class="menu_bt" value="Pptx" onclick="GenSlide();">
+<label for="file2" class="menu_btB">Réécrire</label>
+<!-- <input id="file" class="input-file" type="file" onchange="openFile(event)"> -->
+<!-- <input id="file" class="input-file" type="file" iframe onchange="ReadInput()"> -->
+<input id="file2" class="input-file2"type="file" onclick="Importdocx('#file')"/>
+<!-- <input type="button" id="1" class="menu_bt" value="Réécrire" onclick="Importdocx();"> -->
+
 <span id="ShowTerm" class="term"></span>
 </div>
 <div id="mySidenavGe" class="sidenav">
@@ -205,58 +211,62 @@ function SaveMe(){
      }
 	
 	
-function chooseFile(name) {
-	  var fs = require("fs");	
-var path = require("path");
-    var chooser = document.querySelector(name);
-    chooser.addEventListener("change", function(evt) {
-      console.log(this.value);
-      var input = this.value;
-      
-      var InputPath = path.dirname(input); 
-      var InputNameSolo = path.basename(input);
-      var InputNameNoExt = path.basename(input, path.extname(input));
+// function chooseFile(name) {
+// 	  var fs = require("fs");	
+// var path = require("path");
+//     var chooser = document.querySelector(name);
+//     chooser.addEventListener("change", function(evt) {
+//       console.log(this.value);
+//       var input = this.value;
+//       // if docx ici sur l'input.
+//       // introduire une call back, en tout cas un moyen de dire à l'app que la conversion est achevée
+//       var InputPath = path.dirname(input); 
+//       var InputNameSolo = path.basename(input);
+//       var InputNameNoExt = path.basename(input, path.extname(input));
+//       var InputNameExt = path.extname(input);
 
-      localStorage.removeItem("InputFile");
-	localStorage.setItem("InputFile", input);
-	localStorage.removeItem("FilePathCook");
-	localStorage.setItem("FilePathCook", InputPath);
+//       localStorage.removeItem("InputFile");
+// 	localStorage.setItem("InputFile", input);
+// 	localStorage.removeItem("FilePathCook");
+// 	localStorage.setItem("FilePathCook", InputPath);
 	
-	localStorage.removeItem("InputNameSoloC");
-	localStorage.setItem("InputNameSoloC", InputNameSolo);
+// 	localStorage.removeItem("InputNameSoloC");
+// 	localStorage.setItem("InputNameSoloC", InputNameSolo);
 	
-	localStorage.removeItem("InputNameNoExtC");
-	localStorage.setItem("InputNameNoExtC", InputNameNoExt);
-document.title = localStorage.getItem("InputFile");
-var path_file = localStorage.getItem("FilePathCook").trim();
-var name_file = localStorage.getItem("InputNameSoloC").trim();
+// 	localStorage.removeItem("InputNameNoExtC");
+//   localStorage.setItem("InputNameNoExtC", InputNameNoExt);
+  
+//   localStorage.removeItem("InputNameExtC");
+//   localStorage.setItem("InputNameExtC", InputNameExt);
+// document.title = localStorage.getItem("InputFile");
+// var path_file = localStorage.getItem("FilePathCook").trim();
+// var name_file = localStorage.getItem("InputNameSoloC").trim();
 
-var process = require("child_process");
-process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_file ,function (err,stdout,stderr) {
-    if (err) {
-	    
-	   l
-    } else {
-    	var SizeVar = stdout;
-        localStorage.removeItem("SizeFileCook");
-	localStorage.setItem("SizeFileCook", SizeVar);//document.getElementById("showgit").innerHTML=stdout;
+// var process = require("child_process");
+// process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_file ,function (err,stdout,stderr) {
+//     if (err) {
+// 	//a reprendre ???    
+// 	   l
+//     } else {
+//     	var SizeVar = stdout;
+//         localStorage.removeItem("SizeFileCook");
+// 	localStorage.setItem("SizeFileCook", SizeVar);//document.getElementById("showgit").innerHTML=stdout;
         
         
-    }
-})
+//     }
+// })
 
 
 
-
-	fs.readFile(input, function (err, data) {
-  if (err) throw err;
-  console.log(data);
-           document.getElementById("editor").innerText = data; 
-           fs.writeFile("temp_rest", data, (err) => {  
-       if (err) throw err; });      
-}); 
-    }, false);
-  }
+// 	fs.readFile(input, function (err, data) {
+//   if (err) throw err;
+//   console.log(data);
+//            document.getElementById("editor").innerText = data; 
+//            fs.writeFile("temp_rest", data, (err) => {  
+//        if (err) throw err; });      
+// }); 
+//     }, false);
+//   }
 	
  
 var VitesseRouleau = localStorage.getItem("tachios");
@@ -455,25 +465,20 @@ var gui = require("nw.gui");
 var doc_to_html = document.getElementById("editor").innerHtml;	
 var div = document.getElementById("editor");
 */
-var openFile = function(event) {
-        var input = event.target;
-        var reader = new FileReader();
-        reader.onload = function(){
-          var text = reader.result;
-          var node = document.getElementById("editor");
-          node.innerText = text;
-          console.log(reader.result.substring(0, 200));
-        };
-        reader.readAsText(input.files[0]);
-      };
+// var openFile = function(event) {
+//         var input = event.target;
+//         var reader = new FileReader();
+//         reader.onload = function(){
+//           var text = reader.result;
+//           var node = document.getElementById("editor");
+//           node.innerText = text;
+//           console.log(reader.result.substring(0, 200));
+//         };
+//         reader.readAsText(input.files[0]);
+//       };
 //div.addEventListener('keydown', onKeyDown);
 
-function outputZoom(inputZoom) {
-	var editor=document.getElementById("editor");
-	document.querySelector('#level').value = inputZoom;
-	editor.style.zoom = inputZoom ;	
-	//var inputZoom = document.getElementById("zoomfield").value;	
-}
+
 
 ///function outputUpdate(vol) {
 	//document.querySelector('#volume').value = vol;
