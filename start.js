@@ -4,6 +4,8 @@ localStorage.removeItem("InputNameExtC2");
 localStorage.removeItem("InputNameSoloC2");
 localStorage.removeItem("InputFile2");
 localStorage.removeItem("bibref");
+localStorage.removeItem("bibMean");
+
 var fs = require("fs");
 		
 var path = require("path");
@@ -17,10 +19,10 @@ localStorage.removeItem("InputNameSoloC");
 localStorage.removeItem("InputFile");
 localStorage.removeItem("SizeFileCook");
 
-	 var namedata2write2 = "temp_rest";
+	 var namedata2write = "temp_rest";
 	 var intro = "write here !";
 	 
-	fs.writeFile(namedata2write2, intro, (err) => {  
+	fs.writeFile(namedata2write, intro, (err) => {  
        if (err) throw err;
        });
 }
