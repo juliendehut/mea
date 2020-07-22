@@ -237,7 +237,7 @@ function PauseRouleau() {
 
  window.onunload = function(){
 	     if (localStorage.getItem("OpenStartCook")== "false"){
-	   
+        localStorage.removeItem("InputFile");	 
 	  }
 
 	    if (localStorage.getItem("check_out_s") == "true")
@@ -251,7 +251,7 @@ delay(1500);
 saveNullExit();
 	  
 	}
-	localStorage.removeItem("InputFile");	    
+	   
   	  
 		}
     window.onload = function() {
