@@ -73,11 +73,13 @@ Comme les questions de la métaphore en informatique me questionne, les différe
 
 
 
-[^2]: La nuance exacte à changé depuis mais se situe sans doute entre le bleu céruléen et Cæruléum[https://www.toutes-les-couleurs.com/couleur-bleu.php](https://www.toutes-les-couleurs.com/couleur-bleu.php) 
-[@concurencer][^concurencer2370]
-Le propos de Mea n'est pas de concurencer ces logiciels gratuits, il s'agit d'abord d'une preuve de concept.
+ 
 
 [^crhin]: un projet porté par le CRIHN, lien github du projet.
 
 
 [^emac]: Emacs possède de nombreuses fonctionnalités interressantes également.  
+
+
+
+[^2]: La nuance exacte à changé depuis mais se situe sans doute entre le bleu céruléen et Cæruléum[https://www.toutes-les-couleurs.com/couleur-bleu.php](https://www.toutes-les-couleurs.com/couleur-bleu.php)
