@@ -3,7 +3,7 @@
 #### _caveat emptor_
 Si vous cherchez un bon outil pour l'écriture, le projet [stylo](https://stylo.huma-num.fr/login)<sup>[1](#f1)</sup> propose une interface de qualité. Si vous cherchez un bon logiciel à installer sur votre machine, [Zettler](https://www.zettlr.com/) s'appuie sur la méthode Zettelkasten pour structurer un projet. Si vous cherchez un éditeur généraliste qui vous permet de gagner en prouctivité dans l'écriture, [Vim](https://www.vim.org/)<sup>[2](#f2)</sup> semble une alternative indépassable.
 Pour profiter pleinement de mea, [Pandoc](https://pandoc.org/installing.html), [GIT](https://git-scm.com/downloads) et [Zotero](https://www.zotero.org/download/) sont indispensables. 
-
+Pour télécharger une version c'est [ici](https://github.com/jdehut/mea/releases) 
 #### _Nondum matura est_
 Mea est la preuve de concept d'un éditeur de texte non WYSIWYG. Les données (le texte que l'on écrit) peuvent apparaitre à l'écran avec n'importe quelle police et de n'importe quelle taille, à l'enregistrement cela n'a pas d'importance. Les données produites sont toujours brutes, à traiter. 
 Les textes sont structurés en markdown (par exemple), les différentes parties sont normalement hierachisés. Le traitement, _l'export_, est opéré par pandoc dont mea fait figure ici d'interface graphique (**Traduire**). Mea peut servir également d'interface pour GIT et faciliter le _versioning_, c'est-à-dire conserver et gérer les différents phases d'écriture d'un texte (**Génétique**). Il permet de faire défiler le texte pour en présenter le contenu devant un auditoire (**Présentation**). Il voudrait enfin faciliter l'utilisation de _Zotero_ dans la rédaction de notes bibliographiques en _markdown_(**Bibliographie**)  
