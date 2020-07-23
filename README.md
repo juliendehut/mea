@@ -15,7 +15,7 @@ Toutes les alternatives que j'utilisais présentaient toujours l'éclat de la no
 Comprendre l'origine et la nature de cette friction a pris du temps. 
 L'année 2017 à cependant été un tournant. Je me rappelle très bien cette après-midi ensoleillée à mon bureau lorsque soudain la couleur de l'interface de Word me choqua profondément. Le bandeau qui surplombe le menu m'apparu  d'un éclat nouvellement désagréable. 
  
-Il semble que nous ne soyons pas égaux devant l'influence des couleurs. En ce sens, la couleur bleue pourrait faire office de marqueur puisque nous individualisation sa perception. Personne ne voit le bleu de la même manière. Et ce jour là, le bleu de l'interface m'évoqua irrémédiablement la couleur d'une poubelle affreusement laide que nous avions chez mes parents[^2]. _Mon traitement de texte avait maintenant la couleur d'une poubelle_.
+Il semble que nous ne soyons pas égaux devant l'influence des couleurs. En ce sens, la couleur bleue pourrait faire office de marqueur puisque nous individualisation sa perception. Personne ne voit le bleu de la même manière. Et ce jour là, le bleu de l'interface m'évoqua irrémédiablement la couleur d'une poubelle affreusement laide que nous avions chez mes parents<sup id="a3">[3](#f3)</sup>. _Mon traitement de texte avait maintenant la couleur d'une poubelle_.
 
 Devant ce sentiment de dégout que je sentis monter en moi, plusieurs questions surgirent. D'abord, naturellement, je me remis en cause: est-ce la couleur qui avait changée subitement ou moi qui la remarquait seulement maintenant comme après une longue léthargie? Je venais en effet de mettre à jour ma suite bureautique, et il n'aurait pas été surprenant que la nuance de bleue soit altérée dans l'opération, et cela sans mon consentement. L'apparition du ruban dans l'entablement de l'interface ne s'était pas imposée autrement. Les séquelles de cette opération sont d'ailleurs encore présentes.
 
@@ -70,11 +70,10 @@ Comme les questions de la métaphore en informatique me questionne, les différe
 
  
 
-<b id="f1">1</b> un projet porté par le CRIHN [CRIHN](https://www.crihn.org/)(#a1)
-<b id="f2">2</b>
-
-[^emac]: Emacs possède de nombreuses fonctionnalités interressantes également.  
-
+<b id="f1">1</b> un projet porté par le CRIHN [CRIHN](https://www.crihn.org/)(#a1)<br>
+<b id="f2">2</b>Emacs possède de nombreuses fonctionnalités interressantes également.(#a2)<br>
+<b id="f3">3</b>La nuance exacte à changé depuis mais se situe sans doute entre le bleu céruléen et Cæruléum [https://www.toutes-les-couleurs.com/couleur-bleu.php](https://www.toutes-les-couleurs.com/couleur-bleu.php)(#a3)<br>
 
 
-[^2]: La nuance exacte à changé depuis mais se situe sans doute entre le bleu céruléen et Cæruléum[https://www.toutes-les-couleurs.com/couleur-bleu.php](https://www.toutes-les-couleurs.com/couleur-bleu.php)
+
+
