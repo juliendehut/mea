@@ -70,7 +70,7 @@ Comme les questions de la métaphore en informatique me questionne, les différe
 
  
 
-<b id="f1">1</b> un projet porté par le CRIHN [CRIHN](https://www.crihn.org/)<br>
+<b id="f1">1</b> un projet porté par le [CRIHN](https://www.crihn.org/)<br>
 <b id="f2">2</b> Emacs possède de nombreuses fonctionnalités interressantes également.<br>
 <b id="f3">3</b> La nuance exacte à changé depuis mais se situe sans doute entre le bleu céruléen et Cæruléum [https://www.toutes-les-couleurs.com/couleur-bleu.php](https://www.toutes-les-couleurs.com/couleur-bleu.php)<br>
 
