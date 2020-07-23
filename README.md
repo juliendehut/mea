@@ -21,6 +21,7 @@
 - intégration de l'api de Zotero.
 - intégration de l'api Github.
 - menu de l'application sous MacOs
+- coloration syntaxique
 
 
 ## Bugs connus :
