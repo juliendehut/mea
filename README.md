@@ -38,7 +38,7 @@ _Mea_ est le reflet de mon évolution. Un point dans un flux, un moment donné d
 Si vous avez la curiosité d’installer et d’utiliser ce logiciel, vous aurez alors sur votre ordinateur le produit d’une forme de procrastination de mon doctorat. Les numéros de version reflètent en effet le nombre de jours passés à réaliser ce projet, du temps volé à coût minutes éparses, du temps que je n’ai donc pas passé à rédiger ma thèse, même si projet nourri ma réflexion. Je tiens à remercier infiniment ici monsieur Philippe Brunet, qui me dirige. Ce logiciel doit beaucoup au projet [marathon](https://www.demodocos.fr/ch2.html) mais surtout, les quelques minutes qu’il a passé à l'utiliser dans une version préliminaire ont contribué à en modifier profondément la logique.  
 
 
-#### Sur les intitulés des menus. Comme les questions de la métaphore en informatique me questionnent, les différents intitulés reflètent également un certain état de ma réflexion sur la question. Là encore, changer ces dénominations est trivial. Il est de mon souhait malgré tout que cela ne semble pas trop baroque. Mais je suis égoistement le destinataire de ces intitulés.
+#### Sur les intitulés des menus. Comme les questions de la métaphore en informatique me questionnent, les différents intitulés reflètent un certain état de ma réflexion sur la question. Changer ces dénominations demeure trivial. S'il est de mon souhait, malgré tout, que cela ne semble pas trop baroque, je suis égoistement le destinataire de ces intitulés.
 
 
 
@@ -52,7 +52,7 @@ Si vous avez la curiosité d’installer et d’utiliser ce logiciel, vous aurez
 
 ## To Do à court terme :
 - Styliser le menu paramètre.
-- Ajout d'un bouton Nouveau
+- Ajout d'un bouton "Nouveau"
 - Drag and drop et tous le processus d'ouverture de fichier
 - Conserver seulement le nom de fichier avant la compilation
 - Optimisation du code.
