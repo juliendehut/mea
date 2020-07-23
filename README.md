@@ -1,3 +1,5 @@
+
+
 #### _caveat emptor_
 Si vous cherchez un bon outil pour l'écriture, le projet [stylo](https://stylo.huma-num.fr/login)<sup id="a1">[1](#f1)</sup> propose une interface de qualité. Si vous cherchez un bon logiciel à installer sur votre machine, [Zettler](https://www.zettlr.com/) s'appuie sur la méthode Zettelkasten pour structurer un projet. Si vous cherchez un éditeur généraliste qui vous permet de gagner en prouctivité dans l'écriture, [Vim](https://www.vim.org/)[^emac] semble une alternative indépassable.
 Pour profiter pleinement de mea, [Pandoc](https://pandoc.org/installing.html), [GIT](https://git-scm.com/downloads) et [Zotero](https://www.zotero.org/download/) sont indispensables. 
