@@ -1,7 +1,7 @@
 
 
 #### _caveat emptor_
-Si vous cherchez un bon outil pour l'écriture, le projet [stylo](https://stylo.huma-num.fr/login)<sup id="a1">[1](#f1)</sup> propose une interface de qualité. Si vous cherchez un bon logiciel à installer sur votre machine, [Zettler](https://www.zettlr.com/) s'appuie sur la méthode Zettelkasten pour structurer un projet. Si vous cherchez un éditeur généraliste qui vous permet de gagner en prouctivité dans l'écriture, [Vim](https://www.vim.org/)[^emac] semble une alternative indépassable.
+Si vous cherchez un bon outil pour l'écriture, le projet [stylo](https://stylo.huma-num.fr/login)<sup id="">[1](#f1)</sup> propose une interface de qualité. Si vous cherchez un bon logiciel à installer sur votre machine, [Zettler](https://www.zettlr.com/) s'appuie sur la méthode Zettelkasten pour structurer un projet. Si vous cherchez un éditeur généraliste qui vous permet de gagner en prouctivité dans l'écriture, [Vim](https://www.vim.org/)<sup id="">[2](#f2)</sup> semble une alternative indépassable.
 Pour profiter pleinement de mea, [Pandoc](https://pandoc.org/installing.html), [GIT](https://git-scm.com/downloads) et [Zotero](https://www.zotero.org/download/) sont indispensables. 
 
 #### _Nondum matura est_
@@ -70,9 +70,8 @@ Comme les questions de la métaphore en informatique me questionne, les différe
 
  
 
-<b id="f1">1</b> Footnote content here. [↩](#a1)
-[^crhin]: un projet porté par le CRIHN, lien github du projet.
-
+<b id="f1">1</b> un projet porté par le CRIHN [CRIHN](https://www.crihn.org/)(#a1)
+<b id="f2">2</b>
 
 [^emac]: Emacs possède de nombreuses fonctionnalités interressantes également.  
 
