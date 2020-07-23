@@ -33,7 +33,7 @@ Pour profiter pleinement de mea, [Pandoc](https://pandoc.org/installing.html), [
 Pour télécharger une version c'est [ici](https://github.com/jdehut/mea/releases).
  
 #### _Nondum matura est_
-Mea est la preuve de concept d'un éditeur de texte non WYSIWYG. Le texte que l'on écrit peut apparaître à l'écran avec n'importe quelle police, de n'importe quelle taille et de n'importe quelle couleur. Lors de l'enregistrement, ces éléments de style  n'auront aucune conséquence. Les données produites sont toujours brutes, à traiter. 
+Mea est la preuve de concept d'un éditeur de texte non WYSIWYG. Le texte que l'on écrit peut apparaître à l'écran avec n'importe quelle police, de n'importe quelle taille et de n'importe quelle couleur. Lors de l'enregistrement, ces éléments de style n'auront aucune conséquence. Les données produites sont toujours brutes, à traiter. 
 Les textes sont structurés en markdown (par exemple), les différentes parties sont alors normalement hierachisées. Le traitement, _l'export_, est opéré par pandoc dont mea fait figure ici d'interface graphique (**Traduire**). Mea peut servir également d'interface pour GIT et faciliter le _versioning_, c'est-à-dire conserver et gérer les différentes phases d'écriture d'un texte (**Génétique**). Il permet de faire défiler le texte pour en présenter le contenu devant un auditoire (**Présentation**). Il voudrait enfin faciliter l'utilisation de _Zotero_ dans la rédaction de notes bibliographiques en _markdown_ (**Bibliographie**).
 
 #### _Vestigia terrent_
