@@ -984,7 +984,7 @@ var pandocpath = localStorage.getItem("PandocPath").trim();
 var pandocpdf = localStorage.getItem("PandocPdf");
 var filepath = localStorage.getItem("InputFile").trim();
 
-var set_location = path_file+name_file;
+//var set_location = path_file+name_file;
 //var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
 //process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+"--pdf-engine=/Library/TeX/texbin/pdflatex "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
