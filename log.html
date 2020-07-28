@@ -219,7 +219,7 @@ var path_file = localStorage.getItem("fogit").trim();
 var set_location = path_file+name_file;
 var destination = document.getElementById("HashBackInput").value;
 var lasthash = localStorage.getItem("lasthashcook");
-
+//  "git revert (--continue | --abort | --quit)" ?
 var process = require("child_process");
 process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "revert --no-commit"+" "+destination+".."+lasthash+" "+"&& "+gitpath+" "+"commit -m 'point de restauration'",function (err,stdout,stderr) {
 

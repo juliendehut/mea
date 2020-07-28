@@ -1179,7 +1179,7 @@ function ShowBibFile(){
 //var BibPathV = localStorage.getItem("BibPath").trim();
 
 //nw.Window.open("bib.html", { title: BibPathV, width: 1315, height: 768,}, function(new_win) {
-	param_window = window.open("log2.html", "param_window", "width=800,height=500");
+	param_window = window.open("bib.html", "param_window", "width=800,height=500");
 //});
 
 
