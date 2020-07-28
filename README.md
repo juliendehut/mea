@@ -1,3 +1,5 @@
+
+
 <svg viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
   <text x="100" y="20" font-size="2em">mĕa.</text>
 </svg>
@@ -5,6 +7,9 @@
 
 
 
+
+
+![meagi](mea.gif)
 ## Fonctionnalités :
 - Éditeur markdown
 - Prompteur
