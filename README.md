@@ -1,7 +1,4 @@
 # mĕa.
-*****
-
-
 ![meagi](mea.gif)
 ## Fonctionnalités :
 - Éditeur markdown
