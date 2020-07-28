@@ -1,8 +1,4 @@
-
-
-<svg viewBox="0 0 200 30" xmlns="http://www.w3.org/2000/svg">
-  <text font-size="2em">mĕa.</text>
-</svg>
+![title](title.png)
 
 
 
