@@ -59,7 +59,7 @@ _Mea_ est le reflet de mon évolution. Un point dans un flux, un moment donné d
 
 #### Sur les numéros de version. 
 Si vous avez la curiosité d’installer et d’utiliser ce logiciel, vous aurez alors sur votre ordinateur le produit d’une forme de procrastination de mon doctorat. Les numéros de version reflètent en effet le nombre de jours passés à réaliser ce projet, du temps volé à coup de minutes éparses, du temps que je n’ai donc pas passé à rédiger ma thèse, même si le projet nourrit ma réflexion. Je tiens à remercier infiniment ici monsieur Philippe Brunet, qui me dirige. Ce logiciel doit beaucoup au projet [marathon](https://www.demodocos.fr/ch2.html) mais surtout, les quelques minutes qu’il a passé à l'utiliser dans une version préliminaire ont contribué à en modifier profondément la logique.  
-
+Merci chaleureusement à Gilles de Rosny pour nous autoriser à inclure la police Demodocos4.
 
 #### Sur les intitulés des menus. 
 Comme les questions de la métaphore en informatique me questionnent, les différents intitulés reflètent un certain état de ma réflexion sur la question. Changer ces dénominations demeure trivial. S'il est de mon souhait, malgré tout, que cela ne semble pas trop baroque, je suis égoistement le destinataire de ces intitulés.
