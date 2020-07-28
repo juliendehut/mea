@@ -1,3 +1,4 @@
+![meagi](mea.gif)
 ## Fonctionnalités :
 - Éditeur markdown
 - Prompteur
