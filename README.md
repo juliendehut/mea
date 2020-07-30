@@ -1,5 +1,6 @@
 # mĕa.
 ![meagi](mea.gif)
+[<img src="mea.gif">](mea.mp4)
 ## Fonctionnalités :
 - Éditeur markdown
 - Prompteur
