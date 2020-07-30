@@ -1,19 +1,5 @@
 # mĕa.
 ![meagi](mea.gif)
-[<img src="mea.gif">](mea.mp4)
-
-<video width="640" height="360" autoplay>
-
-  <source src="mea.mp4" type="video/mp4">
-
-
-
-</video>
- 
-
-
-
-
 ## Fonctionnalités :
 - Éditeur markdown
 - Prompteur
