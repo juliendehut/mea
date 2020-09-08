@@ -293,6 +293,14 @@ function SAVEBUT() {
     x.style.display = "none";
   }
 }
+  function SAVEBUT2() {
+    var x = document.getElementById("SAVEBUT");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+}
 		function openNav() {
   document.getElementById("mySidenav").style.width = "100%";
   document.getElementById("mySidenav").style.height = "50px";
@@ -301,6 +309,7 @@ function SAVEBUT() {
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 
 	
@@ -314,6 +323,7 @@ document.getElementById("IOBUT").style.display = "block";
   document.getElementById("Slide_Button").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
+    document.getElementById("SAVEBUT2").style.display = "none";
 
 }
 
@@ -326,6 +336,7 @@ function openNavPre() {
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
+    document.getElementById("SAVEBUT2").style.display = "none";
 
   
   Full_Screen();
@@ -342,6 +353,7 @@ function openNavPast(){
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none"
     document.getElementById("SAVEBUT").style.display = "none";
+    document.getElementById("SAVEBUT2").style.display = "none";
 
 }
 
@@ -354,6 +366,7 @@ function openNavGe(){
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("IOBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
+    document.getElementById("SAVEBUT2").style.display = "none";
 
 }
 function openNavSave(){
@@ -364,9 +377,20 @@ function openNavSave(){
    document.getElementById("PASTBUT").style.display = "none";
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("IOBUT").style.display = "none";
-  document.getElementById("GENBUT").style.display = "none"
+  document.getElementById("GENBUT").style.display = "none";
+  document.getElementById("SAVEBUT").style.display = "none";
 }
-
+function openNavSave2(){
+  document.getElementById("mySidenavSave2").style.width = "100%";
+  document.getElementById("mySidenavSave2").style.height = "50px";
+   document.getElementById("SAVEBUT2").style.display = "block";
+ document.getElementById("Slide_Button").style.display = "none";
+   document.getElementById("PASTBUT").style.display = "none";
+  document.getElementById("PREBUT").style.display = "none";
+  document.getElementById("IOBUT").style.display = "none";
+  document.getElementById("GENBUT").style.display = "none";
+  document.getElementById("SAVEBUT").style.display = "none";
+}
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("Slide_Button").style.display = "block";
@@ -375,6 +399,7 @@ function closeNav() {
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 
 function closeNavIO() {
@@ -385,6 +410,7 @@ function closeNavIO() {
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 
 function closeNavPast() {
@@ -395,6 +421,7 @@ function closeNavPast() {
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 
 }
 function closeNavGe() {
@@ -405,6 +432,7 @@ function closeNavGe() {
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 
 }
 function closeNavSav() {
@@ -415,6 +443,17 @@ function closeNavSav() {
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
+}
+function closeNavSav2() {
+  document.getElementById("mySidenavSave2").style.width = "0";
+  document.getElementById("Slide_Button").style.display = "block";
+ document.getElementById("IOBUT").style.display = "none";
+   document.getElementById("PASTBUT").style.display = "none";
+  document.getElementById("PREBUT").style.display = "none";
+  document.getElementById("GENBUT").style.display = "none";
+  document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 function closeNavPre() {
 	 
@@ -424,6 +463,7 @@ function closeNavPre() {
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 	Full_Screen();
   document.getElementById("mySidenavPre").style.width = "0";
   document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
@@ -690,7 +730,18 @@ function saveHopeT2(){
        }); 
 }
 
-
+function saveHopeT3(){
+  var fs = require("fs");	
+  var Folder = localStorage.getItem("FilePathCook");
+     var File =  localStorage.getItem("InputFile");
+     var PathTemp = Folder+"/"+File;
+     let text_to_save = "";
+ fs.writeFile(PathTemp, text_to_save, (err) => {  
+     if (err) throw err;
+     }); 
+     localStorage.removeItem("InputFile");
+     localStorage.setItem("InputFile", PathTemp);
+}
 
 
 

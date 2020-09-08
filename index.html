@@ -24,9 +24,11 @@
 
 <label for="file" class="menu_btB">Lire</label>
 <input id="file" class="input-file"type="file" onclick="chooseFile('#file')"/>
+<input type="button" id="1" class="menu_bt" value="Nouveau" onclick="openNavSave2();">
+
 <input type="button" id="1" class="menu_bt" value="Traduire" onclick="openNavIO();">
 <input type="button" id="1" class="menu_bt" value="Génétique" onclick="openNavGe();">
-<input type="button" id="1" class="menu_bt" value="Bibliographie" onclick="ShowBibFile();">
+<!-- <input type="button" id="1" class="menu_bt" value="Bibliographie" onclick="ShowBibFile();"> -->
 <input type="button" id="1" class="menu_bt" value="Coller" onclick="openNavPast();">
 <input type="button" id="1" class="menu_bt" value="Présentation" onclick="openNavPre();">
 <input type="button" id="1" class="menu_btV" value="Variables" onclick="open_para();">
@@ -78,6 +80,7 @@
 <input type="button" id="1" class="menu_bt" value="Slide" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Slide); ">
 <input type="button" id="1" class="menu_bt" value="Lorem" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Lorem); ">
 </div>
+
 <div id="mySidenavSave" class="sidenav">
 <input type="button" id="SAVEBUT" class="SaveSlideBut" onclick="closeNavSav()">
 
@@ -85,9 +88,18 @@
 <input class="label-file" type="file" id="folderinput2" nwdirectory>
 <input type="text" class="inputnav" id="TempSaveNameInput">
 <input type="button"class="menu_bt" autofocus value="Écrire" onclick="SaveMe()">
-
-
 </div>
+<div id="mySidenavSave2" class="sidenav">
+  <input type="button" id="SAVEBUT2" class="SaveSlideBut2" onclick="closeNavSav2()">
+  
+  <label for="folderinput3" class="label-file">Répertoire</label>
+  <input class="label-file" type="file" id="folderinput3" nwdirectory>
+  <input type="text" class="inputnav" id="TempSaveNameInput2">
+  <input type="button"class="menu_bt" autofocus value="Écrire" onclick="LiberNovi()">
+  </div>
+
+
+
 
 		<div id="editor" contenteditable="true">
   <p id="WISINWYG">
@@ -188,6 +200,14 @@ nw.App.registerGlobalHotKey(shortcut4);
     localStorage.setItem("TempFolderPath", folderPath);  
      }); 
 
+     document.querySelector("#folderinput3")
+     .addEventListener("change", function() {
+       var folderPath = this.value;   
+       localStorage.removeItem("FilePathCook");
+    localStorage.setItem("FilePathCook", folderPath);  
+     });
+
+
 function SaveMe(){
 	     localStorage.removeItem("TempFilName");
 	var TempFilVar = document.getElementById("TempSaveNameInput").value;
@@ -196,7 +216,48 @@ function SaveMe(){
 	     saveHopeT2();
 	     closeNavSav();
      }
+
+
+     function LiberNovi(){
+      
+	     localStorage.removeItem("InputFile");
+	var TempFilVar = document.getElementById("TempSaveNameInput2").value;
+    localStorage.setItem("InputFile", TempFilVar); 	
+    CleanSlate();
+	     saveHopeT3();
+       closeNavSav2();
+       
+     }
+
+function CleanSlate(){
+  var path = require("path");	            
+  var fs = require("fs");
+  var text_to_save ="";
+ var namedata2write = "temp_rest";
+fs.writeFile(namedata2write, text_to_save, (err) => {  
+       if (err) throw err;
+});
+var shortcut = new nw.Shortcut(ShortSave);
+nw.App.unregisterGlobalHotKey(shortcut);
+var shortcut2 = new nw.Shortcut(ShortNote);
+nw.App.unregisterGlobalHotKey(shortcut2);
+var shortcut3 = new nw.Shortcut(ShortPast);
+nw.App.unregisterGlobalHotKey(shortcut3);	
+var shortcut4 = new nw.Shortcut(ShortNoteMean);
+nw.App.unregisterGlobalHotKey(shortcut4);
+	window.location.reload();
  
+	fs.readFile("temp_rest", function (err, data) {
+  if (err) throw err;
+  document.getElementById("editor").innerText = data;
+
+}); 
+
+
+}
+
+
+
 var VitesseRouleau = localStorage.getItem("tachios");
 	
 	function TournRouleau() {
@@ -270,7 +331,7 @@ document.getElementById("editor").style.backgroundColor = localStorage.getItem("
 document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_s2");
 document.getElementById("editor").style.zoom = localStorage.getItem("zoom_s");
 
-  var fs = require("fs");	
+var fs = require("fs");	
   var path = require("path");	            
 	fs.readFile("temp_rest", function (err, data) {
   if (err) throw err;
@@ -291,7 +352,14 @@ var text_to_save = document.getElementById("editor").innerText;
 fs.writeFile(namedata2write, text_to_save, (err) => {  
        if (err) throw err;
 });
-	
+var shortcut = new nw.Shortcut(ShortSave);
+nw.App.unregisterGlobalHotKey(shortcut);
+var shortcut2 = new nw.Shortcut(ShortNote);
+nw.App.unregisterGlobalHotKey(shortcut2);
+var shortcut3 = new nw.Shortcut(ShortPast);
+nw.App.unregisterGlobalHotKey(shortcut3);	
+var shortcut4 = new nw.Shortcut(ShortNoteMean);
+nw.App.unregisterGlobalHotKey(shortcut4);
 	window.location.reload();
 
         
