@@ -60,7 +60,13 @@
      </select>
      <input type="text" class="input_style" id="Input_S2MA">
 <script>
-	window.onload = function() {
+document.getElementById("Input_tachios").addEventListener("input", tachios_input);
+document.getElementById("Input_FDC").addEventListener("input", fond_color_inputMA);
+document.getElementById("Input_FTC").addEventListener("input", font_colorMA_input);
+document.getElementById("Input_S2MA").addEventListener("input", font_sizeMA_input);
+
+
+window.onload = function() {
 // 2 charger valeur 			
 
 
