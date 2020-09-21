@@ -1,3 +1,5 @@
+
+
 var gui = require("nw.gui");
 
  
@@ -14,7 +16,7 @@ var path = require("path");
     var InputNameSolo = path.basename(input);
     var InputNameNoExt = path.basename(input, path.extname(input));
     var InputNameExt = path.extname(input);
-
+    localStorage.removeItem("CaretPosition");
     localStorage.removeItem("InputFile");
 localStorage.setItem("InputFile", input);
 localStorage.removeItem("FilePathCook");
@@ -57,11 +59,22 @@ console.log(data);
 
 
 
+function openGO(){
+  var NuncScio = localStorage.getItem("CaretPosition");
+  window.scrollTo(0, NuncScio);
+  }
 
 
 
-
-
+  function pre(){
+    document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
+    document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_sMA");
+    document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
+    document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
+    document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
+    document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_sMA");
+    document.getElementById("bbb").style.width = "auto"; 
+  }
 
 
 
@@ -470,6 +483,7 @@ function closeNavPre() {
   document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_s2");
   document.getElementById("editor").style.color = localStorage.getItem("color_s");
   document.getElementById("editor").style.fontSize = localStorage.getItem("size_s");
+  document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
   document.getElementById("bbb").style.width = "1300px";
   PauseRouleau();
   
@@ -572,10 +586,27 @@ process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_
 })
 }
 
+function openNotes(){
 
+  note_window = window.open("notes.html", "note_window", "width=1455,height=500");
+  //window.scrollTo(0,1e10);
+}
 
 
 function saveHopeR2(){
+  
+        
+  // var coords = getSelectionCoords();
+  // var CoordsInShape = coords.x + ", " + coords.y;
+  
+var CoordsInShape= window.pageYOffset;
+
+  localStorage.removeItem("CaretPosition");
+	localStorage.setItem("CaretPosition", CoordsInShape);
+
+	
+
+
 		const fs = require('fs');
 		
 
@@ -1005,6 +1036,28 @@ process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath + 
     }
 })
 }
+function GenDocxFusion(){
+  var RawPath = localStorage.getItem("FilePathCook").trim();
+var FormPath = RawPath+"/notes.md";
+  //var name_file = localStorage.getItem("data_name").trim();
+  var path_file = localStorage.getItem("folder_path").trim();
+  //var gitpath = localStorage.getItem("GitPath").trim();
+  var pandocpath = localStorage.getItem("PandocPath").trim();
+  var filepath = localStorage.getItem("InputFile").trim();
+  
+  //var set_location = path_file+name_file;
+  var process = require("child_process");
+  //process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
+  process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".docx",function (err,stdout,stderr) {
+  
+      if (err) {
+        document.getElementById("ShowTerm").innerHTML= stderr;
+        
+      } else {
+          document.getElementById("ShowTerm").innerHTML=stdout;
+      }
+  })
+  }
 function GenSlide(){
 //var name_file = localStorage.getItem("data_name").trim();
 var path_file = localStorage.getItem("folder_path").trim();
@@ -1051,6 +1104,33 @@ process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath + " -o " + filepath 
     }
 })
 }
+function GenPdfFusion(){
+  var RawPath = localStorage.getItem("FilePathCook").trim();
+var FormPath = RawPath+"/notes.md";
+  //var name_file = localStorage.getItem("data_name").trim();
+  var path_file = localStorage.getItem("folder_path").trim();
+  var gitpath = localStorage.getItem("GitPath").trim();
+  var pandocpath = localStorage.getItem("PandocPath").trim();
+  
+  var pandocpdf = localStorage.getItem("PandocPdfFusion");
+  var filepath = localStorage.getItem("InputFile").trim();
+  
+  //var set_location = path_file+name_file;
+  //var path_pdf = require("/Library/TeX/texbin/pdflatex");
+  var process = require("child_process");
+  //process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+"--pdf-engine=/Library/TeX/texbin/pdflatex "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
+  
+  //process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+" "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
+  process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath +" " +FormPath+ " -o " + filepath + ".pdf",function (err,stdout,stderr) {
+  
+      if (err) {
+        document.getElementById("ShowTerm").innerHTML= stderr;
+       
+      } else {
+          document.getElementById("ShowTerm").innerHTML=stdout;
+      }
+  })
+  }
 //import
 function Importdocx() {
   var fs = require("fs");	
@@ -1083,7 +1163,7 @@ var path_file = localStorage.getItem("InputFile2").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 
 var process = require("child_process");
-process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + path_file + " -o " + path_file + ".md",function (err,stdout,stderr) {
+process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + path_file + " --wrap=none -o " + path_file + ".md",function (err,stdout,stderr) {
   if (err) {
     document.getElementById("ShowTerm").innerHTML= stderr;
   } else {
@@ -1378,6 +1458,11 @@ function AddVarPdf(){
 		var Name_cookie_var = document.getElementById("InputPandocPdf").value;
     localStorage.setItem("PandocPdf", Name_cookie_var);
 }
+function AddVarPdfFusion(){
+	localStorage.removeItem("PandocPdfFusion");
+		var Name_cookie_var = document.getElementById("InputPandocPdfFusion").value;
+    localStorage.setItem("PandocPdfFusion", Name_cookie_var);
+}
 function LocalGit(){
 	localStorage.removeItem("GitPath");
 		var Name_cookie_var = document.getElementById("InputGitLocal").value;
@@ -1476,7 +1561,17 @@ function tachios_func(){
 		var size_valtac2 = document.getElementById("selectedtach").value;
     localStorage.setItem("tachios", size_valtac2);  
    }	
-
+   function inter_heightMA(event) {
+    var size_interMA = this.options[this.selectedIndex].value;
+    localStorage.removeItem("inter_sMA");
+		//var size_interMA = document.getElementById("selectedIMA").value;
+    localStorage.setItem("inter_sMA", size_interMA);  
+  }  
+  function inter_heightMAInput() {
+    localStorage.removeItem("inter_sMA");
+		var size_interMA = document.getElementById("Input_interMA").value;
+    localStorage.setItem("inter_sMA", size_interMA);  
+  }  
 //editor
 
  
@@ -1578,4 +1673,55 @@ function outputZoomP(inputZoomP) {
 	localStorage.setItem("zoom_s", inputZoomP);
 	editor.style.zoom = inputZoomP ;	
 	
+}
+
+function getSelectionCoords(win) {
+	win = win || window;
+	var doc = win.document;
+	var sel = doc.selection, range, rects, rect;
+	var x = 0, y = 0;
+	if (sel) {
+		if (sel.type != "Control") {
+			range = sel.createRange();
+			range.collapse(true);
+			x = range.boundingLeft;
+			y = range.boundingTop;
+		}
+	} else if (win.getSelection) {
+		sel = win.getSelection();
+		if (sel.rangeCount) {
+			range = sel.getRangeAt(0).cloneRange();
+			if (range.getClientRects) {
+				range.collapse(true);
+				rects = range.getClientRects();
+				if (rects.length > 0) {
+					rect = rects[0];
+					x = rect.left;
+					y = rect.top;
+				} else {
+					x,y = 0,0
+				}
+
+			}
+			// Fall back to inserting a temporary element
+			if (x == 0 && y == 0) {
+				var span = doc.createElement("span");
+				if (span.getClientRects) {
+					// Ensure span has dimensions and position by
+					// adding a zero-width space character
+					span.appendChild( doc.createTextNode("\u200b") );
+					range.insertNode(span);
+					rect = span.getClientRects()[0];
+					x = rect.left;
+					y = rect.top;
+					var spanParent = span.parentNode;
+					spanParent.removeChild(span);
+
+					// Glue any broken text nodes back together
+					spanParent.normalize();
+				}
+			}
+		}
+	}
+	return { x: x, y: y };
 }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes infrapaginales</title>
+    <link rel="stylesheet" href="meastyle.css">
+	<script type="text/javascript" src="meascript.js"></script>
+    <style>
+span { background:yellow; }
+	.word { background:red; }
+.log{
+	margin-left: 7px;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  width: 100%;
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  
+  width: 100%;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+  width: 100%;
+}
+
+    </style>
+</head>
+<body id="bbbn">
+    <div class="content">
+        <input type="button" id="Slide_ButtonLog" class="MainSlideButLog" value="" onclick="openNavLog(); toggleLog(this);">
+        
+                <div id="mySidenavlog" class="sidenav">
+          
+         <!-- <input type="text" id="OccuInput" />
+         <input type="button" id="1" class="menu_btA" value="Occurence" onclick="searchIt();"> -->
+            <input type="button" id="1" class="menu_btA" value="Écrire" onclick="WriteNote();">
+          
+        <input type="button" id="1" class="menu_btV" value="Fermer" onclick="closeNote();">
+        
+         </div>
+    <div id="notes" contenteditable="true">
+        <p id="WISINWYG">
+           
+            </p>
+            
+      </div>
+<script>
+var RawPath = localStorage.getItem("FilePathCook").trim();
+var FormPath = RawPath+"/notes.md";
+
+
+ 
+
+
+window.onload = function() {
+
+
+
+var fs = require("fs");	
+fs.readFile(FormPath, function (err, data) {
+  if (err) throw err;
+  document.getElementById("notes").innerText = data;
+  //window.scrollTo(0,1e10);
+});
+
+document.getElementById("notes").style.textAlign = localStorage.getItem("align_s");
+document.getElementById("notes").style.color = localStorage.getItem("color_s");
+document.getElementById("notes").style.lineHeight = localStorage.getItem("inter_s");
+//document.getElementById("notes").style.textIndent = localStorage.getItem("indent_s");
+document.getElementById("notes").style.fontWeight = localStorage.getItem("bold_s");
+document.getElementById("notes").style.fontStyle = localStorage.getItem("ital_s");
+document.getElementById("notes").style.textDecoration = localStorage.getItem("deco_s");
+document.getElementById("notes").style.fontFamily = localStorage.getItem("font_s");
+document.getElementById("notes").style.fontSize = localStorage.getItem("size_s");
+document.getElementById("notes").style.backgroundColor = localStorage.getItem("colorf_s");
+document.getElementById("bbbn").style.backgroundColor = localStorage.getItem("colorf_s2");
+
+
+}
+window.onunload = function(){
+    var fs = require("fs");	
+
+let text_to_save = document.getElementById("notes").innerText;
+fs.writeFile(FormPath, text_to_save, (err) => {  
+   if (err) throw err;
+});
+
+ }
+
+
+
+function WriteNote(){
+    var fs = require("fs");	
+
+    let text_to_save = document.getElementById("notes").innerText;
+fs.writeFile(FormPath, text_to_save, (err) => {  
+       if (err) throw err;
+});
+
+}
+
+function searchIt(){
+	
+    var v = document.getElementById("OccuInput").value;
+    
+    var sheet = (typeof sheet == "undefined") ?
+            document.getElementById('notes').innerHTML :
+            sheet;
+
+    document.getElementById('notes').innerHTML = 
+        sheet.replace(new RegExp(v, 'ig'), "<span id='number' class='word'>$&</span>");
+        var elmnt = document.getElementById("content");
+elmnt.scrollIntoView(); 
+}
+
+
+function closeNote(){
+	close(); 
+	 
+ }
+
+ function MainBUTLog() {
+  var x = document.getElementById("Slide_ButtonLog");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+function openNavLog() {
+  document.getElementById("mySidenavlog").style.width = "100%";
+  document.getElementById("mySidenavlog").style.height = "50px";
+ }
+		
+function closeNavLog() {
+  document.getElementById("mySidenavlog").style.width = "0";
+  document.getElementById("Slide_ButtonLog").style.display = "block";
+ }
+	
+function toggleLog(button)
+            {
+              if(document.getElementById("Slide_ButtonLog").value=="1")
+              {
+               document.getElementById("Slide_ButtonLog").value="2";
+              openNavLog();
+                             }
+              else
+              {
+                document.getElementById("Slide_ButtonLog").value="1";
+                 closeNavLog();
+                
+                
+                             }
+            }
+</script>
+
+</body>
+</html>

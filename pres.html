@@ -59,11 +59,21 @@
     <option value="60px">60px</option>
      </select>
      <input type="text" class="input_style" id="Input_S2MA">
+     <p> Interligne
+      <select onchange="inter_heightMA.call(this, event)">
+      <option id="selectedIMA" value="defaultValue">Unset</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        </select><input type="text" class="input_style" id="Input_interMA">
+        </p>
 <script>
 document.getElementById("Input_tachios").addEventListener("input", tachios_input);
 document.getElementById("Input_FDC").addEventListener("input", fond_color_inputMA);
 document.getElementById("Input_FTC").addEventListener("input", font_colorMA_input);
 document.getElementById("Input_S2MA").addEventListener("input", font_sizeMA_input);
+document.getElementById("Input_interMA").addEventListener("input", inter_heightMAInput);
 
 
 window.onload = function() {
@@ -74,7 +84,7 @@ document.getElementById("selectedCFMA").text = localStorage.getItem("colorf_sMA"
 document.getElementById("selectedCMA").text = localStorage.getItem("color_sMA");
 document.getElementById("selectedSMA").text = localStorage.getItem("size_s2MA");
 document.getElementById("selectedtach").text = localStorage.getItem("tachios");
-
+document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
 
 //document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
 

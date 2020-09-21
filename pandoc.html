@@ -11,12 +11,19 @@
 	<span>Passer des paramètres lors de la compilation des PDF </span><br>
 	<input type="text" class="inputparamP" id="InputPandocPdf"><button type="button"onclick="AddVarPdf()">Add</button>
 	<h4 id="ShowPandocPdf"></h4>
+	<span>Passer des paramètres lors de la compilation des PDF Fusion </span><br>
+	<input type="text" class="inputparamP" id="InputPandocPdfFusion"><button type="button"onclick="AddVarPdfFusion()">Add</button>
+	<h4 id="ShowPandocPdfFusion"></h4>
+
+	
 	<script>
 		window.onload = function() {
 			
 			document.getElementById("InputPandocLocal").value = localStorage.getItem("PandocPath");
 document.getElementById("InputPandocPdf").value = localStorage.getItem("PandocPdf");
 document.getElementById("ShowPandocPdf").innerHTML = localStorage.getItem("PandocPdf");
+document.getElementById("InputPandocPdf").value = localStorage.getItem("PandocPdfFusion");
+document.getElementById("ShowPandocPdf").innerHTML = localStorage.getItem("PandocPdfFusion");
 		}
 		
 	</script>
