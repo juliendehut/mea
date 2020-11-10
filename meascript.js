@@ -1085,7 +1085,7 @@ process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",functi
 function GenPdf(){
 //var name_file = localStorage.getItem("data_name").trim();
 //var path_file = localStorage.getItem("folder_path").trim();
-var gitpath = localStorage.getItem("GitPath").trim();
+//var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 
 var pandocpdf = localStorage.getItem("PandocPdf");
@@ -1112,7 +1112,7 @@ function GenPdfFusion(){
 var FormPath = RawPath+"/notes.md";
   //var name_file = localStorage.getItem("data_name").trim();
  // var path_file = localStorage.getItem("folder_path").trim();
-  var gitpath = localStorage.getItem("GitPath").trim();
+  //var gitpath = localStorage.getItem("GitPath").trim();
   var pandocpath = localStorage.getItem("PandocPath").trim();
   
   var pandocpdf = localStorage.getItem("PandocPdfFusion");
@@ -1798,7 +1798,7 @@ function ResetCook(){
   localStorage.removeItem("InputNameSoloC2");
   localStorage.removeItem("InputNameSoloC2");
   localStorage.removeItem("InputNameNoExtC2");
-  localStorage.removeItem("InputNameNoExtC2";
+  localStorage.removeItem("InputNameNoExtC2");
   localStorage.removeItem("lasthashcook"); 
 	localStorage.removeItem("OpenStartCook");
 	localStorage.removeItem("PandocPath");
