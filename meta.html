@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+<script type="text/javascript" src="meascript.js"></script>
+<meta charset="utf-8">
+<style>
+input[type="file"] {
+display: none;
+}
+.TempFolder {
+border: 1px solid #ccc;
+display: inline-block;
+padding: 6px 12px;
+cursor: pointer;
+}
+.TempFolder:hover{
+background-color: silver;
+color: white;
+border: 1px solid black;
+}
+
+</style>
+</head>
+<body>
+<span>localisation de GiT </span><br>
+<input type="text" class="inputparam" id="InputGitLocal"><button type="button"onclick="LocalGit()">set</button><br>
+<h4>Créer et initialiser un dépôt</h4>
+<span>Choisir l'emplacement :</span><br><br>
+
+<label for="FolderGit" class="TempFolder">
+Localiser
+</label>
+<input id="FolderGit" type="file" nwdirectory/>
+<span><input class="inputparam" type="file" id="FolderGit" nwdirectory><br><br>
+<span>Choisir le nom du dossier</span><br>
+<input type="text" class="inputparam" id="InputGit"><button type="button"onclick="CreateInitRepo()">set & init</button><button type="button"onclick="SetGitVar()">set</button></span><br>
+<br>
+<h4>Initialiser un dépôt dans un dossier existant</h4>
+
+<p id="open">Ajouter tous les fichiers existants au suivi de modifications
+<input type="checkbox" id="InitFullFolder" onclick="CreateCookAddAllGit()" onsubmit="return false;"></p>
+
+<label for="FolderGitB" class="TempFolder">
+Localiser
+</label>
+<input id="FolderGitB" type="file" nwdirectory/><button type="button"onclick="CreateInitRepoB()">init</button>
+
+<span><input class="inputparam" type="file" id="FolderGitB" nwdirectory><br><br>
+
+<p id="open">La combinaison des touches Ctrl+S écrit, add et commit en une seule action :
+<input type="checkbox" id="SaveAddCommitCheck" onclick="SaveAddCommitFc()" onsubmit="return false;"></p>
+
+
+
+
+
+<span class="lontext" id="showgit"></span>
+<script>
+window.onload = function() {
+// 2 charger valeur
+
+
+document.getElementById("InputGitLocal").value = localStorage.getItem("GitPath");
+
+//document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
+
+
+
+
+
+
+
+if (localStorage.getItem("ctrls")== "true"){
+document.getElementById("SaveAddCommitCheck").checked = true;
+}
+else{
+document.getElementById("SaveAddCommitCheck").checked = false;
+}
+
+
+if (localStorage.getItem("Initfull")== "true"){
+document.getElementById("InitFullFolder").checked = true;
+}
+else{
+document.getElementById("InitFullFolder").checked = false;
+}
+if (localStorage.getItem("FdAddGit")== "true"){
+document.getElementById("InitFullFolder").checked = true;
+}
+else{
+document.getElementById("InitFullFolder").checked = false;
+}
+
+
+}
+
+</script>
+</body>
+</html>

@@ -81,6 +81,7 @@ document.getElementById("notes").style.fontFamily = localStorage.getItem("font_s
 document.getElementById("notes").style.fontSize = localStorage.getItem("size_s");
 document.getElementById("notes").style.backgroundColor = localStorage.getItem("colorf_s");
 document.getElementById("bbbn").style.backgroundColor = localStorage.getItem("colorf_s2");
+openGON();
 
 
 }
@@ -91,7 +92,10 @@ let text_to_save = document.getElementById("notes").innerText;
 fs.writeFile(FormPath, text_to_save, (err) => {  
    if (err) throw err;
 });
+var CoordsInShapeN= window.pageYOffset;
 
+  localStorage.removeItem("CaretPositionN");
+	localStorage.setItem("CaretPositionN", CoordsInShapeN);
  }
 
 

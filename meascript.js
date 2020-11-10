@@ -64,7 +64,10 @@ function openGO(){
   window.scrollTo(0, NuncScio);
   }
 
-
+  function openGON(){
+    var NuncScioN = localStorage.getItem("CaretPositionN");
+    window.scrollTo(0, NuncScioN);
+    }
 
   function pre(){
     document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
@@ -599,7 +602,7 @@ function saveHopeR2(){
   // var coords = getSelectionCoords();
   // var CoordsInShape = coords.x + ", " + coords.y;
   
-var CoordsInShape= window.pageYOffset;
+  var CoordsInShape= window.pageYOffset;
 
   localStorage.removeItem("CaretPosition");
 	localStorage.setItem("CaretPosition", CoordsInShape);
@@ -1018,7 +1021,7 @@ function open_para() {
 //COMPILATION
 function GenDocx(){
 //var name_file = localStorage.getItem("data_name").trim();
-var path_file = localStorage.getItem("folder_path").trim();
+//var path_file = localStorage.getItem("folder_path").trim();
 //var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
@@ -1040,7 +1043,7 @@ function GenDocxFusion(){
   var RawPath = localStorage.getItem("FilePathCook").trim();
 var FormPath = RawPath+"/notes.md";
   //var name_file = localStorage.getItem("data_name").trim();
-  var path_file = localStorage.getItem("folder_path").trim();
+ // var path_file = localStorage.getItem("folder_path").trim();
   //var gitpath = localStorage.getItem("GitPath").trim();
   var pandocpath = localStorage.getItem("PandocPath").trim();
   var filepath = localStorage.getItem("InputFile").trim();
@@ -1081,7 +1084,7 @@ process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",functi
 
 function GenPdf(){
 //var name_file = localStorage.getItem("data_name").trim();
-var path_file = localStorage.getItem("folder_path").trim();
+//var path_file = localStorage.getItem("folder_path").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 
@@ -1108,7 +1111,7 @@ function GenPdfFusion(){
   var RawPath = localStorage.getItem("FilePathCook").trim();
 var FormPath = RawPath+"/notes.md";
   //var name_file = localStorage.getItem("data_name").trim();
-  var path_file = localStorage.getItem("folder_path").trim();
+ // var path_file = localStorage.getItem("folder_path").trim();
   var gitpath = localStorage.getItem("GitPath").trim();
   var pandocpath = localStorage.getItem("PandocPath").trim();
   
@@ -1131,6 +1134,31 @@ var FormPath = RawPath+"/notes.md";
       }
   })
   }
+
+  function Epub(){
+    var RawPath = localStorage.getItem("FilePathCook").trim();
+  var FormPath = RawPath+"/notes.md";
+    //var name_file = localStorage.getItem("data_name").trim();
+   // var path_file = localStorage.getItem("folder_path").trim();
+    //var gitpath = localStorage.getItem("GitPath").trim();
+    var pandocpath = localStorage.getItem("PandocPath").trim();
+    var filepath = localStorage.getItem("InputFile").trim();
+    
+    //var set_location = path_file+name_file;
+    var process = require("child_process");
+    //process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
+    process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".epub",function (err,stdout,stderr) {
+    
+        if (err) {
+          document.getElementById("ShowTerm").innerHTML= stderr;
+          
+        } else {
+            document.getElementById("ShowTerm").innerHTML=stdout;
+        }
+    })
+    }
+
+
 //import
 function Importdocx() {
   var fs = require("fs");	
@@ -1725,3 +1753,87 @@ function getSelectionCoords(win) {
 	}
 	return { x: x, y: y };
 }
+function ResetCook(){
+  localStorage.removeItem("align_s");  
+  localStorage.removeItem("bibref");
+  localStorage.removeItem("bibMean");
+  localStorage.removeItem("BibPath");
+  localStorage.removeItem("bold_s"); 
+	localStorage.removeItem("ctrls");
+	localStorage.removeItem("colorf_sMA");
+	localStorage.removeItem("colorf_s");
+	localStorage.removeItem("colorf_s2");
+	localStorage.removeItem("color_sMA");
+	localStorage.removeItem("color_s");
+  localStorage.removeItem("color_div");
+  localStorage.removeItem("CaretPosition");
+  localStorage.removeItem("check_out_s");  	
+  localStorage.removeItem("check_save_C"); 
+  localStorage.removeItem("data_name");
+  localStorage.removeItem("deco_s");
+  localStorage.removeItem("FilePathCook");
+  localStorage.removeItem("FdAddGit");
+  localStorage.removeItem("filgit");  
+  localStorage.removeItem("fogit"); 
+  localStorage.removeItem("fogitB"); 
+  localStorage.removeItem("GitPath");
+  localStorage.removeItem("font_s");  
+  localStorage.removeItem("InputFile2");
+	localStorage.removeItem("indent_s");
+	localStorage.removeItem("inter_s");
+  localStorage.removeItem("InputFile");
+  localStorage.removeItem("inter_sMA");
+  localStorage.removeItem("inter_s");  
+  localStorage.removeItem("indent_s"); 
+  localStorage.removeItem("ital_s");  
+  localStorage.removeItem("InputNameSoloC");
+  localStorage.removeItem("InputNameSoloC");
+  localStorage.removeItem("InputNameNoExtC");
+  localStorage.removeItem("InputNameNoExtC");
+  localStorage.removeItem("InputNameExtC");
+  localStorage.removeItem("InputNameExtC");
+  ocalStorage.removeItem("SizeFileCook");
+	localStorage.removeItem("SizeFileCookM");
+  localStorage.removeItem("FilePathCook2");
+  localStorage.removeItem("InputNameSoloC2");
+  localStorage.removeItem("InputNameSoloC2");
+  localStorage.removeItem("InputNameNoExtC2");
+  localStorage.removeItem("InputNameNoExtC2";
+  localStorage.removeItem("lasthashcook"); 
+	localStorage.removeItem("OpenStartCook");
+	localStorage.removeItem("PandocPath");
+	localStorage.removeItem("PandocPdf");
+	localStorage.removeItem("PandocPdfFusion");
+	localStorage.removeItem("size_s2MA");
+	localStorage.removeItem("size_s");
+	localStorage.removeItem("save_time_data");
+	localStorage.removeItem("tachios");
+
+}
+
+
+
+
+
+
+
+
+ 
+  
+   
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -45,6 +45,7 @@
 <input type="button" id="10" class="menu_bt" value="Pptx" onclick="GenSlide();">
 <input type="button" id="11" class="menu_bt" value="PdfFusion" onclick="GenPdfFusion();">
 <input type="button" id="11b" class="menu_bt" value="DocxFusion" onclick="GenDocxFusion();">
+<input type="button" id="11C" class="menu_bt" value="Epub" onclick="Epub();">
 <label for="file2" class="menu_btB">Réécrire</label>
 <input id="file2" class="input-file2"type="file" onclick="Importdocx('#file')"/>
 
@@ -320,7 +321,7 @@ delay(1500);
 saveNullExit();
 	  
 	}
-	   
+  App.closeAllWindows()
   	  
 		}
     window.onload = function() {
