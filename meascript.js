@@ -147,103 +147,50 @@ document.title = localStorage.getItem("InputFile");
 var path_file = localStorage.getItem("FilePathCook").trim();
 var name_file = localStorage.getItem("InputNameSoloC").trim();
 
-// function SetSQLCaret(){
-//   tx.executeSql('SELECT CaretE FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
-//     var len = results.rows.length, i;
-//    for (i = 0; i < len; i++) {
-//    //var showfile1=(results.rows.item(i).id);
-//       var CoordsInSql=(results.rows.item(i).CaretE);
-   
-//       //var CoordsInSql= window.pageYOffset;
-
-//       localStorage.removeItem("CaretPosition");
-//       localStorage.setItem("CaretPosition", CoordsInSql);
-
-//      //document.getElementById("workfile2").innerText=showfile1+showfile2;;
-//    }
-//   })
-// }
-
-
-
-
 db.transaction(function (tx) {
-  //tx.executeSql('CREATE TABLE IF NOT EXISTS FilteTab (id INT NOT NULL AUTO_INCREMENT, Path)'); 
-  //tx.executeSql("INSERT INTO FilteTab (id, Path) VALUES ('"+input+"')");
   tx.executeSql('CREATE TABLE IF NOT EXISTS FilteTab (id integer primary key autoincrement, Path, CaretE INT, CaretP INT, CaretN INT)');
 
     tx.executeSql('SELECT * FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
        var len = results.rows.length, i;
       for (i = 0; i < len; i++) {
-      //var showfile1=(results.rows.item(i).id);
          var DbPath=(results.rows.item(i).Path);
       
-
-  
-        //document.getElementById("workfile2").innerText=showfile1+showfile2;;
       }
       if (DbPath == null) {
         tx.executeSql("INSERT INTO FilteTab (Path) VALUES ('"+input+"')");
         console.log("fichier non présent");
       }
       else {
-
-        //SetSQLCaret();
         tx.executeSql('SELECT CaretE FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
           var len = results.rows.length, i;
          for (i = 0; i < len; i++) {
-         //var showfile1=(results.rows.item(i).id);
             var CoordsInSql=(results.rows.item(i).CaretE);
-         
-            //var CoordsInSql= window.pageYOffset;
-      
             localStorage.removeItem("CaretPosition");
             localStorage.setItem("CaretPosition", CoordsInSql);
             var NuncScio = localStorage.getItem("CaretPosition");
             window.scrollTo(0, NuncScio);
-
-           //document.getElementById("workfile2").innerText=showfile1+showfile2;;
          }
         })
         tx.executeSql('SELECT CaretP FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
           var len = results.rows.length, i;
          for (i = 0; i < len; i++) {
-         //var showfile1=(results.rows.item(i).id);
             var CoordsInSqlP=(results.rows.item(i).CaretP);
-         
-            //var CoordsInSql= window.pageYOffset;
-      
             localStorage.removeItem("CaretPositionP");
             localStorage.setItem("CaretPositionP", CoordsInSqlP);
             
-
-           //document.getElementById("workfile2").innerText=showfile1+showfile2;;
          }
         })
         tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
           var len = results.rows.length, i;
          for (i = 0; i < len; i++) {
-         //var showfile1=(results.rows.item(i).id);
             var CoordsInSqlN=(results.rows.item(i).CaretN);
-         
-            //var CoordsInSql= window.pageYOffset;
-      
             localStorage.removeItem("CaretPositionN");
             localStorage.setItem("CaretPositionN", CoordsInSqlN);
-            
-
-           //document.getElementById("workfile2").innerText=showfile1+showfile2;;
          }
         })
-        //tx.executeSql("INSERT INTO FilteTab (Path) VALUES ('"+input+"')");
         console.log("fichier présent");
       }
     });
-  
-  //tx.executeSql("INSERT INTO FilteTab (Path) VALUES ('"+input+"')");
-  //tx.executeSql("INSERT INTO FilteTab (Path) VALUES ('"+input+"')");
-  //tx.executeSql('CREATE TABLE IF NOT EXISTS FilteTab (id unique, text, text2)'); 
-  //tx.executeSql("INSERT INTO FilteTab (id, text, text2) VALUES (9, '"+input+"', 'bob')");
 });
 
 var process = require("child_process");
@@ -254,9 +201,7 @@ process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_
   } else {
     var SizeVar = stdout;
       localStorage.removeItem("SizeFileCook");
-localStorage.setItem("SizeFileCook", SizeVar);//document.getElementById("showgit").innerHTML=stdout;
-      
-      
+localStorage.setItem("SizeFileCook", SizeVar);    
   }
 })
 fs.readFile(input, function (err, data) {
@@ -268,8 +213,6 @@ console.log(data);
 }); 
   }, false);
 }
-
-
 
 function openGO(){
   var NuncScio = localStorage.getItem("CaretPosition");
@@ -287,20 +230,13 @@ function openGO(){
 
       localStorage.removeItem("CaretPosition");
       localStorage.setItem("CaretPosition", CoordsInShape);
-    //   var SQLPath= localStorage.getItem("InputFile");
-    //   db.transaction(function (tx) {
-    //  tx.executeSql("UPDATE FilteTab SET CaretE='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
-    //  });
     }
     function GetCaretP(){
       var CoordsInShape= window.pageYOffset;
 
       localStorage.removeItem("CaretPositionP");
       localStorage.setItem("CaretPositionP", CoordsInShape);
-    //   var SQLPath= localStorage.getItem("InputFile");
-    //   db.transaction(function (tx) {
-    //  tx.executeSql("UPDATE FilteTab SET CaretP='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
-    //  });
+
     }
 function GoCaretP(){
   var SqPath = localStorage.getItem("InputFile");
@@ -309,19 +245,14 @@ function GoCaretP(){
     var len = results.rows.length, i;
    for (i = 0; i < len; i++) {
       var CoordsInSqlP=(results.rows.item(i).CaretP);
-   
       window.scrollTo(0, CoordsInSqlP);
-
-    
    }
   })
 
 })
 }
 
-
   function pre(){
-
     document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
     document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_sMA");
     document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
@@ -333,16 +264,6 @@ function GoCaretP(){
     nw.App.registerGlobalHotKey(shortcut5);	
 
   }
-
-
-
-
-
-
-
-
-
-
 
 		function MainBUT() {
   var x = document.getElementById("Slide_Button");
@@ -384,7 +305,6 @@ function GENBUT() {
     x.style.display = "none";
   }
 }
-	
 function SAVEBUT() {
   var x = document.getElementById("SAVEBUT");
   if (x.style.display === "none") {
@@ -412,23 +332,19 @@ function SAVEBUT() {
   document.getElementById("SAVEBUT2").style.display = "none";
 }
 
-	
-
 function openNavIO() {
   document.getElementById("mySidenavIO").style.width = "100%";
   document.getElementById("mySidenavIO").style.height = "50px";
-document.getElementById("IOBUT").style.display = "block";
+  document.getElementById("IOBUT").style.display = "block";
   document.getElementById("PASTBUT").style.display = "none";
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("Slide_Button").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
-    document.getElementById("SAVEBUT").style.display = "none";
-    document.getElementById("SAVEBUT2").style.display = "none";
-
+  document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 
 function openNavPre() {
-  
   GetCaretE();
   openGOP();
   startTime()
@@ -451,15 +367,9 @@ function openNavPre() {
     nw.App.unregisterGlobalHotKey(shortcut4);
     var shortcut5 = new nw.Shortcut(ShortExitPre);
     nw.App.registerGlobalHotKey(shortcut5);
-    
-
-
-  
-  
   Full_Screen();
   pre();
 }
-
 function openNavPast(){
   document.getElementById("mySidenavPast").style.width = "100%";
   document.getElementById("mySidenavPast").style.height = "50px";
@@ -470,7 +380,6 @@ function openNavPast(){
   document.getElementById("GENBUT").style.display = "none"
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
-
 }
 
 function openNavGe(){
@@ -483,7 +392,6 @@ function openNavGe(){
   document.getElementById("IOBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
-
 }
 function openNavSave(){
   document.getElementById("mySidenavSave").style.width = "100%";
@@ -517,7 +425,6 @@ function closeNav() {
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
 }
-
 function closeNavIO() {
   document.getElementById("mySidenavIO").style.width = "0";  
   document.getElementById("Slide_Button").style.display = "block";
@@ -528,7 +435,6 @@ function closeNavIO() {
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
 }
-
 function closeNavPast() {
   document.getElementById("mySidenavPast").style.width = "0";
   document.getElementById("Slide_Button").style.display = "block";
@@ -538,7 +444,6 @@ function closeNavPast() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
-
 }
 function closeNavGe() {
   document.getElementById("mySidenavGe").style.width = "0";
@@ -549,7 +454,6 @@ function closeNavGe() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
-
 }
 function closeNavSav() {
   document.getElementById("mySidenavSave").style.width = "0";
@@ -574,8 +478,6 @@ function closeNavSav2() {
 function closeNavPre() {
   GetCaretP();
   openGO();
-  
-
   document.getElementById("Slide_Button").style.display = "block";
   document.getElementById("PASTBUT").style.display = "none";
   document.getElementById("PREBUT").style.display = "none";
@@ -583,20 +485,10 @@ function closeNavPre() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
-  // var shortcut = new nw.Shortcut(ShortSave);
-  //   nw.App.registerGlobalHotKey(shortcut);
-  //   var shortcut2 = new nw.Shortcut(ShortNote);
-  //   nw.App.registerGlobalHotKey(shortcut2);
-  //   var shortcut3 = new nw.Shortcut(ShortPast);
-  //   nw.App.registerGlobalHotKey(shortcut3);	
-  //   var shortcut4 = new nw.Shortcut(ShortNoteMean);
-  //   nw.App.registerGlobalHotKey(shortcut4);
     var shortcut5 = new nw.Shortcut(ShortExitPre);
     nw.App.unregisterGlobalHotKey(shortcut5);
     var shortcut6 = new nw.Shortcut(ShortPauseM);
 nw.App.unregisterGlobalHotKey(shortcut6);	
-    
-  
 	Full_Screen();
   document.getElementById("mySidenavPre").style.width = "0";
   document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
@@ -605,19 +497,10 @@ nw.App.unregisterGlobalHotKey(shortcut6);
   document.getElementById("editor").style.fontSize = localStorage.getItem("size_s");
   document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
   document.getElementById("bbb").style.width = "1300px";
-  
   PauseRouleau();
-  
-
   location.reload();
-  
-  
-  
-  
-  
 }
 function closeNavP() {
-  
   document.getElementById("mySidenavPre").style.opacity = "100";
   document.getElementById("mySidenav").style.opacity = "0";
   document.getElementById("mySidenavPre").style.width = "0px";
@@ -629,13 +512,7 @@ function closeNavP() {
   document.getElementById("GENBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
-	
-  
-  
 }
-
-
-
 	function toggle(button)
             {
               if(document.getElementById("Slide_Button").value=="1")
@@ -659,7 +536,6 @@ var SizeB = localStorage.getItem("SizeFileCookM");
 	
 }
 else {
-
 	setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 100);
 	setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="rgba(17, 17, 17, 0.9)"; }, 500);
 	setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 750);
@@ -690,24 +566,12 @@ else {
 	setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 500);
 	setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="DarkRed"; }, 750);
 	setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 1000);
-
-
 }
 
 	localStorage.removeItem("SizeFileCook");
 	localStorage.setItem("SizeFileCook", SizeB)
 	
-	/*
-mySidenavIO
-mySidenavGe
-mySidenavPre
-mySidenavPast
-mySidenavSave
-	*/
 }
-
-
-
 
 function GetNewSize() {
 	var path_file = localStorage.getItem("FilePathCook").trim();
@@ -728,9 +592,7 @@ process.exec("cd /  && cd "+path_file+"&& /usr/bin/stat --format '%Y'"+" "+name_
 }
 
 function openNotes(){
-
   note_window = window.open("notes.html", "note_window", "width=1455,height=500");
-  //window.scrollTo(0,1e10);
 }
 
 function SaveCaretEP(){
@@ -739,27 +601,16 @@ var CoordsInShapeP = localStorage.getItem("CaretPositionP");
 var CoordsInShapeN = localStorage.getItem("CaretPositionN");
   localStorage.removeItem("CaretPosition");
 	localStorage.setItem("CaretPosition", CoordsInShape);
-
   var SQLPath= localStorage.getItem("InputFile");
-
    db.transaction(function (tx) {
-
-  //tx.executeSql("INSERT INTO FilteTab (CaretE) VALUES ('"+CoordsInShape+"')"); 
+  
   tx.executeSql("UPDATE FilteTab SET CaretE='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
   tx.executeSql("UPDATE FilteTab SET CaretP='"+CoordsInShapeP+"' WHERE Path='"+SQLPath+"'"); 
   tx.executeSql("UPDATE FilteTab SET CaretN='"+CoordsInShapeN+"' WHERE Path='"+SQLPath+"'");
   });
 }
 
-
-
-
 function saveHopeR2(){
-  
-        
-  // var coords = getSelectionCoords();
-  // var CoordsInShape = coords.x + ", " + coords.y;
-  
   var CoordsInShape= window.pageYOffset;
 var CoordsInShapeP = localStorage.getItem("CaretPositionP");
 var CoordsInShapeN = localStorage.getItem("CaretPositionN");
@@ -777,19 +628,10 @@ var CoordsInShapeN = localStorage.getItem("CaretPositionN");
 
   });
 
-
-
-		const fs = require('fs');
-		
-
-if (localStorage.getItem("InputFile") == null){
-
+	const fs = require('fs');
+  if (localStorage.getItem("InputFile") == null){
 	openNavSave();
-	
 }
-
-
-
 else {
 	var namedata2write = localStorage.getItem("InputFile");
 let text_to_save = document.getElementById("editor").innerText;
@@ -797,16 +639,10 @@ fs.writeFile(namedata2write, text_to_save, (err) => {
        if (err) throw err;
        GetNewSize();
 });
-
 }
-
-
 }
-
-
 
 function getclip(){
-
 	var clipboard = nw.Clipboard.get();
 	var bib = clipboard.get("text");
 	var printbibRAW = "[@"+bib+"]";
@@ -818,9 +654,6 @@ function getclip(){
 	localStorage.setItem("bibMean", bib);	
  	}
 
-
-	
-		
 	function saveHopeR(){
 		const fs = require('fs');
 		var folderPathL = localStorage.getItem("folder_path");
@@ -830,8 +663,6 @@ fs.writeFile(folderPathL+ "/"+ namedata2write, text_to_save, (err) => {
        if (err) throw err;
 });
 }
-
-	
 	function saveHope(){
 		const fs = require('fs');
 		var folderPathL = localStorage.getItem("folder_path");
@@ -842,8 +673,6 @@ fs.writeFile(folderPathL+ "/"+ namedata2write+ "tmp", text_to_save, (err) => {
 });
 }
 
-
-
 function saveHopeT(){
     const fs = require('fs');
 		var path_file = localStorage.getItem("folder_path");
@@ -853,7 +682,6 @@ fs.writeFile(path_file+ "/"+namedata2write+ "tmp" , text_to_save, (err) => {
        if (err) throw err;
 });
 }
-
 
 function saveHopeS(){
 		const fs = require('fs');
@@ -920,8 +748,6 @@ fs.writeFileSync(path_fileB+ "/"+namedata2writeN1, text_to_save, (err) => {
 }
 }
 
-
-
 function saveHopeT2(){
 		var fs = require("fs");	
 		var Folder = localStorage.getItem("TempFolderPath");
@@ -946,19 +772,12 @@ function saveHopeT3(){
      localStorage.setItem("InputFile", PathTemp);
 }
 
-
-
-
 var Run_save = localStorage.getItem("check_save_C");
-
 if (Run_save == "true"){
-	
 	var milliseconds = localStorage.getItem("save_time_data");	
 	window.setInterval(saveNullTime, milliseconds);
 		}			
 			
-
-
 function pasteHtmlAtCaret(html) {
 
 	    var sel, range;
@@ -986,11 +805,8 @@ function pasteHtmlAtCaret(html) {
         }
     } else if (document.selection && document.selection.type != "Control") {            
         document.selection.createRange().pasteHTML(html);
-
     } 
 }
-
-
 
 function Full_Screen(_element) {
       var monElement = _element||document.documentElement;
@@ -1032,30 +848,23 @@ function Full_Screen(_element) {
       }
     function outputTaille(inputTaille) {
       document.querySelector("#taillelevel").value = inputTaille;
-       localStorage.setItem("size_s2MA", inputTaille+"em"); 
-       //VitesseRouleau = inputTachios ;	
+       localStorage.setItem("size_s2MA", inputTaille+"em"); 	
      pre();
        }
-
-
-
 
 	 function TextBold(){
               document.execCommand('bold', false, null);
                selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+                
             }
  function TextItalic(){
               document.execCommand('italic', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+              
             }
 function TextUnder(){
               document.execCommand('underline', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+               
             }
-
              function TextLine()
                 {
                   selection = window.getSelection().getRangeAt(0).cloneContents();
@@ -1066,25 +875,21 @@ document.execCommand('insertHTML', false, wrappedselection);
                  }
         function JustifyCenter(){
               document.execCommand('justifyCenter', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+              
             }
          function JustifyFull(){
               document.execCommand('justifyFull', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+              
             }
 function JustifyLeft(){
               document.execCommand('justifyLeft', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+              
             }
 function JustifyRight(){
               document.execCommand('justifyRight', false, null);
-               // selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.marginBottom = '100px';
+               
             }
-                 
+   
         function JustifyCss()
                 {
                   selection = window.getSelection().getRangeAt(0).cloneContents();
@@ -1107,7 +912,7 @@ document.execCommand('insertHTML', false, wrappedselection);
    var x=document.getElementById("fontName").selectedIndex;
    var y=document.getElementById("fontName").options;
    document.execCommand(x,"",y);
-   		//edit.document.focus(fontName);
+   		
    		edit.document(fontName);
 }      
   function fontSize(fontSize) {
@@ -1116,7 +921,6 @@ document.execCommand('insertHTML', false, wrappedselection);
    var y=document.getElementById("fontSize").options;
    document.execCommand(x,"",y);
    		edit.document.focus(fontSize);
-
    
 }      
 function Open(){
@@ -1130,21 +934,11 @@ function Open(){
   }
   chooseFile('#fileDialog');
 
-            } 
-                 
-                                  
+            }                         
  function CssFnctnZ()
                 {
                   document.execCommand('styleWithCSS', false, true);
     document.execCommand('foreColor', false, "rgba(0,0,0,0.5)");
-                  
-                  //document.execCommand('formatblock', false, 'p');
-                 //window.execCommand('formatblock', false, 'p');
-                //selectedElement = window.getSelection().focusNode.parentNode;
-                //selectedElement.style.textDecoration = 'line-through';
-                 
-                 // var listId = window.getSelection().focusNode.parentNode;
-                 //$(listId).addClass("line");
                  }
                   function Undo() {
                   document.execCommand('undo', false, true);
@@ -1153,23 +947,11 @@ function Redo() {
                   document.execCommand('redo', false, true);
 }
 
-/*
-var doc_to_html = document.getElementById("editor").innerHtml;	
-  var div = document.getElementById('editor')
-
-div.addEventListener('keydown', onKeyDown);
-*/
-
 function outputZoom(inputZoom) {
 	var editor=document.getElementById("editor");
 	document.querySelector('#level').value = inputZoom;
 	editor.style.zoom = inputZoom ;	
-	//var inputZoom = document.getElementById("zoomfield").value;	
 }
-
-///function outputUpdate(vol) {
-	//document.querySelector('#volume').value = vol;
-//}
 
 function onKeyDown(e) {
     if (e.keyCode == '13') {
@@ -1181,8 +963,7 @@ function onKeyDown(e) {
     }
 }
      
-   
-   
+  
    function zoom(){
 var inputZoom = document.getElementById("zoomfield").value;
 var editor=document.getElementById("editor");
@@ -1200,20 +981,13 @@ function open_para() {
  }
 //COMPILATION
 function GenDocx(){
-//var name_file = localStorage.getItem("data_name").trim();
-//var path_file = localStorage.getItem("folder_path").trim();
-//var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
-
-//var set_location = path_file+name_file;
 var process = require("child_process");
-//process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
-process.exec(pandocpath + " -s --citeproc " + filepath + " -o " + filepath + ".docx",function (err,stdout,stderr) {
 
+process.exec(pandocpath + " -s --citeproc " + filepath + " -o " + filepath + ".docx",function (err,stdout,stderr) {
     if (err) {
 	    document.getElementById("ShowTerm").innerHTML= stderr;
-	    
     } else {
         document.getElementById("ShowTerm").innerHTML=stdout;
     }
@@ -1221,36 +995,25 @@ process.exec(pandocpath + " -s --citeproc " + filepath + " -o " + filepath + ".d
 }
 function GenDocxFusion(){
   var RawPath = localStorage.getItem("FilePathCook").trim();
-var FormPath = RawPath+"/notes.md";
-  //var name_file = localStorage.getItem("data_name").trim();
- // var path_file = localStorage.getItem("folder_path").trim();
-  //var gitpath = localStorage.getItem("GitPath").trim();
+  var FormPath = RawPath+"/notes.md";
   var pandocpath = localStorage.getItem("PandocPath").trim();
   var filepath = localStorage.getItem("InputFile").trim();
-  
-  //var set_location = path_file+name_file;
   var process = require("child_process");
-  //process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
   process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".docx",function (err,stdout,stderr) {
-  
       if (err) {
-        document.getElementById("ShowTerm").innerHTML= stderr;
-        
+        document.getElementById("ShowTerm").innerHTML= stderr; 
       } else {
           document.getElementById("ShowTerm").innerHTML=stdout;
       }
   })
   }
 function GenSlide(){
-//var name_file = localStorage.getItem("data_name").trim();
 var path_file = localStorage.getItem("folder_path").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 var set_location = path_file+name_file;
 var process = require("child_process");
-
-//process.exec("cd / && cd "+path_file+" && "+ pandocpath + " -s " + name_file + " -o " + name_file + ".pptx",function (err,stdout,stderr) {
 process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",function (err,stdout,stderr) {
 
     if (err) {
@@ -1263,22 +1026,11 @@ process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",functi
 }
 
 function GenPdf(){
-//var name_file = localStorage.getItem("data_name").trim();
-//var path_file = localStorage.getItem("folder_path").trim();
-//var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
-
 var pandocpdf = localStorage.getItem("PandocPdf");
 var filepath = localStorage.getItem("InputFile").trim();
-
-//var set_location = path_file+name_file;
-//var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
-//process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+"--pdf-engine=/Library/TeX/texbin/pdflatex "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
-
-//process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+" "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
 process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath + " -o " + filepath + ".pdf",function (err,stdout,stderr) {
-
     if (err) {
 	    document.getElementById("ShowTerm").innerHTML= stderr;
 	   
@@ -1290,25 +1042,13 @@ process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath + " -o " + filepath 
 function GenPdfFusion(){
   var RawPath = localStorage.getItem("FilePathCook").trim();
 var FormPath = RawPath+"/notes.md";
-  //var name_file = localStorage.getItem("data_name").trim();
- // var path_file = localStorage.getItem("folder_path").trim();
-  //var gitpath = localStorage.getItem("GitPath").trim();
   var pandocpath = localStorage.getItem("PandocPath").trim();
-  
   var pandocpdf = localStorage.getItem("PandocPdfFusion");
   var filepath = localStorage.getItem("InputFile").trim();
-  
-  //var set_location = path_file+name_file;
-  //var path_pdf = require("/Library/TeX/texbin/pdflatex");
-  var process = require("child_process");
-  //process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+"--pdf-engine=/Library/TeX/texbin/pdflatex "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
-  
-  //process.exec("cd /  && cd "+path_file+" && "+ pandocpath + " -s "+" "+pandocpdf+" "+name_file + " -o " + name_file + ".pdf",function (err,stdout,stderr) {
+  var process = require("child_process");  
   process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath +" " +FormPath+ " -o " + filepath + ".pdf",function (err,stdout,stderr) {
-  
       if (err) {
         document.getElementById("ShowTerm").innerHTML= stderr;
-       
       } else {
           document.getElementById("ShowTerm").innerHTML=stdout;
       }
@@ -1318,26 +1058,17 @@ var FormPath = RawPath+"/notes.md";
   function Epub(){
     var RawPath = localStorage.getItem("FilePathCook").trim();
   var FormPath = RawPath+"/notes.md";
-    //var name_file = localStorage.getItem("data_name").trim();
-   // var path_file = localStorage.getItem("folder_path").trim();
-    //var gitpath = localStorage.getItem("GitPath").trim();
     var pandocpath = localStorage.getItem("PandocPath").trim();
     var filepath = localStorage.getItem("InputFile").trim();
-    
-    //var set_location = path_file+name_file;
     var process = require("child_process");
-    //process.exec("cd / && cd "+path_file+" && " +pandocpath + " -s --filter /usr/local/bin/pandoc-citeproc " + name_file + " -o " + name_file + ".docx",function (err,stdout,stderr) {
     process.exec(pandocpath + " -s --citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".epub",function (err,stdout,stderr) {
-    
         if (err) {
           document.getElementById("ShowTerm").innerHTML= stderr;
-          
         } else {
             document.getElementById("ShowTerm").innerHTML=stdout;
         }
     })
     }
-
 
 //import
 function Importdocx() {
@@ -1365,11 +1096,8 @@ localStorage.setItem("InputNameNoExtC2", InputNameNoExt);
 
 localStorage.removeItem("InputNameExtC2");
 localStorage.setItem("InputNameExtC2", InputNameExt);
-//document.title = localStorage.getItem("InputFile2");
 var path_file = localStorage.getItem("InputFile2").trim();
-//var name_file = localStorage.getItem("InputNameSoloC2").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
-
 var process = require("child_process");
 process.exec(pandocpath + " -s --citeproc " + path_file + " --wrap=none -o " + path_file + ".md",function (err,stdout,stderr) {
   if (err) {
@@ -1380,45 +1108,8 @@ process.exec(pandocpath + " -s --citeproc " + path_file + " --wrap=none -o " + p
 })
  
   }, false);
-//   var path_fileR = localStorage.getItem("InputFile2").trim();
-//  	     var path_file =        
-// 	fs.readFile(path_file + ".md", function (err, data) {
-//   if (err) throw err;
-//   console.log(data);
-//   document.getElementById("editor").innerText = data;
-
-// }); 
 
 }
-/* function Importdocx(name2){
-  var fs = require("fs");	
-var path = require("path");
-  var chooser = document.querySelector(name2);
-  chooser.addEventListener("change2", function(evt) {
-    console.log(this.value);
-    var input = this.value;
-    
-    var InputPath = path.dirname(input); 
-    var pandocpath = localStorage.getItem("PandocPath").trim();
-    //var InputNameSolo = path.basename(input);
-    localStorage.removeItem("ImportDocxCook");
-    localStorage.setItem("ImportDocxCook", InputPath);
-    var path_file = localStorage.getItem("FilePathCook").trim();
-    //var InputNameNoExt = path.basename(input, path.extname(input));
-    //var InputNameExt = path.extname(input);
-var process = require("child_process");
-process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + path_file + " -o " + path_file + ".md",function (err,stdout,stderr) {
-
-  if (err) {
-          document.getElementById("ShowTerm").innerHTML= stderr;
-          
-        } else {
-            document.getElementById("ShowTerm").innerHTML=stdout;
-        }
-    });
-})
- 
-  } */
 
 function GitAdd(){
 var fs = require("fs");
@@ -1430,72 +1121,44 @@ var pathfile = localStorage.getItem("FilePathCook").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
-
-
-//var folderPathL = localStorage.getItem("folder_path");
 	var namedata2write = localStorage.getItem("data_name");
-/*
-let text_to_save = document.getElementById("editor").innerText;
-fs.writeFile(path_file+ "/"+ namedata2write , text_to_save, (err) => {  
-       if (err) throw err;
-})
-*/;
-	
+
 let text_to_save = document.getElementById("editor").innerText;
 fs.writeFile(filepath , text_to_save, (err) => {  
        if (err) throw err;
 })	
 
-//var set_location = path_file+name_file;
-//var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
 process.exec("cd /  && cd "+pathfile+" && "+ gitpath +" "+"add "+namefile,function (err,stdout,stderr) {
-//process.exec("cd /  && cd "+path_file+" && "+ gitpath + " status",function (err,stdout,stderr) {
 
     if (err) {
 	    document.getElementById("ShowTermGen").innerHTML= stderr;
 	   
     } else {
         document.getElementById("ShowTermGen").innerHTML=stdout;
-                //document.getElementById("ShowTermGen").innerHTML = " add done";
-
+                
     }
 })
 }
 function GitCommit(){
-//var name_file = localStorage.getItem("filgit").trim();
 var namefile = localStorage.getItem("InputNameSoloC").trim();
-
-//var path_file = localStorage.getItem("fogit").trim();
 var pathfile = localStorage.getItem("FilePathCook").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
-//document.getElementById("ShowTermGen").innerHTML = " commit done";
-//var set_location = path_file+name_file;
-//var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
 process.exec("cd /  && cd "+pathfile+" && " + gitpath+" "+"commit "+namefile+" -m 'message'",function (err,stdout,stderr) {
     if (err) {
 	    document.getElementById("ShowTermGen").innerHTML= stderr;
-	           //document.getElementById("ShowTermGen").innerHTML = " commit done";
 
     } else {
         document.getElementById("ShowTermGen").innerHTML = stdout;
-       // document.getElementById("ShowTermGen").innerHTML = " commit done";
     }
 })
 }
-
 //GIT MANAGE
 function GitLog(){
 var pathfile = localStorage.getItem("FilePathCook").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
-
-
-/*
-var namefile = localStorage.getItem("InputNameSoloC").trim();
-var pathfile = localStorage.getItem("FilePathCook").trim();
-*/
 var json = "log --pretty=format:'%h' -n 1";
 
 var process = require("child_process");
@@ -1509,31 +1172,18 @@ process.exec("cd /  && cd "+pathfile+" && " +gitpath+" "+json,function (err,stdo
         var lasthash= stdout;
             localStorage.removeItem("lasthashcook");
             localStorage.setItem("lasthashcook", stdout);  
- 
  }                  
 })
 
-
-//log_window = window.open("log.html", "log_window", "width=450,height=900");
 nw.Window.open("log.html", { title: 'git log -p', width: 1315, height: 768,}, function(new_win) {
-	  
-	  // do something with the newly created window
 });
 
 
 }
 
 function ShowBibFile(){
-//var BibPathV = localStorage.getItem("BibPath").trim();
-
-//nw.Window.open("bib.html", { title: BibPathV, width: 1315, height: 768,}, function(new_win) {
 	param_window = window.open("bib.html", "param_window", "width=800,height=500");
-//});
-
-
 }
-
-
 
 function CreateInitRepo(){
 	localStorage.removeItem("fogit");
@@ -1550,7 +1200,6 @@ var path_file = localStorage.getItem("fogit").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 
 var set_location = path_file+name_file;
-//var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
 process.exec("cd /  && cd "+path_file+" && mkdir "+name_file +" "+"&& cd "+name_file+" && "+ gitpath+ " init"+" "+"&& "+ gitpath + " add .",function (err,stdout,stderr) {
     if (err) {
@@ -1567,15 +1216,9 @@ function CreateInitRepoB(){
 	localStorage.removeItem("fogitB");
 	var gitfol = document.getElementById("FolderGitB").value;
     localStorage.setItem("fogitB", gitfol); 
-     	
-   
 var path_file = localStorage.getItem("fogitB").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
-
-//var path_pdf = require("/Library/TeX/texbin/pdflatex");
 var process = require("child_process");
-
-
 if (localStorage.getItem("FdAddGit")== "true"){
 	
 				process.exec("cd /  && cd "+path_file+" && "+ gitpath+ " init"+" "+"&& "+ gitpath + " add ."+ " && "+gitpath+ " " + "commit -m 'message '",function (err,stdout,stderr){
@@ -1586,8 +1229,6 @@ if (localStorage.getItem("FdAddGit")== "true"){
         document.getElementById("showgit").innerHTML=stdout;
     }
 })				
-				
-				
 				
 			}			
 			else{
@@ -1601,21 +1242,7 @@ if (localStorage.getItem("FdAddGit")== "true"){
 })
 			}
 
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
 
 
 function SetGitVar(){
@@ -1663,7 +1290,6 @@ function set_name(){
  
 }
 
-
 // variables de Git et Pandoc
 function LocalPandoc(){
 	localStorage.removeItem("PandocPath");
@@ -1705,58 +1331,44 @@ function CreateCookAddAllGit(){
 	
 }
 
-
-
-
-
-
  //3 fonction pour input
  
 //Marathon add input
  function fond_color_inputMA(){
 	localStorage.removeItem("colorf_sMA");
 		var colorf_valMA = document.getElementById("Input_FDC").value;
-    localStorage.setItem("colorf_sMA", colorf_valMA);  
-   
-    
+    localStorage.setItem("colorf_sMA", colorf_valMA);   
 }	
 function fond_color_input(){
 	localStorage.removeItem("colorf_s");
 		var colorf_valA = document.getElementById("Input_FTC2").value;
     localStorage.setItem("colorf_s", colorf_valA);  
-   
     }
 function fond_MARGE_color_input(){
 	localStorage.removeItem("colorf_s2");
 		var colorf_valB = document.getElementById("Input_FDC2").value;
-    localStorage.setItem("colorf_s2", colorf_valB);  
-   
-    
+    localStorage.setItem("colorf_s2", colorf_valB);    
 }				
 function font_colorMA_input(){
 	localStorage.removeItem("color_sMA");
 		var color_val2 = document.getElementById("Input_FTC").value;
     localStorage.setItem("color_sMA", color_val2);  
-   
 }
 function font_color_input(){
 	localStorage.removeItem("color_s");
 		var color_val2B = document.getElementById("Input_FTTC").value;
     localStorage.setItem("color_s", color_val2B);  
-   
 }
 
 function font_sizeMA_input(){
 	localStorage.removeItem("size_s2MA");
 		var size_val2MA = document.getElementById("Input_S2MA").value;
     localStorage.setItem("size_s2MA", size_val2MA);  
-   
 }	
 function font_size_input(){
 	localStorage.removeItem("size_s");
 		var size_val2MAAZ = document.getElementById("input_size").value;
     localStorage.setItem("size_s", size_val2MAAZ);  
-   
 }	
 function inter_height_input(){
 	localStorage.removeItem("inter_s");
@@ -1790,29 +1402,22 @@ function tachios_func(){
     localStorage.setItem("inter_sMA", size_interMA);  
   }  
 //editor
-
- 
 	function color_gren(){
 		localStorage.setItem("color_div", "green");
 document.getElementById("editor").style.color = localStorage.getItem("color_div");
 	}
 	
-
-
 	function align_style(event) {
     var align = this.options[this.selectedIndex].value;
     localStorage.setItem("align_s", align);  
     document.getElementById("editor").style.color = localStorage.getItem("align_s");        
-	
 }      
-
 
 function inter_height(event) {
 	var inter_val = this.options[this.selectedIndex].value;
     localStorage.setItem("inter_s", inter_val);  
     document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");  	
 }      
-
 function text_indent(event) {
 	var indentation = this.options[this.selectedIndex].value;
     localStorage.setItem("indent_s", indentation);  
@@ -1835,8 +1440,6 @@ function text_deco(){
 }
 
 //ICIIIIIIII
-
-
 function font_family(){
 		var font_val = this.options[this.selectedIndex].value;
     localStorage.setItem("font_s", font_val);  
@@ -1853,8 +1456,6 @@ function font_sizeMA(){
     localStorage.setItem("size_s2MA", size_val2MA);  
     document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
 }
-
-
 function font_color(){
 		var color_val = this.options[this.selectedIndex].value;
     localStorage.setItem("color_s", color_val);  
@@ -1869,7 +1470,6 @@ function fond_color(){
 		var colorf_val = this.options[this.selectedIndex].value;
     localStorage.setItem("colorf_s", colorf_val);  
     document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
-    
     
     }
     function fond_colorMA(){
@@ -1889,7 +1489,6 @@ function outputZoomP(inputZoomP) {
 	document.querySelector('#level').value = inputZoomP;
 	localStorage.setItem("zoom_s", inputZoomP);
 	editor.style.zoom = inputZoomP ;	
-	
 }
 
 function getSelectionCoords(win) {
@@ -1945,7 +1544,6 @@ function getSelectionCoords(win) {
 function SaveCustom(){
 
   var Nstyle= document.getElementById("input_styleS").value;
-
   var dbparam1= localStorage.getItem("align_s");
   var dbparam5= localStorage.getItem("bold_s");
   var dbparam7= localStorage.getItem("colorf_sMA");
@@ -2053,11 +1651,6 @@ tx.executeSql('SELECT * FROM ParamMea WHERE style='+"'"+Nstyle+"'", [], function
       });
     }
 
-
-
-
-
-
 function ResetCook(){
   localStorage.removeItem("align_s");  
   localStorage.removeItem("bibref");
@@ -2153,7 +1746,7 @@ function startTime() {
   var t = setTimeout(startTime, 500);
 }
 function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  if (i < 10) {i = "0" + i};  
   return i;
 }
 
