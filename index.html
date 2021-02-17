@@ -62,17 +62,20 @@
 
 </div>
 <div id="mySidenavPre" class="sidenav">
-<input type="button" id="PREBUT" class="PreSlideBut" onclick="closeNavPre()">
+<input type="button" id="PREBUT" class="PreSlideBut" onclick="toggle3();">
 <span id="toogle">
-	<input type="button" id="5" class="menu_btA" value="Chante" onclick="toggle2();">
-	</span>
+  <input type="button" id="5" class="menu_btA" value="Chante" onclick="toggle2();">
+  </span>
+  <input type="button" id="20" class="menu_bt" value="Édition" onclick="closeNavPre();">
 	<span class="linePre">
-<label for="taille"class="menu_btpre">Taille</label>	
+    <span class="time" id="difference"></span><span class="time" id="space">&nbsp;-&nbsp;</span>
+    <span class="time" id="timeC"></span>
+<label for="taille"class="menu_btpre" id="emlab">Taille</label>	
 <input type="range" id="em" min="1" value="5" max="10" step="0.5" oninput="outputTaille(value)">
 	<output for="taille" id="taillelevel">0</output>
 	
-<label for="vitesse" class="menu_btpre">Vitesse</label>
-<input type="range" id="speed" min="1" value=VitesseRouleau max="100" step="10" oninput="outputTachios(value)">
+<label for="vitesse" class="menu_btpre" id="speedlab">Vitesse</label>
+<input type="range" id="speed" min="1" value=VitesseRouleau max="100" step="1" oninput="outputTachios(value)">
 	<output for="vitesse" id="speedlevel">0</output>
 	</span>
 	
@@ -116,80 +119,127 @@
 
 <script>
 
+if (localStorage.getItem("Time") == "true") {
+       document.getElementById("timeC").style.display = "inline";
+     }
+     else {
+       document.getElementById("timeC").style.display = "none";
+     }
+     if (localStorage.getItem("TimeR") == "true") {
+       document.getElementById("difference").style.display = "inline";
+     }
+     else {
+       document.getElementById("difference").style.display = "none";
+     }
+     if (localStorage.getItem("Time") && localStorage.getItem("TimeR") == "true") {
+       document.getElementById("space").style.display = "inline";
+     }
+     else {
+       document.getElementById("space").style.display = "none";
+     }
+    if (localStorage.getItem("checkspeedcook") == "true") {
+   document.getElementById("speed").style.display = "inline";
+       document.getElementById("speedlab").style.display = "inline";
+     }
+    else {
+      document.getElementById("speed").style.display = "none";
+      document.getElementById("speedlab").style.display = "none";
+     }
+     if (localStorage.getItem("checksizecook") == "true") {
+      document.getElementById("em").style.display = "inline";
+       document.getElementById("emlab").style.display = "inline";
+     }
+     else {
+       document.getElementById("em").style.display = "none";
+      document.getElementById("emlab").style.display = "none";
+  }
+// function outputTachios(inputTachios) {
+// 	document.querySelector("#speedlevel").value = inputTachios;
+// 	localStorage.setItem("tachios", inputTachios);
+// 	 VitesseRouleau = inputTachios ;	
+
+// 	}
+// function outputTaille(inputTaille) {
+// 	document.querySelector("#taillelevel").value = inputTaille;
+// 	 localStorage.setItem("size_s2MA", inputTaille+"em"); 
+// 	 //VitesseRouleau = inputTachios ;	
+//  pre();
+//  	}
 
 
-var ShortSave = {
-  key : "Ctrl+S",
-  active : function() {
-	  //checkmodif();
-	  feedback();
+// var ShortSave = {
+//   key : "Ctrl+S",
+//   active : function() {
+// 	  //checkmodif();
+// 	  feedback();
 	
-	  if (localStorage.getItem("ctrls")== "true"){
+// 	  if (localStorage.getItem("ctrls")== "true"){
 		  
-				 saveHopeR2();
-				 GitAdd();
-				 GitCommit();
-			}	
+// 				 saveHopeR2();
+// 				 GitAdd();
+// 				 GitCommit();
+// 			}	
 					
-			else{
-				 saveHopeR2();
-			}
+// 			else{
+// 				 saveHopeR2();
+// 			}
 	 
-    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-  },
-  failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
-    console.log(msg);
-  }
+//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+//   },
+//   failed : function(msg) {
+//     // :(, fail to register the |key| or couldn't parse the |key|.
+//     console.log(msg);
+//   }
   
-};
+// };
 
 
-var ShortNote = {
-  key : "Ctrl+Alt+F",
-  active : function() {
-	  pasteHtmlAtCaret(Note);
-    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-  },
-  failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
-    console.log(msg);
-  }
-};
+// var ShortNote = {
+//   key : "Ctrl+Alt+F",
+//   active : function() {
+// 	  pasteHtmlAtCaret(Note);
+//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+//   },
+//   failed : function(msg) {
+//     // :(, fail to register the |key| or couldn't parse the |key|.
+//     console.log(msg);
+//   }
+// };
 
 
 
-var ShortPast = {
-  key : "Ctrl+Alt+V",
-  active : function() {
-	  getclip();
-	  var printbib = localStorage.getItem("bibref");
-	  pasteHtmlAtCaret(printbib);
-    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-  },
-  failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
-    console.log(msg);
-  }
-};
+// var ShortPast = {
+//   key : "Ctrl+Alt+V",
+//   active : function() {
+// 	  getclip();
+// 	  var printbib = localStorage.getItem("bibref");
+// 	  pasteHtmlAtCaret(printbib);
+//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+//   },
+//   failed : function(msg) {
+//     // :(, fail to register the |key| or couldn't parse the |key|.
+//     console.log(msg);
+//   }
+// };
 
-	var ShortNoteMean = {
-  key : "Ctrl+Alt+G",
-  active : function() {
-	  getclip();
-	  var printNoteM = localStorage.getItem("bibMean");
-	var alea = Math.floor((Math.random() * 5000) + 1);
-	var printN= "[^"+printNoteM+alea+"]";
+// 	var ShortNoteMean = {
+//   key : "Ctrl+Alt+G",
+//   active : function() {
+// 	  getclip();
+// 	  var printNoteM = localStorage.getItem("bibMean");
+// 	var alea = Math.floor((Math.random() * 5000) + 1);
+// 	var printN= "[^"+printNoteM+alea+"]";
 	
-pasteHtmlAtCaret(printN);
-    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-  },
-  failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
-    console.log(msg);
-  }
-};
-	
+// pasteHtmlAtCaret(printN);
+//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+//   },
+//   failed : function(msg) {
+//     // :(, fail to register the |key| or couldn't parse the |key|.
+//     console.log(msg);
+//   }
+// };
+
+
 var shortcut = new nw.Shortcut(ShortSave);
 nw.App.registerGlobalHotKey(shortcut);
 var shortcut2 = new nw.Shortcut(ShortNote);
@@ -197,7 +247,9 @@ nw.App.registerGlobalHotKey(shortcut2);
 var shortcut3 = new nw.Shortcut(ShortPast);
 nw.App.registerGlobalHotKey(shortcut3);	
 var shortcut4 = new nw.Shortcut(ShortNoteMean);
-nw.App.registerGlobalHotKey(shortcut4);	
+nw.App.registerGlobalHotKey(shortcut4);
+var shortcut5 = new nw.Shortcut(ShortPauseM);
+nw.App.unregisterGlobalHotKey(shortcut5);	
 	
 	
 		document.querySelector("#folderinput2")
@@ -276,24 +328,80 @@ var VitesseRouleau = localStorage.getItem("tachios");
      }
 
 function PauseRouleau() {
+  //scrolldelay = setTimeout(TournRouleau,VitesseRouleau);
 	clearTimeout(scrolldelay);
 }
 		function toggle2()
 		
-            { event.keyCode == 32;
+            { //event.keyCode == 32;
               if(document.getElementById("5").value=="Pause")
               {
                document.getElementById("5").value="Chante";
                PauseRouleau();
+               stasis();
                              }
               else
               {
                 document.getElementById("5").value="Pause";
                 TournRouleau();
+                actio();
               }
             }
+
+
+            
+    function toggle3(button)
+            {
+              if(document.getElementById("PREBUT").value=="1")
+              {
+               document.getElementById("PREBUT").value="2";
+               document.getElementById("mySidenavPre").style.width = "100%";
+               document.getElementById("mySidenav").style.width = "100%";
+               document.getElementById("mySidenavPre").style.height = "50px";
+               document.getElementById("mySidenav").style.height = "50px";
+              
+                             }
+              else
+              {
+                document.getElementById("PREBUT").value="1";
+                
+                document.getElementById("mySidenavPre").style.width = "0%";
+               document.getElementById("mySidenav").style.width = "0%";
+               document.getElementById("mySidenavPre").style.height = "50px";
+               document.getElementById("mySidenav").style.height = "50px";
+              }
+            }	 
+            var d1 = new Date();
+d1.setHours(0,0,0);
+
+var Momentum = 0;
+
+function tempus_fugit(){
+    var h= d1.getHours();
+    var m= d1.getMinutes();
+    var s=d1.getSeconds();
+    m= (m<10)?"0"+m: m;
+    s= (s<10)? "0"+s : s;
     
-   
+    //var el= document.getElementById("inputid");
+    //el.value=
+    document.getElementById("difference").innerHTML =  h+":"+m+":"+s;
+    d1.setSeconds(d1.getSeconds()+1);
+    if( h==0 && m==0 && s==0 ) clearTimeout(Momentum)
+    Momentum= setTimeout(tempus_fugit,1000);
+}
+
+function stasis(){
+    clearTimeout(Momentum);
+    
+}
+
+
+function actio(){
+    Momentum= setTimeout(tempus_fugit,1000);
+    
+}
+  
 //  function pre(){
 // 	 document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
 // 	 document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_sMA");
@@ -306,11 +414,15 @@ function PauseRouleau() {
  
 
  window.onunload = function(){
+  SaveCaretEP();
 	     if (localStorage.getItem("OpenStartCook")== "false"){
-        localStorage.removeItem("InputFile");	 
+        localStorage.removeItem("InputFile");
+        localStorage.removeItem("CaretPosition");
+        localStorage.removeItem("CaretPositionN");	 
 	  }
 
-	    if (localStorage.getItem("check_out_s") == "true")
+      if (localStorage.getItem("check_out_s") == "true")
+      
 	{ function delay(ms) {
     var start = +new Date;
     while ((+new Date - start) < ms);
@@ -320,7 +432,8 @@ delay(1500);
 
 saveNullExit();
 	  
-	}
+  }
+  
   App.closeAllWindows()
   	  
 		}

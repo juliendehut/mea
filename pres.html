@@ -68,14 +68,42 @@
         <option value="4">4</option>
         </select><input type="text" class="input_style" id="Input_interMA">
         </p>
+
+<p>Afficher l'heure<input type="checkbox" id="Check_time" onclick="check_time()"></p>
+<p>Afficher la durée de la présentation<input type="checkbox" id="Check_timer" onclick="check_timer()"></p>
+<p>Afficher la taille du texte<input type="checkbox" id="Check_Size_Def" onclick="check_size()"></p>
+<p>Afficher la vitesse de défilement<input type="checkbox" id="Check_Speed_Def" onclick="check_speed()"></p>
 <script>
 document.getElementById("Input_tachios").addEventListener("input", tachios_input);
 document.getElementById("Input_FDC").addEventListener("input", fond_color_inputMA);
 document.getElementById("Input_FTC").addEventListener("input", font_colorMA_input);
 document.getElementById("Input_S2MA").addEventListener("input", font_sizeMA_input);
 document.getElementById("Input_interMA").addEventListener("input", inter_heightMAInput);
+if (localStorage.getItem("Time")== "true"){
+				document.getElementById("Check_time").checked = true;
+			}			
+			else{
+				document.getElementById("Check_time").checked = false;
+			}
 
-
+      if (localStorage.getItem("TimeR")== "true"){
+				document.getElementById("Check_timer").checked = true;
+			}			
+			else{
+				document.getElementById("Check_timer").checked = false;
+			}
+      if (localStorage.getItem("checksizecook")== "true"){
+				document.getElementById("Check_Size_Def").checked = true;
+			}			
+			else{
+				document.getElementById("Check_Size_Def").checked = false;
+			}
+      if (localStorage.getItem("checkspeedcook")== "true"){
+				document.getElementById("Check_Speed_Def").checked = true;
+			}			
+			else{
+				document.getElementById("Check_Speed_Def").checked = false;
+			}
 window.onload = function() {
 // 2 charger valeur 			
 
@@ -84,14 +112,17 @@ document.getElementById("selectedCFMA").text = localStorage.getItem("colorf_sMA"
 document.getElementById("selectedCMA").text = localStorage.getItem("color_sMA");
 document.getElementById("selectedSMA").text = localStorage.getItem("size_s2MA");
 document.getElementById("selectedtach").text = localStorage.getItem("tachios");
-document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
+document.getElementById("selectedIMA").text = localStorage.getItem("inter_sMA");
+//document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_s");
 
 //document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
 
-i
-
-if (localStorage.getItem("colorf_sMA") === null) {
+//i
+if (localStorage.getItem("inter_sMA") === null) {
   document.getElementById("selectedCFMA").text = " ";
+}
+if (localStorage.getItem("colorf_sMA") === null) {
+  document.getElementById("selectedIMA").text = " ";
 }
 
 
@@ -110,12 +141,43 @@ if (localStorage.getItem("data_name") === null) {
     localStorage.setItem("data_name", "temp_mea"); 
 }	
 */
-	
+// if (localStorage.getItem("Time")== "true"){
+// 				document.getElementById("Check_time").checked = true;
+// 			}			
+// 			else{
+// 				document.getElementById("Check_time").checked = false;
+// 			}
 
-
-
-	
+//       if (localStorage.getItem("TimeR")== "true"){
+// 				document.getElementById("Check_timer").checked = true;
+// 			}			
+// 			else{
+// 				document.getElementById("Check_timer").checked = false;
+// 			}
+     
 }	
+
+
+function check_time() {
+	//localStorage.removeItem("Time");
+	var CheckTime = document.getElementById("Check_time").checked;
+	    localStorage.setItem("Time", CheckTime);  	
+  }
+  function check_timer() {
+	//localStorage.removeItem("TimeR");
+	var CheckTimer = document.getElementById("Check_timer").checked;
+	    localStorage.setItem("TimeR", CheckTimer);  	
+  }
+  function check_speed() {
+	//localStorage.removeItem("checkspeedcook");
+	var CheckSpeed = document.getElementById("Check_Speed_Def").checked;
+	    localStorage.setItem("checkspeedcook", CheckSpeed);  	
+  }
+  function check_size() {
+	//localStorage.removeItem("checksizecook");
+	var CheckSize = document.getElementById("Check_Size_Def").checked;
+	    localStorage.setItem("checksizecook", CheckSize);  	
+  }
 </script>
 </body>
 </html>

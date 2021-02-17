@@ -22,47 +22,529 @@ border: 1px solid black;
 </style>
 </head>
 <body>
-<span>RESET </span><br>
-<input type="text" class="inputparam" id="ResetCook"><button type="button"onclick="ResetCook()">set</button><br>
+<span>RESET </span>
+<button type="button"onclick="ResetCook()">Reset</button><br>
+<span>RESETDB </span>
+<button type="button"onclick="ResetDB()">Reset</button><br>
+
+<input type="text" id="input_styleS"><button type="button"onclick="SaveCustom()">Save Custom Style</button><br>
+<input type="text" id="input_styleL"><button type="button"onclick="LoadCustom()">Load Custom Style</button><br>
+
+
+<p id="workfile"></p>
+
+
+<p id="workfile2"></p>
+
+<p id="workfile3"></p>
+<p id="workfile4"></p>
+<p id="workfile5"></p>
+<p id="workfile6"></p>
+
 
 <script>
-window.onload = function() {
-// 2 charger valeur
+// window.onload = function() {
+// // 2 charger valeur
 
 
-document.getElementById("InputGitLocal").value = localStorage.getItem("GitPath");
+// document.getElementById("InputGitLocal").value = localStorage.getItem("GitPath");
 
-//document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
-
-
+// //document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
 
 
+// if (localStorage.getItem("ctrls")== "true"){
+// document.getElementById("SaveAddCommitCheck").checked = true;
+// }
+// else{
+// document.getElementById("SaveAddCommitCheck").checked = false;
+// }
 
 
+// if (localStorage.getItem("Initfull")== "true"){
+// document.getElementById("InitFullFolder").checked = true;
+// }
+// else{
+// document.getElementById("InitFullFolder").checked = false;
+// }
+// if (localStorage.getItem("FdAddGit")== "true"){
+// document.getElementById("InitFullFolder").checked = true;
+// }
+// else{
+// document.getElementById("InitFullFolder").checked = false;
+// }
 
-if (localStorage.getItem("ctrls")== "true"){
-document.getElementById("SaveAddCommitCheck").checked = true;
+
+// }
+var nw = require('nw.gui'); // This line is only required for NW.js 0.12.x and below
+var fs = require('fs');
+var path = require('path');
+
+var databaseName = 'mydb';
+var versionNumber = '1.0';
+var textDescription = 'my first database';
+var estimatedSizeOfDatabase = 3 * 1024 * 1024;
+
+var db = openDatabase(
+    databaseName,
+    versionNumber,
+    textDescription,
+    estimatedSizeOfDatabase
+);
+
+
+// Query out the data
+db.transaction(function (tx) {
+  tx.executeSql('SELECT * FROM FilteTab', [], function (tx, results) {
+    var len = results.rows.length, i;
+    for (i = 0; i < len; i++) {
+      var showfile1=(results.rows.item(i).id);
+      var showfile2=(results.rows.item(i).Path);
+
+      //var showfile1=(results.rows.item(i).text);
+      //document.getElementById("workfile").innerText=showfile;
+      //var showfile2=(results.rows.item(i).text2);
+      document.getElementById("workfile").innerText=showfile1+showfile2;
+    }
+  });
+});
+db.transaction(function (tx) {
+  var showpath='"/home/julien/Dropbox/Documents/Cours/IdNum/plan.md"';
+  tx.executeSql('SELECT * FROM FilteTab WHERE Path='+showpath, [], function (tx, results) {
+     var len = results.rows.length, i;
+    for (i = 0; i < len; i++) {
+    var showfile1=(results.rows.item(i).id);
+       var showfile2=(results.rows.item(i).Path);
+    
+     
+
+      document.getElementById("workfile2").innerText=showfile1+showfile2;;
+    }
+  });
+});
+db.transaction(function (tx) {
+  //var showpath='"/home/julien/Dropbox/Documents/Cours/IdNum/plan.md"';
+  tx.executeSql('SELECT * FROM FilteTab', [], function (tx, results) {
+     var len = results.rows.length;
+    for (var i = 0, item = null; i < results.rows.length; i++) {
+      item = results.rows.item(i);
+
+   // var showfile3=(results.rows.item(i).Path);
+      // var showfile2=(results.rows.item(i).Path);
+      //for (i=0;i<len.length;i++){
+        document.getElementById("workfile3").innerHTML+=
+        '<li>' +  
+          item['Path']+
+          item['CaretE']+"."+
+          item['CaretP']+"."+
+          item['CaretN']+
+        '</li>';
+        //item['Path'];
+        document.getElementById("workfile4").innerText=len;
+
+
 }
-else{
-document.getElementById("SaveAddCommitCheck").checked = false;
-}
 
 
-if (localStorage.getItem("Initfull")== "true"){
-document.getElementById("InitFullFolder").checked = true;
-}
-else{
-document.getElementById("InitFullFolder").checked = false;
-}
-if (localStorage.getItem("FdAddGit")== "true"){
-document.getElementById("InitFullFolder").checked = true;
-}
-else{
-document.getElementById("InitFullFolder").checked = false;
-}
+//var str= results.rows.toString();
+
+      //document.getElementById("workfile3").innerText=showfile1+showfile2;;
+    
+  });
+});
+db.transaction(function (tx) {
+  //var showpath='"/home/julien/Dropbox/Documents/Cours/IdNum/plan.md"';
+  tx.executeSql('SELECT * FROM ParamMea', [], function (tx, results) {
+     var len = results.rows.length;
+    for (var i = 0, item = null; i < results.rows.length; i++) {
+      item = results.rows.item(i);
+      var showfile6=(results.rows.item(i).style);
+   // var showfile3=(results.rows.item(i).Path);
+      // var showfile2=(results.rows.item(i).Path);
+      //for (i=0;i<len.length;i++){
+        //document.getElementById("workfile6").innerHTML=showfile6;
+        var showfile7=(results.rows.item(i).id2);
+        //document.getElementById("workfile6").innerHTML=showfile7;
+        document.getElementById("workfile5").innerHTML+=
+        '<li>' +  
+          item['style']+
+          //item['param1']+"."+
+          // item['param2']+"."+
+          // item['param3']+"."+
+          // item['param4']+"."+
+          //item['param5']+"."+
+          //item['param6']+"."+
+          //item['param7']+"."+
+          //item['param8']+"."+
+          //item['param9']+"."+
+          //item['param10']+"."+
+          //item['param11']+"."+
+          // item['param12']+"."+
+          // item['param13']+"."+
+          // item['param14']+"."+
+          // item['param15']+"."+
+          // item['param16']+"."+
+          // item['param17']+"."+
+          //item['param18']+"."+
+          // item['param19']+"."+
+          // item['param20']+"."+
+          // item['param21']+"."+
+          // item['param22']+"."+
+          // item['param23']+"."+
+          // item['param24']+"."+
+          //item['param25']+"."+
+          //item['param26']+"."+
+          //item['param27']+"."+
+          //item['param28']+"."+
+          //item['param29']+"."+
+          //item['param30']+"."+
+          // item['param31']+"."+
+          //item['param32']+"."+
+          //item['param33']+"."+
+          // item['param34']+"."+
+          // item['param35']+"."+
+          // item['param36']+"."+
+          // item['param37']+"."+
+          // item['param38']+"."+
+          // item['param39']+"."+
+          // item['param40']+"."+
+          // item['param41']+"."+
+          // item['param42']+"."+
+          // item['param43']+"."+
+          // item['param44']+"."+
+          // item['param45']+"."+
+          // item['param46']+"."+
+          // item['param47']+"."+
+          // item['param48']+"."+
+          // item['param49']+"."+
+          //item['param50']+"."+
+          //item['param51']+"."+
+          //item['param52']+"."+
+          //item['param53']+"."+
+          //item['param54']+"."+
+          //item['param55']+"."+
+
+        '</li>';
+        //item['Path'];
 
 
 }
+
+});
+});
+
+
+// db.transaction(function (tx) {
+//   tx.executeSql('DESC FilteTab', function (tx,err,stdout,stderr) {
+//     if (err) {
+// 	    document.getElementById("workfile").innerHTML= stderr;
+	   
+//     } else {
+//         document.getElementById("workfile").innerHTML=stdout;
+//     }
+//   });
+// });
+
+// function SetDefault(){
+//   var dbparam1= localStorage.getItem("align_s");
+//   var dbparam7= localStorage.getItem("colorf_sMA");
+//   var dbparam8= localStorage.getItem("colorf_s");
+//   var dbparam9= localStorage.getItem("colorf_s2");
+//   var dbparam10= localStorage.getItem("color_sMA");
+//   var dbparam11= localStorage.getItem("color_s");
+//   var dbparam25= localStorage.getItem("font_s");
+//   var dbparam28= localStorage.getItem("inter_s");
+//   var dbparam30= localStorage.getItem("inter_sMA");
+//   var dbparam49= localStorage.getItem("PandocPath");
+//   var dbparam50= localStorage.getItem("PandocPdf");
+//   var dbparam51= localStorage.getItem("PandocPdfFusion");
+//   var dbparam52= localStorage.getItem("size_s2MA");
+//   var dbparam53= localStorage.getItem("size_s");
+//   var dbparam54= localStorage.getItem("save_time_data");
+//   var dbparam55= localStorage.getItem("tachios");
+//   var Nstyle= "default";
+    
+//   // var dbparam2= localStorage.getItem("bibref");
+//   // var dbparam3= localStorage.getItem("bibMean");
+//   // var dbparam4= localStorage.getItem("BibPath");
+//   // var dbparam5= localStorage.getItem("bold_s"); 
+// 	// var dbparam6= localStorage.getItem("ctrls");
+// 	// var dbparam7= localStorage.getItem("colorf_sMA");
+	
+	
+	
+
+//   // var dbparam12= localStorage.getItem("color_div");
+
+//   // var dbparam15= localStorage.getItem("check_out_s");  	
+//   // var dbparam16= localStorage.getItem("check_save_C"); 
+//   // var dbparam17= localStorage.getItem("data_name");
+//   // var dbparam18= localStorage.getItem("deco_s");
+//   // var dbparam19= localStorage.getItem("FilePathCook");
+//   // var dbparam20= localStorage.getItem("FdAddGit");
+//   // var dbparam21= localStorage.getItem("filgit");  
+//   // var dbparam22= localStorage.getItem("fogit"); 
+//   // var dbparam23= localStorage.getItem("fogitB"); 
+//   // var dbparam24= localStorage.getItem("GitPath");
+    
+//   // var dbparam26= localStorage.getItem("InputFile2");
+// 	// var dbparam27= localStorage.getItem("indent_s");
+	
+//   // var dbparam29= localStorage.getItem("InputFile");
+  
+//   // var dbparam31= localStorage.getItem("inter_s");  
+//   // var dbparam32= localStorage.getItem("indent_s"); 
+//   // var dbparam33= localStorage.getItem("ital_s");  
+//   // var dbparam34= localStorage.getItem("InputNameSoloC");
+//   // var dbparam35= localStorage.getItem("InputNameSoloC");
+  
+//   // var dbparam37= localStorage.getItem("InputNameNoExtC");
+//   // var dbparam38= localStorage.getItem("InputNameExtC");
+//   // var dbparam39= localStorage.getItem("InputNameExtC");
+
+	
+//   // var dbparam42= localStorage.getItem("FilePathCook2");
+//   // var dbparam43= localStorage.getItem("InputNameSoloC2");
+//   // var dbparam44= localStorage.getItem("InputNameSoloC2");
+//   // var dbparam45= localStorage.getItem("InputNameNoExtC2");
+//   // var dbparam46= localStorage.getItem("InputNameNoExtC2");
+//   // var dbparam47= localStorage.getItem("lasthashcook"); 
+// 	// var dbparam48= localStorage.getItem("OpenStartCook");
+	
+	
+	
+	
+	
+	
+
+// db.transaction(function (tx) {
+  
+//   tx.executeSql('CREATE TABLE IF NOT EXISTS ParamMea (id2 integer primary key autoincrement, style, param1, param7, param8, param9, param10, param11, param25, param28, param30, param49, param50, param51, param52, param53, param54, param55)');
+
+//   tx.executeSql('INSERT INTO ParamMea (style, param1, param7, param8, param9, param10, param11, param25, param28, param30, param49, param50, param51, param52, param53, param54, param55) VALUES ("'+Nstyle+'", "'+dbparam1+'", "'+dbparam7+'", "'+dbparam8+'", "'+dbparam9+'", "'+dbparam10+'", "'+dbparam11+'", "'+dbparam25+'", "'+dbparam28+'", "'+dbparam30+'", "'+dbparam49+'", "'+dbparam50+'", "'+dbparam51+'", "'+dbparam52+'", "'+dbparam53+'", "'+dbparam54+'", "'+dbparam55+'")');
+
+
+// //param2,param3,param4,param5,param6,param7, param8, param9, param10, param11, param12, param13, param14, param15, param16, param17, param18, param19, param20, param21, param22, param23, param24,param25, param26, param27, param28, param29, param30, param31, param32, param33, param34, param35, param36, param37, param38, param39, param40, param41, param42,param43, param44, param45, param46, param47, param48, param49, param50, param51, param52, param53, param54, param55
+// //param8, param9, param10, param11, param25, param28, param30, param49, param50, param51, param52, param53, param54, param55
+
+
+// //, "'+dbparam2+'", "'+dbparam3+'", "'+dbparam4+'", "'+dbparam5+'", "'+dbparam6+'", "'+dbparam7+'","'+dbparam8+'", "'+dbparam9+'", "'+dbparam10+'", "'+dbparam11+'", "'+dbparam12+'", "'+dbparam13+'", "'+dbparam14+'", "'+dbparam15+'", "'+dbparam16+'", "'+dbparam16+'", "'+dbparam17+'", "'+dbparam18+'", "'+dbparam19+'", "'+dbparam20+'", "'+dbparam21+'", "'+dbparam22+'", "'+dbparam23+'","'+dbparam24+'", "'+dbparam25+'", "'+dbparam26+'", "'+dbparam27+'", "'+dbparam28+'", "'+dbparam29+'", "'+dbparam30+'", "'+dbparam31+'", "'+dbparam32+'", "'+dbparam33+'", "'+dbparam34+'", "'+dbparam35+'", "'+dbparam36+'", "'+dbparam37+'", "'+dbparam38+'", "'+dbparam39+'", "'+dbparam40+'", "'+dbparam41+'", "'+dbparam42+'", "'+dbparam43+'", "'+dbparam44+'", "'+dbparam45+'", "'+dbparam46+'", "'+dbparam47+'", "'+dbparam48+'", "'+dbparam49+'", "'+dbparam50+'", "'+dbparam51+'", "'+dbparam52+'", "'+dbparam53+'", "'+dbparam54+'", "'+dbparam55+'"
+// //, "'+dbparam8+'", "'+dbparam9+'", "'+dbparam10+'", "'+dbparam11+'", "'+dbparam25+'", "'+dbparam28+'", "'+dbparam30+'", "'+dbparam49+'", "'+dbparam50+'", "'+dbparam51+'", "'+dbparam52+'", "'+dbparam53+'", "'+dbparam54+'", "'+dbparam55+'"
+
+
+// });
+
+// }
+// function LoadDefaut(){
+// db.transaction(function (tx) {
+// tx.executeSql('SELECT * FROM ParamMea', [], function (tx, results) {
+//           var len = results.rows.length, i;
+//          for (i = 0; i < len; i++) {
+//          //var showfile1=(results.rows.item(i).id);
+  
+//   var dbparam1= (results.rows.item(i).param1);
+//   var dbparam5= (results.rows.item(i).param5);
+//   var dbparam7= (results.rows.item(i).param7);
+//   var dbparam8= (results.rows.item(i).param8);
+//   var dbparam9= (results.rows.item(i).param9);
+//   var dbparam10= (results.rows.item(i).param10);
+//   var dbparam11= (results.rows.item(i).param11);
+//   var dbparam18= (results.rows.item(i).param18);
+//   var dbparam25= (results.rows.item(i).param25);
+//   var dbparam28= (results.rows.item(i).param28);
+//   var dbparam30= (results.rows.item(i).param30);
+//   var dbparam32= (results.rows.item(i).param32);
+//   var dbparam33= (results.rows.item(i).param33);
+//   var dbparam49= (results.rows.item(i).param49);
+//   var dbparam50= (results.rows.item(i).param50);
+//   var dbparam51= (results.rows.item(i).param51);
+//   var dbparam52= (results.rows.item(i).param52);
+//   var dbparam53= (results.rows.item(i).param53);
+//   var dbparam54= (results.rows.item(i).param54);
+//   var dbparam55= (results.rows.item(i).param55);
+
+//   localStorage.removeItem("align_s");
+//   localStorage.removeItem("colorf_sMA");
+//   localStorage.removeItem("colorf_s");
+//   localStorage.removeItem("colorf_s2");
+//   localStorage.removeItem("color_sMA");
+//   localStorage.removeItem("color_s");
+//   localStorage.removeItem("font_s");
+//   localStorage.removeItem("inter_s");
+//   localStorage.removeItem("inter_sMA");
+//   localStorage.removeItem("PandocPath");
+//   localStorage.removeItem("PandocPdf");
+//   localStorage.removeItem("PandocPdfFusion");
+//   localStorage.removeItem("size_s2MA");
+//   localStorage.removeItem("size_s");
+//   localStorage.removeItem("save_time_data");
+//   localStorage.removeItem("tachios");
+
+//   localStorage.removeItem("bold_s");
+//   localStorage.removeItem("deco_s");
+//   localStorage.removeItem("indent_s"); 
+//   localStorage.removeItem("ital_s");
+
+  
+
+//   localStorage.setItem("align_s", dbparam1);
+//   localStorage.setItem("colorf_sMA", dbparam7);
+//   localStorage.setItem("colorf_s", dbparam8);
+//   localStorage.setItem("colorf_s2", dbparam9);
+//   localStorage.setItem("color_sMA", dbparam10);
+//   localStorage.setItem("color_s", dbparam11);
+//   localStorage.setItem("font_s", dbparam25);
+//   localStorage.setItem("inter_s", dbparam28);
+//   localStorage.setItem("inter_sMA", dbparam30);
+//   localStorage.setItem("PandocPath", dbparam49);
+//   localStorage.setItem("PandocPdf", dbparam50);
+//   localStorage.setItem("PandocPdfFusion", dbparam51);
+//   localStorage.setItem("size_s2MA", dbparam52);
+//   localStorage.setItem("size_s", dbparam53);
+//   localStorage.setItem("save_time_data", dbparam54);
+//   localStorage.setItem("tachios", dbparam55);
+
+//   localStorage.setItem("bold_s", dbparam5);
+//   localStorage.setItem("deco_s", dbparam18);
+//   localStorage.setItem("indent_s", dbparam32); 
+//   localStorage.setItem("ital_s", dbparam33);
+         
+//             //var CoordsInSql= window.pageYOffset;
+//             //var dbparam1= localStorage.getItem("align_s");
+            
+            
+            
+
+//            //document.getElementById("workfile2").innerText=showfile1+showfile2;;
+//          }
+//         })
+//       });
+//     }
+
+
+
+// function SaveCustom(){
+
+//   var Nstyle= document.getElementById("input_styleS").value;
+
+//   var dbparam1= localStorage.getItem("align_s");
+//   var dbparam7= localStorage.getItem("colorf_sMA");
+//   var dbparam8= localStorage.getItem("colorf_s");
+//   var dbparam9= localStorage.getItem("colorf_s2");
+//   var dbparam10= localStorage.getItem("color_sMA");
+//   var dbparam11= localStorage.getItem("color_s");
+//   var dbparam25= localStorage.getItem("font_s");
+//   var dbparam28= localStorage.getItem("inter_s");
+//   var dbparam30= localStorage.getItem("inter_sMA");
+//   var dbparam49= localStorage.getItem("PandocPath");
+  
+//   //var dbparam50= localStorage.getItem("PandocPdf");
+
+//   //var dbparam51= localStorage.getItem("PandocPdfFusion");
+//   var dbparam52= localStorage.getItem("size_s2MA");
+//   var dbparam53= localStorage.getItem("size_s");
+//   var dbparam54= localStorage.getItem("save_time_data");
+//   var dbparam55= localStorage.getItem("tachios");
+
+//   var dbparam5= localStorage.getItem("bold_s");
+//   var dbparam18= localStorage.getItem("deco_s");
+//   var dbparam32= localStorage.getItem("indent_s"); 
+//   var dbparam33= localStorage.getItem("ital_s");
+
+//   var dbparam24= localStorage.getItem("GitPath");
+
+// db.transaction(function (tx) {
+  
+//   tx.executeSql('CREATE TABLE IF NOT EXISTS ParamMea (id2 integer primary key autoincrement, style, param1, param5, param7, param8, param9, param10, param11, param18, param24, param25, param28, param30, param32, param33, param49, param52, param53, param54, param55)');
+
+//   tx.executeSql('INSERT INTO ParamMea (style, param1, param5, param7, param8, param9, param10, param11, param18, param24, param25, param28, param30, param32,param33, param49, param52, param53, param54, param55) VALUES ("'+Nstyle+'", "'+dbparam1+'", "'+dbparam5+'","'+dbparam7+'", "'+dbparam8+'", "'+dbparam9+'", "'+dbparam10+'", "'+dbparam11+'", "'+dbparam18+'", "'+dbparam24+'", "'+dbparam25+'", "'+dbparam28+'", "'+dbparam32+'", "'+dbparam33+'","'+dbparam1+'","'+dbparam49+'", "'+dbparam52+'", "'+dbparam53+'", "'+dbparam54+'", "'+dbparam55+'")');
+// });
+// }
+// function LoadCustom(){
+//   var Nstyle= document.getElementById("input_styleL").value;
+
+//   db.transaction(function (tx) {
+    
+// tx.executeSql('SELECT * FROM ParamMea WHERE style='+"'"+Nstyle+"'", [], function (tx, results) {
+//   var len = results.rows.length;
+//     for (var i = 0, item = null; i < results.rows.length; i++) {
+//       item = results.rows.item(i);
+
+//   var dbparam1= (results.rows.item(i).param1);
+//   var dbparam5= (results.rows.item(i).param5);
+//   var dbparam7= (results.rows.item(i).param7);
+//   var dbparam8= (results.rows.item(i).param8);
+//   var dbparam9= (results.rows.item(i).param9);
+//   var dbparam10= (results.rows.item(i).param10);
+//   var dbparam11= (results.rows.item(i).param11);
+//   var dbparam18= (results.rows.item(i).param18);
+//   var dbparam24= (results.rows.item(i).param24);
+//   var dbparam25= (results.rows.item(i).param25);
+//   var dbparam28= (results.rows.item(i).param28);
+//   var dbparam30= (results.rows.item(i).param30);
+//   var dbparam32= (results.rows.item(i).param32);
+//   var dbparam33= (results.rows.item(i).param33);
+//   var dbparam49= (results.rows.item(i).param49);
+//   //var dbparam50= (results.rows.item(i).param50);
+//   //var dbparam51= (results.rows.item(i).param51);
+//   var dbparam52= (results.rows.item(i).param52);
+//   var dbparam53= (results.rows.item(i).param53);
+//   var dbparam54= (results.rows.item(i).param54);
+//   var dbparam55= (results.rows.item(i).param55);
+
+//   localStorage.removeItem("align_s");
+//   localStorage.removeItem("colorf_sMA");
+//   localStorage.removeItem("colorf_s");
+//   localStorage.removeItem("colorf_s2");
+//   localStorage.removeItem("color_sMA");
+//   localStorage.removeItem("color_s");
+//   localStorage.removeItem("font_s");
+//   localStorage.removeItem("inter_s");
+//   localStorage.removeItem("inter_sMA");
+//   localStorage.removeItem("PandocPath");
+//   //localStorage.removeItem("PandocPdf");
+//   //localStorage.removeItem("PandocPdfFusion");
+//   localStorage.removeItem("size_s2MA");
+//   localStorage.removeItem("size_s");
+//   localStorage.removeItem("save_time_data");
+//   localStorage.removeItem("tachios");
+//   localStorage.removeItem("bold_s");
+//   localStorage.removeItem("deco_s");
+//   localStorage.removeItem("indent_s"); 
+//   localStorage.removeItem("ital_s");
+//  localStorage.removeItem("GitPath");
+  
+
+//   localStorage.setItem("align_s", dbparam1);
+//   localStorage.setItem("colorf_sMA", dbparam7);
+//   localStorage.setItem("colorf_s", dbparam8);
+//   localStorage.setItem("colorf_s2", dbparam9);
+//   localStorage.setItem("color_sMA", dbparam10);
+//   localStorage.setItem("color_s", dbparam11);
+//   localStorage.setItem("font_s", dbparam25);
+//   localStorage.setItem("inter_s", dbparam28);
+//   localStorage.setItem("inter_sMA", dbparam30);
+//   localStorage.setItem("PandocPath", dbparam49);
+//   //localStorage.setItem("PandocPdf", dbparam50);
+//   //localStorage.setItem("PandocPdfFusion", dbparam51);
+//   localStorage.setItem("size_s2MA", dbparam52);
+//   localStorage.setItem("size_s", dbparam53);
+//   localStorage.setItem("save_time_data", dbparam54);
+//   localStorage.setItem("tachios", dbparam55);
+//   localStorage.setItem("bold_s", dbparam5);
+//   localStorage.setItem("deco_s", dbparam18);
+//   localStorage.setItem("indent_s", dbparam32); 
+//   localStorage.setItem("ital_s", dbparam33);
+//   localStorage.setItem("GitPath", dbparam24);
+//          }
+//         })
+//       });
+//     }
+
+
+
+
+
+
 
 </script>
 </body>
