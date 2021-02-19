@@ -22,7 +22,7 @@
         </select> <input type="text" class="input_style" id="Input_tachios">
         </p>
 				
-		<p> Couleur de la page :
+		<p> Couleur de la page
 		<select  onchange="fond_colorMA.call(this, event)">
 	<option id="selectedCFMA" value="defaultValue">Unset</option>
     <option value="white">Blanc</option>
@@ -73,6 +73,7 @@
 <p>Afficher la durée de la présentation<input type="checkbox" id="Check_timer" onclick="check_timer()"></p>
 <p>Afficher la taille du texte<input type="checkbox" id="Check_Size_Def" onclick="check_size()"></p>
 <p>Afficher la vitesse de défilement<input type="checkbox" id="Check_Speed_Def" onclick="check_speed()"></p>
+
 <script>
 document.getElementById("Input_tachios").addEventListener("input", tachios_input);
 document.getElementById("Input_FDC").addEventListener("input", fond_color_inputMA);
@@ -104,6 +105,8 @@ if (localStorage.getItem("Time")== "true"){
 			else{
 				document.getElementById("Check_Speed_Def").checked = false;
 			}
+      
+			//}
 window.onload = function() {
 // 2 charger valeur 			
 
@@ -118,10 +121,10 @@ document.getElementById("selectedIMA").text = localStorage.getItem("inter_sMA");
 //document.getElementById("selectedZ").text = localStorage.getItem("zoom_s");
 
 //i
-if (localStorage.getItem("inter_sMA") === null) {
+if (localStorage.getItem("colorf_sMA") === null) {
   document.getElementById("selectedCFMA").text = " ";
 }
-if (localStorage.getItem("colorf_sMA") === null) {
+if (localStorage.getItem("inter_sMA") === null) {
   document.getElementById("selectedIMA").text = " ";
 }
 
@@ -135,6 +138,9 @@ if (localStorage.getItem("size_s2MA") === null) {
 
 if (localStorage.getItem("tachios") === null) {
   document.getElementById("selectedtach").text = " ";
+}
+if (localStorage.getItem("inter_sMA") === null) {
+  document.getElementById("selectedIMA").text = " ";
 }
 /*
 if (localStorage.getItem("data_name") === null) {
@@ -178,6 +184,7 @@ function check_time() {
 	var CheckSize = document.getElementById("Check_Size_Def").checked;
 	    localStorage.setItem("checksizecook", CheckSize);  	
   }
+  
 </script>
 </body>
 </html>

@@ -402,7 +402,7 @@ function openNavSave(){
   document.getElementById("PREBUT").style.display = "none";
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
-  document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 function openNavSave2(){
   document.getElementById("mySidenavSave2").style.width = "100%";
@@ -414,6 +414,7 @@ function openNavSave2(){
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
@@ -753,6 +754,7 @@ function saveHopeT2(){
 		var Folder = localStorage.getItem("TempFolderPath");
        var File =  localStorage.getItem("TempFilName");
        var PathTemp = Folder+"/"+File;
+       localStorage.setItem("InputFile",PathTemp );
        let text_to_save = document.getElementById("editor").innerText;
 	 fs.writeFile(PathTemp, text_to_save, (err) => {  
        if (err) throw err;
@@ -1708,6 +1710,10 @@ function ResetCook(){
   localStorage.removeItem("TimeR");
   localStorage.removeItem("checksizecook");
   localStorage.removeItem("checkspeedcook");
+  localStorage.removeItem("TempFolderPath");
+  localStorage.removeItem("TempFilName");
+
+
   var path = require("path");	            
   var fs = require("fs");
   var text_to_save ="";

@@ -50,10 +50,9 @@
      </select></p>
      
     
+	 <!-- id="open" -->
 
-
-		<p id="open">Lire les dernières données écrites à l'ouverture
-		<input type="checkbox" id="OpenFileAtStart" onclick="OpenFileAtStartFX()" onsubmit="return false;"></p>
+<p >Lire les dernières données écrites à l'ouverture <input type="checkbox" id="OpenFileAtStart" onclick="OpenFileAtStartFX()" onsubmit="return false;"></p>
 
 		</div>
 		<div>
@@ -98,14 +97,9 @@ if (localStorage.getItem("check_out_s")== "true"){
 		if (localStorage.getItem("OpenStartCook")== "true"){
 				document.getElementById("OpenFileAtStart").checked = true;
 			}			
-			else{
+		else{
 				document.getElementById("OpenFileAtStart").checked = false;
-
-			}
-
-		
-		
-	
+			}			
 }	
 
 
