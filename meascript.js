@@ -347,7 +347,7 @@ function openNavIO() {
 function openNavPre() {
   GetCaretE();
   openGOP();
-  startTime()
+  startTime();
    document.getElementById("mySidenavPre").style.width = "100%";
   document.getElementById("mySidenavPre").style.height = "50px";
   document.getElementById("Slide_Button").style.display = "none";

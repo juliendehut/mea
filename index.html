@@ -43,8 +43,8 @@
 <input type="button" id="8" class="menu_btA" value="Docx" onclick="GenDocx();">
 <input type="button" id="9" class="menu_bt" value="Pdf" onclick="GenPdf();">
 <input type="button" id="10" class="menu_bt" value="Pptx" onclick="GenSlide();">
-<input type="button" id="11" class="menu_bt" value="PdfFusion" onclick="GenPdfFusion();">
-<input type="button" id="11b" class="menu_bt" value="DocxFusion" onclick="GenDocxFusion();">
+<input type="button" id="11" class="menu_bt" value="PdfNote" onclick="GenPdfFusion();">
+<input type="button" id="11b" class="menu_bt" value="DocxNote" onclick="GenDocxFusion();">
 <input type="button" id="11C" class="menu_bt" value="Epub" onclick="Epub();">
 <label for="file2" class="menu_btB">Réécrire</label>
 <input id="file2" class="input-file2"type="file" onclick="Importdocx('#file')"/>
@@ -154,104 +154,29 @@ if (localStorage.getItem("Time") == "true") {
       document.getElementById("emlab").style.display = "none";
   }
   
-// function outputTachios(inputTachios) {
-// 	document.querySelector("#speedlevel").value = inputTachios;
-// 	localStorage.setItem("tachios", inputTachios);
-// 	 VitesseRouleau = inputTachios ;	
 
-// 	}
-// function outputTaille(inputTaille) {
-// 	document.querySelector("#taillelevel").value = inputTaille;
-// 	 localStorage.setItem("size_s2MA", inputTaille+"em"); 
-// 	 //VitesseRouleau = inputTachios ;	
-//  pre();
-//  	}
-
-
-// var ShortSave = {
-//   key : "Ctrl+S",
-//   active : function() {
-// 	  //checkmodif();
-// 	  feedback();
-	
-// 	  if (localStorage.getItem("ctrls")== "true"){
-		  
-// 				 saveHopeR2();
-// 				 GitAdd();
-// 				 GitCommit();
-// 			}	
-					
-// 			else{
-// 				 saveHopeR2();
-// 			}
-	 
-//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-//   },
-//   failed : function(msg) {
-//     // :(, fail to register the |key| or couldn't parse the |key|.
-//     console.log(msg);
-//   }
-  
-// };
-
-
-// var ShortNote = {
-//   key : "Ctrl+Alt+F",
-//   active : function() {
-// 	  pasteHtmlAtCaret(Note);
-//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-//   },
-//   failed : function(msg) {
-//     // :(, fail to register the |key| or couldn't parse the |key|.
-//     console.log(msg);
-//   }
-// };
-
-
-
-// var ShortPast = {
-//   key : "Ctrl+Alt+V",
-//   active : function() {
-// 	  getclip();
-// 	  var printbib = localStorage.getItem("bibref");
-// 	  pasteHtmlAtCaret(printbib);
-//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-//   },
-//   failed : function(msg) {
-//     // :(, fail to register the |key| or couldn't parse the |key|.
-//     console.log(msg);
-//   }
-// };
-
-// 	var ShortNoteMean = {
-//   key : "Ctrl+Alt+G",
-//   active : function() {
-// 	  getclip();
-// 	  var printNoteM = localStorage.getItem("bibMean");
-// 	var alea = Math.floor((Math.random() * 5000) + 1);
-// 	var printN= "[^"+printNoteM+alea+"]";
-	
-// pasteHtmlAtCaret(printN);
-//     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
-//   },
-//   failed : function(msg) {
-//     // :(, fail to register the |key| or couldn't parse the |key|.
-//     console.log(msg);
-//   }
-// };
-
-
-var shortcut = new nw.Shortcut(ShortSave);
-nw.App.registerGlobalHotKey(shortcut);
-var shortcut2 = new nw.Shortcut(ShortNote);
-nw.App.registerGlobalHotKey(shortcut2);
-var shortcut3 = new nw.Shortcut(ShortPast);
-nw.App.registerGlobalHotKey(shortcut3);	
-var shortcut4 = new nw.Shortcut(ShortNoteMean);
-nw.App.registerGlobalHotKey(shortcut4);
-var shortcut5 = new nw.Shortcut(ShortPauseM);
-nw.App.unregisterGlobalHotKey(shortcut5);	
-	
+nw.Window.get().on('focus', function() {
+  //console.log("la fenêtre de note est focus")
+  var shortcut = new nw.Shortcut(ShortSave);
+    nw.App.registerGlobalHotKey(shortcut);
+    var shortcut2 = new nw.Shortcut(ShortNote);
+    nw.App.registerGlobalHotKey(shortcut2);
+    var shortcut3 = new nw.Shortcut(ShortPast);
+    nw.App.registerGlobalHotKey(shortcut3);	
+    var shortcut4 = new nw.Shortcut(ShortNoteMean);
+    nw.App.registerGlobalHotKey(shortcut4);
+  });
+  nw.Window.get().on('blur', function() {
+  //console.log("la fenêtre de note est pas focus")
+  var shortcut = new nw.Shortcut(ShortSave);
+    nw.App.unregisterGlobalHotKey(shortcut);
+    var shortcut2 = new nw.Shortcut(ShortNote);
+    nw.App.unregisterGlobalHotKey(shortcut2);
+    var shortcut3 = new nw.Shortcut(ShortPast);
+    nw.App.unregisterGlobalHotKey(shortcut3);	
+    var shortcut4 = new nw.Shortcut(ShortNoteMean);
+    nw.App.unregisterGlobalHotKey(shortcut4);
+  });
 	
 		document.querySelector("#folderinput2")
      .addEventListener("change", function() {
@@ -404,15 +329,6 @@ function actio(){
     
 }
   
-//  function pre(){
-// 	 document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_sMA");
-// 	 document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_sMA");
-// 	 document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
-// 	 document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
-//    document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
-//    document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_sMA");
-// 	 document.getElementById("bbb").style.width = "auto"; 
-//  }
  
 
  window.onunload = function(){

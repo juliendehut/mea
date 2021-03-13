@@ -6,6 +6,7 @@
     <title>Notes infrapaginales</title>
     <link rel="stylesheet" href="meastyle.css">
 	<script type="text/javascript" src="meascript.js"></script>
+  <script type="text/javascript" src="PastePerfect.js"></script>
     <style>
 span { background:yellow; }
 	.word { background:red; }
@@ -56,7 +57,28 @@ var gui = require("nw.gui");
 var fs = require('fs');
 var path = require('path');
 
+nw.Window.get().on('focus', function() {
+  console.log("la fenêtre de note est focus")
+  
+    var shortcut2 = new nw.Shortcut(ShortNote);
+    nw.App.registerGlobalHotKey(shortcut2);
+    var shortcut3 = new nw.Shortcut(ShortPast);
+    nw.App.registerGlobalHotKey(shortcut3);	
+    var shortcut4 = new nw.Shortcut(ShortNoteMean);
+    nw.App.registerGlobalHotKey(shortcut4);
+  });
+  nw.Window.get().on('blur', function() {
+  console.log("la fenêtre de note est pas focus")
 
+    var shortcut2 = new nw.Shortcut(ShortNote);
+    nw.App.unregisterGlobalHotKey(shortcut2);
+    var shortcut3 = new nw.Shortcut(ShortPast);
+    nw.App.unregisterGlobalHotKey(shortcut3);	
+    var shortcut4 = new nw.Shortcut(ShortNoteMean);
+    nw.App.unregisterGlobalHotKey(shortcut4);
+  WriteNote();
+  
+  });
 nw.Window.get().on('loaded', function () {
   var NuncScioN = localStorage.getItem("CaretPositionN");
   window.scrollTo(0, NuncScioN);
