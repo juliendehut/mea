@@ -43,7 +43,7 @@
 <input type="button" id="8" class="menu_btA" value="Docx" onclick="GenDocx();">
 <input type="button" id="9" class="menu_bt" value="Pdf" onclick="GenPdf();">
 <input type="button" id="10" class="menu_bt" value="Pptx" onclick="GenSlide();">
-<input type="button" id="11" class="menu_bt" value="PdfNote" onclick="GenPdfFusion();">
+<input type="button" id="11" class="menu_bt" value="Pdf*" onclick="GenPdfFusion();">
 <input type="button" id="11b" class="menu_bt" value="DocxNote" onclick="GenDocxFusion();">
 <input type="button" id="11C" class="menu_bt" value="Epub" onclick="Epub();">
 <label for="file2" class="menu_btB">Réécrire</label>
@@ -193,55 +193,55 @@ nw.Window.get().on('focus', function() {
      });
 
 
-function SaveMe(){
-	     localStorage.removeItem("TempFilName");
-	var TempFilVar = document.getElementById("TempSaveNameInput").value;
-    localStorage.setItem("TempFilName", TempFilVar); 	
+// function SaveMe(){
+// 	     localStorage.removeItem("TempFilName");
+// 	var TempFilVar = document.getElementById("TempSaveNameInput").value;
+//     localStorage.setItem("TempFilName", TempFilVar); 	
     
     
-	     saveHopeT2();
-	     closeNavSav();
-     }
+// 	     saveHopeT2();
+// 	     closeNavSav();
+//      }
 
 
-     function LiberNovi(){
+//      function LiberNovi(){
       
-       localStorage.removeItem("InputFile");
-       localStorage.removeItem("CaretPosition");
-	var TempFilVar = document.getElementById("TempSaveNameInput2").value;
-    localStorage.setItem("InputFile", TempFilVar); 	
-    CleanSlate();
-	     saveHopeT3();
-       closeNavSav2();
+//        localStorage.removeItem("InputFile");
+//        localStorage.removeItem("CaretPosition");
+// 	var TempFilVar = document.getElementById("TempSaveNameInput2").value;
+//     localStorage.setItem("InputFile", TempFilVar); 	
+//     CleanSlate();
+// 	     saveHopeT3();
+//        closeNavSav2();
        
-     }
+//      }
 
-function CleanSlate(){
-  var path = require("path");	            
-  var fs = require("fs");
-  var text_to_save ="";
- var namedata2write = "temp_rest";
-fs.writeFile(namedata2write, text_to_save, (err) => {  
-       if (err) throw err;
-});
-var shortcut = new nw.Shortcut(ShortSave);
-nw.App.unregisterGlobalHotKey(shortcut);
-var shortcut2 = new nw.Shortcut(ShortNote);
-nw.App.unregisterGlobalHotKey(shortcut2);
-var shortcut3 = new nw.Shortcut(ShortPast);
-nw.App.unregisterGlobalHotKey(shortcut3);	
-var shortcut4 = new nw.Shortcut(ShortNoteMean);
-nw.App.unregisterGlobalHotKey(shortcut4);
-	window.location.reload();
+// function CleanSlate(){
+//   var path = require("path");	            
+//   var fs = require("fs");
+//   var text_to_save ="";
+//  var namedata2write = "temp_rest";
+// fs.writeFile(namedata2write, text_to_save, (err) => {  
+//        if (err) throw err;
+// });
+// var shortcut = new nw.Shortcut(ShortSave);
+// nw.App.unregisterGlobalHotKey(shortcut);
+// var shortcut2 = new nw.Shortcut(ShortNote);
+// nw.App.unregisterGlobalHotKey(shortcut2);
+// var shortcut3 = new nw.Shortcut(ShortPast);
+// nw.App.unregisterGlobalHotKey(shortcut3);	
+// var shortcut4 = new nw.Shortcut(ShortNoteMean);
+// nw.App.unregisterGlobalHotKey(shortcut4);
+// 	window.location.reload();
  
-	fs.readFile("temp_rest", function (err, data) {
-  if (err) throw err;
-  document.getElementById("editor").innerText = data;
+// 	fs.readFile("temp_rest", function (err, data) {
+//   if (err) throw err;
+//   document.getElementById("editor").innerText = data;
 
-}); 
+// }); 
 
 
-}
+// }
 
 
 

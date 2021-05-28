@@ -98,6 +98,14 @@ input[type=text]:focus{
 	</div>
 
 	<script>
+var namefile = localStorage.getItem("InputNameSoloC").trim();
+var pathfile = localStorage.getItem("FilePathCook").trim();
+var gitpath = localStorage.getItem("GitPath").trim();
+var temppath = localStorage.getItem("folder_path").trim();
+
+//var set_location = path_file+name_file;
+var json = "log -p --pretty=format:'{\"coefficient espace-temps\":\"%h\", \"date\": \"%ai\", \"name\": \"%an\"}'";
+
 	function MainBUTLog() {
   var x = document.getElementById("Slide_ButtonLog");
   if (x.style.display === "none") {
@@ -134,7 +142,7 @@ function toggleLog(button)
 
 
 window.onload = function() {
-
+  
 document.getElementById("mySidenavlog").style.width = "100%";
 document.getElementById("mySidenavlog").style.height = "50px";
 
@@ -156,6 +164,11 @@ document.getElementById("bbbl").style.backgroundColor = localStorage.getItem("co
 //document.getElementById("Log").style.zoom = localStorage.getItem("zoom_s");
 
 
+    ShowGit();
+
+
+
+
 }	
 		
 /*
@@ -166,33 +179,36 @@ MainRefresh();
 */
 //var name_file = localStorage.getItem("filgit").trim();
 //var path_file = localStorage.getItem("fogit").trim();
-var namefile = localStorage.getItem("InputNameSoloC").trim();
-var pathfile = localStorage.getItem("FilePathCook").trim();
-var gitpath = localStorage.getItem("GitPath").trim();
-//var set_location = path_file+name_file;
-var json = "log -p --pretty=format:'{\"coefficient espace-temps\":\"%h\", \"date\": \"%ai\", \"name\": \"%an\"}'";
 
+
+
+function ShowGit(){
 var process = require("child_process");
 		//process.exec("cd /  && cd "+path_file+" && /usr/local/bin/git"+" "+"log -p "+json+" "+name_file,function (err,stdout,stderr) {
-			process.exec("cd /  && cd "+pathfile+" && "+gitpath+" "+json+" "+namefile,function (err,stdout,stderr) {
+			process.exec("cd /  && cd "+pathfile+" && "+gitpath+" "+json+" "+namefile+" > "+temppath+"/gittemp",function (err,stdout,stderr) {
 
     if (err) {
-	    document.getElementById("Log2").innerText+= stderr;
+	    document.getElementById("Log").innerText+= stderr;
 	   
     } else {
        
-document.getElementById("Log").innerText=stdout;
-   var v = '\"coefficient espace-temps\"';
+// document.getElementById("Log").innerText=stdout;
+//    var v = '\"coefficient espace-temps\"';
         
-        var sheet = (typeof sheet == "undefined") ?
-                document.getElementById('sheet').innerHTML :
-                sheet;
+//         var sheet = (typeof sheet == "undefined") ?
+//                 document.getElementById('sheet').innerHTML :
+//                 sheet;
 
-        document.getElementById('sheet').innerHTML = 
-            sheet.replace(new RegExp(v, 'ig'), "<span>$&</span>");;
+//         document.getElementById('sheet').innerHTML = 
+//             sheet.replace(new RegExp(v, 'ig'), "<span>$&</span>");
+fs.readFile(temppath+"/gittemp", function (err, data) {
+  if (err) throw err;
+  document.getElementById("Log").innerText = data;
+
+}); 
     }
 })
-
+}
 function searchIt(){
 	
         var v = document.getElementById("OccuInput").value;

@@ -346,7 +346,7 @@ function openNavIO() {
 
 function openNavPre() {
   GetCaretE();
-  openGOP();
+ 
   startTime();
    document.getElementById("mySidenavPre").style.width = "100%";
   document.getElementById("mySidenavPre").style.height = "50px";
@@ -369,6 +369,7 @@ function openNavPre() {
     nw.App.registerGlobalHotKey(shortcut5);
   Full_Screen();
   pre();
+  openGOP();
 }
 function openNavPast(){
   document.getElementById("mySidenavPast").style.width = "100%";
@@ -414,7 +415,7 @@ function openNavSave2(){
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
-  document.getElementById("SAVEBUT2").style.display = "none";
+  
 }
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
@@ -780,6 +781,58 @@ if (Run_save == "true"){
 	window.setInterval(saveNullTime, milliseconds);
 		}			
 			
+
+    function SaveMe(){
+      localStorage.removeItem("TempFilName");
+ var TempFilVar = document.getElementById("TempSaveNameInput").value;
+   localStorage.setItem("TempFilName", TempFilVar); 	
+   
+   
+      saveHopeT2();
+      closeNavSav();
+    }
+
+
+    function LiberNovi(){
+     
+      localStorage.removeItem("InputFile");
+      localStorage.removeItem("CaretPosition");
+ var TempFilVar = document.getElementById("TempSaveNameInput2").value;
+   localStorage.setItem("InputFile", TempFilVar); 	
+   CleanSlate();
+      saveHopeT3();
+      closeNavSav2();
+      
+    }
+
+function CleanSlate(){
+ var path = require("path");	            
+ var fs = require("fs");
+ var text_to_save ="";
+var namedata2write = "temp_rest";
+fs.writeFile(namedata2write, text_to_save, (err) => {  
+      if (err) throw err;
+});
+var shortcut = new nw.Shortcut(ShortSave);
+nw.App.unregisterGlobalHotKey(shortcut);
+var shortcut2 = new nw.Shortcut(ShortNote);
+nw.App.unregisterGlobalHotKey(shortcut2);
+var shortcut3 = new nw.Shortcut(ShortPast);
+nw.App.unregisterGlobalHotKey(shortcut3);	
+var shortcut4 = new nw.Shortcut(ShortNoteMean);
+nw.App.unregisterGlobalHotKey(shortcut4);
+ window.location.reload();
+
+ fs.readFile("temp_rest", function (err, data) {
+ if (err) throw err;
+ document.getElementById("editor").innerText = data;
+
+}); 
+
+
+}
+
+
 function pasteHtmlAtCaret(html) {
 
 	    var sel, range;
@@ -1001,7 +1054,7 @@ function GenDocxFusion(){
   var pandocpath = localStorage.getItem("PandocPath").trim();
   var filepath = localStorage.getItem("InputFile").trim();
   var process = require("child_process");
-  process.exec(pandocpath + " -s --filter /usr/bin/pandoc-citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".docx",function (err,stdout,stderr) {
+  process.exec(pandocpath + " -s --citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".docx",function (err,stdout,stderr) {
       if (err) {
         document.getElementById("ShowTerm").innerHTML= stderr; 
       } else {
@@ -1048,8 +1101,10 @@ var FormPath = RawPath+"/notes.md";
   var pandocpdf = localStorage.getItem("PandocPdfFusion");
   var filepath = localStorage.getItem("InputFile").trim();
   var process = require("child_process");  
-  process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath +" " +FormPath+ " -o " + filepath + ".pdf",function (err,stdout,stderr) {
-      if (err) {
+  // process.exec(pandocpath + " -s "+" "+pandocpdf+" "+filepath +" " +FormPath+ " -o " + filepath + ".pdf",function (err,stdout,stderr) {
+    process.exec("cd "+RawPath + "&& "+pandocpath + " -s "+" "+pandocpdf+" *.md -o " + filepath + ".pdf",function (err,stdout,stderr) {
+
+  if (err) {
         document.getElementById("ShowTerm").innerHTML= stderr;
       } else {
           document.getElementById("ShowTerm").innerHTML=stdout;
