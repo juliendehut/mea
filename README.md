@@ -7,10 +7,14 @@
 - Intégration de Pandoc
 - Intégration de Git
 
+## Changelog
+- ajout de raccourcis de pour naviguer dans le texte. 
+On mémorise la position avec Ctrl+D, on se rend à cette position avec Ctrl+G (go). 
+Il est possible de mémoriser 5 positions supplémentaires avec Ctrl+Alt+1-5 et de s'y rendre avec Ctrl+1-5.
+Idéal pour modifier le YAML de départ. Ces positions sont mémorisées individuellement pour tous les différents fichiers lus par mĕa
 
 ## _To Do_ à court terme :
 - Styliser le menu paramètre.
-- Ajout d'un bouton "Nouveau"
 - Drag and drop et tous le processus d'ouverture de fichier
 - Conserver seulement le nom de fichier avant la compilation
 - Optimisation du code.
@@ -27,7 +31,7 @@
 
 
 ## Bugs connus :
-- Après une présentation (prompteur), le raccourci CTRL+S ne fonctionne plus. Rédémarrer l'application résoud évidemment le problème. L'intégration des raccourcis est une source constante de soucis.
+- Le Chargement des raccourcis peut prendre une minute a être effective. 
 - L'écriture automatique du fichier à la fermeture de l'application peut induire une consommation de ressources excessives alors que l'application est fermée.
 
 #### _caveat emptor_
