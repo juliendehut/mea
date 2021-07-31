@@ -48,7 +48,7 @@ body {
 
 
 
-.MainSlideBut, .PreSlideBut, .IoSlideBut, .PastSlideBut, .GenSlideBut, .SaveSlideBut, .SaveSlideBut2, .MainSlideButBIB, .MainSlideButLog {
+.MainSlideBut, .PreSlideBut, .IoSlideBut, .PastSlideBut, .GenSlideBut, .SaveSlideBut, .SaveSlideBut2, .MainSlideButBIB, .MainSlideButLog, .MpSlideBut {
 	bottom: 0;
 	left: 0;
 	float: left;
@@ -113,7 +113,12 @@ body {
   z-index: 1;
 
 }
+.MpSlideBut {
+	background-color: rgb(183, 0, 255);
+	color:rgb(183, 0, 255);
+  z-index: 1;
 
+}
 
 .MainSlideBut:hover {
 	background-color: black;
@@ -155,8 +160,12 @@ body {
 	outline: none;
 }
 
-
-.menu_bt:focus, menu_btA:focus, .menu_btB:focus, .menu_btV:focus, .menu_btpre:focus, .MainSlideBut:focus, .PreSlideBut:focus, .IoSlideBut:focus, .PastSlideBut:focus, .GenSlideBut:focus, .MainSlideButBIB:focus, .MainSlideButLog:focus {
+.MpSlideBut:hover {
+	background-color: rgba(96, 9, 136, 0.87);
+	color:rgba(96, 9, 136, 0.87);
+	outline: none;
+}
+.menu_bt:focus, menu_btA:focus, .menu_btB:focus, .menu_btV:focus, .menu_btpre:focus, .MainSlideBut:focus, .PreSlideBut:focus, .IoSlideBut:focus, .PastSlideBut:focus, .GenSlideBut:focus, .MainSlideButBIB:focus, .MainSlideButLog:focus .MpSlideBut:focus{
 	outline:0;
 	}
 #5:focus{
@@ -447,3 +456,19 @@ position: fixed;
   overflow: auto;
   display:flex;
 } */
+
+  #mp1, #mp2, #mp3, #mp4, #mp5 {
+	animation: blink-animation 1s steps(5, start) infinite;
+	animation-fill-mode:both;
+	animation-play-state: paused;
+	font-weight: bold;
+	padding: 2px 2px;
+  }
+  @keyframes blink-animation {
+	to {
+	  visibility: hidden;
+	}
+  }
+  #MPBUT{
+	padding: 2px 2px;  
+  }

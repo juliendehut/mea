@@ -14,32 +14,116 @@ var db = openDatabase(
     textDescription,
     estimatedSizeOfDatabase
 );
- 
+
+// Gestion des raccourcis
+
+nw.Window.get().on('focus', function() {
+  //console.log("la fenêtre de note est focus")
+  RegisterShortcut();
+  });
+
+nw.Window.get().on('blur', function() {
+  //console.log("la fenêtre de note est pas focus")
+  UnRegisterShortcut();
+  });
+
+
+function RegisterShortcut(){
+  var shortcut = new nw.Shortcut(ShortSave);
+  nw.App.registerGlobalHotKey(shortcut);
+  var shortcut2 = new nw.Shortcut(ShortNote);
+  nw.App.registerGlobalHotKey(shortcut2);
+  var shortcut3 = new nw.Shortcut(ShortPast);
+  nw.App.registerGlobalHotKey(shortcut3);	
+  var shortcut4 = new nw.Shortcut(ShortNoteMean);
+  nw.App.registerGlobalHotKey(shortcut4);
+  var shortcut6 = new nw.Shortcut(Refresh);
+  nw.App.registerGlobalHotKey(shortcut6);
+  var shortcut7 = new nw.Shortcut(ShortMB0);
+  nw.App.registerGlobalHotKey(shortcut7); 
+  var shortcut8 = new nw.Shortcut(ShortMG0);
+  nw.App.registerGlobalHotKey(shortcut8);
+
+  var shortcut9 = new nw.Shortcut(ShortMB1);
+  nw.App.registerGlobalHotKey(shortcut9); 
+  var shortcut10 = new nw.Shortcut(ShortMG1);
+  nw.App.registerGlobalHotKey(shortcut10);
+  var shortcut11 = new nw.Shortcut(ShortMB2);
+  nw.App.registerGlobalHotKey(shortcut11); 
+  var shortcut12 = new nw.Shortcut(ShortMG2);
+  nw.App.registerGlobalHotKey(shortcut12);
+  var shortcut13 = new nw.Shortcut(ShortMB3);
+  nw.App.registerGlobalHotKey(shortcut13); 
+  var shortcut14 = new nw.Shortcut(ShortMG3);
+  nw.App.registerGlobalHotKey(shortcut14);
+  var shortcut15 = new nw.Shortcut(ShortMB4);
+  nw.App.registerGlobalHotKey(shortcut15); 
+  var shortcut16 = new nw.Shortcut(ShortMG4);
+  nw.App.registerGlobalHotKey(shortcut16);
+  var shortcut17 = new nw.Shortcut(ShortMB5);
+  nw.App.registerGlobalHotKey(shortcut17); 
+  var shortcut18 = new nw.Shortcut(ShortMG5);
+  nw.App.registerGlobalHotKey(shortcut18);
+}
+
+function UnRegisterShortcut(){
+  var shortcut = new nw.Shortcut(ShortSave);
+  nw.App.unregisterGlobalHotKey(shortcut);
+  var shortcut2 = new nw.Shortcut(ShortNote);
+  nw.App.unregisterGlobalHotKey(shortcut2);
+  var shortcut3 = new nw.Shortcut(ShortPast);
+  nw.App.unregisterGlobalHotKey(shortcut3);	
+  var shortcut4 = new nw.Shortcut(ShortNoteMean);
+  nw.App.unregisterGlobalHotKey(shortcut4);
+  var shortcut6 = new nw.Shortcut(Refresh);
+  nw.App.unregisterGlobalHotKey(shortcut6);
+  var shortcut7 = new nw.Shortcut(ShortMB0);
+  nw.App.unregisterGlobalHotKey(shortcut7);
+  var shortcut8 = new nw.Shortcut(ShortMG0);
+  nw.App.unregisterGlobalHotKey(shortcut8);
+
+  var shortcut9 = new nw.Shortcut(ShortMB1);
+  nw.App.unregisterGlobalHotKey(shortcut9); 
+  var shortcut10 = new nw.Shortcut(ShortMG1);
+  nw.App.unregisterGlobalHotKey(shortcut10);
+  var shortcut11 = new nw.Shortcut(ShortMB2);
+  nw.App.unregisterGlobalHotKey(shortcut11); 
+  var shortcut12 = new nw.Shortcut(ShortMG2);
+  nw.App.unregisterGlobalHotKey(shortcut12);
+  var shortcut13 = new nw.Shortcut(ShortMB3);
+  nw.App.unregisterGlobalHotKey(shortcut13); 
+  var shortcut14 = new nw.Shortcut(ShortMG3);
+  nw.App.unregisterGlobalHotKey(shortcut14);
+  var shortcut15 = new nw.Shortcut(ShortMB4);
+  nw.App.unregisterGlobalHotKey(shortcut15); 
+  var shortcut16 = new nw.Shortcut(ShortMG4);
+  nw.App.unregisterGlobalHotKey(shortcut16);
+  var shortcut17 = new nw.Shortcut(ShortMB5);
+  nw.App.unregisterGlobalHotKey(shortcut17); 
+  var shortcut18 = new nw.Shortcut(ShortMG5);
+  nw.App.unregisterGlobalHotKey(shortcut18);
+}
+
+
 
 var ShortSave = {
   key : "Ctrl+S",
   active : function() {
 	  //checkmodif();
 	  feedback();
-	
 	  if (localStorage.getItem("ctrls")== "true"){
-		  
 				 saveHopeR2();
 				 GitAdd();
 				 GitCommit();
 			}	
-					
 			else{
 				 saveHopeR2();
 			}
-	 
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
-  
 };
 
 
@@ -50,12 +134,19 @@ var ShortNote = {
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
 };
 
-
+var Refresh = {
+  key : "Ctrl+R",
+  active : function() {
+    location.reload();
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
 
 var ShortPast = {
   key : "Ctrl+Alt+V",
@@ -66,7 +157,6 @@ var ShortPast = {
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
 };
@@ -83,7 +173,6 @@ pasteHtmlAtCaret(printN);
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
 };
@@ -95,7 +184,6 @@ var ShortExitPre = {
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
 };
@@ -107,10 +195,221 @@ var ShortPauseM = {
     console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
   },
   failed : function(msg) {
-    // :(, fail to register the |key| or couldn't parse the |key|.
     console.log(msg);
   }
 };
+
+var ShortMB0 = {
+  key : "Ctrl+D",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape= window.pageYOffset;
+    //localStorage.setItem("CaretPosition0", CoordsInShape);
+    localStorage.removeItem("CaretPosition0");
+  
+  localStorage.setItem("CaretPosition0", CoordsInShape);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret0='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMB1 = {
+  key : "Ctrl+Alt+1",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape1= window.pageYOffset;
+    //localStorage.setItem("CaretPosition1", CoordsInShape);
+    localStorage.removeItem("CaretPosition1");
+  
+  localStorage.setItem("CaretPosition1", CoordsInShape1);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret1='"+CoordsInShape1+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMB2 = {
+  key : "Ctrl+Alt+2",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape2= window.pageYOffset;
+    //localStorage.setItem("CaretPosition2", CoordsInShape2);
+    localStorage.removeItem("CaretPosition2");
+  
+  localStorage.setItem("CaretPosition2", CoordsInShape2);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret2='"+CoordsInShape2+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+var ShortMB3 = {
+  key : "Ctrl+Alt+3",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape3= window.pageYOffset;
+    //localStorage.setItem("CaretPosition2", CoordsInShape3);
+    localStorage.removeItem("CaretPosition3");
+  
+  localStorage.setItem("CaretPosition3", CoordsInShape3);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret3='"+CoordsInShape3+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+
+var ShortMB4 = {
+  key : "Ctrl+Alt+4",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape4= window.pageYOffset;
+    //localStorage.setItem("CaretPosition4", CoordsInShape4);
+    localStorage.removeItem("CaretPosition4");
+  
+  localStorage.setItem("CaretPosition4", CoordsInShape4);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret4='"+CoordsInShape4+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+var ShortMB5 = {
+  key : "Ctrl+Alt+5",
+  active : function() {
+	  //Mark0();
+    var CoordsInShape5= window.pageYOffset;
+    //localStorage.setItem("CaretPosition5", CoordsInShape5);
+    localStorage.removeItem("CaretPosition5");
+  
+  localStorage.setItem("CaretPosition5", CoordsInShape5);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret5='"+CoordsInShape5+"' WHERE Path='"+SQLPath+"'"); 
+  });
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+
+var ShortMG0 = {
+  key : "Ctrl+G",
+  active : function() {
+	  GoMark0();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMG1 = {
+  key : "Ctrl+1",
+  active : function() {
+	  GoMark1();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMG2 = {
+  key : "Ctrl+2",
+  active : function() {
+	  GoMark2();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMG3 = {
+  key : "Ctrl+3",
+  active : function() {
+	  GoMark3();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMG4 = {
+  key : "Ctrl+4",
+  active : function() {
+	  GoMark4();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+var ShortMG5 = {
+  key : "Ctrl+5",
+  active : function() {
+	  GoMark5();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+
+function GoMark0(){
+  var GTcaret0= localStorage.getItem("CaretPosition0");
+ window.scrollTo(0, GTcaret0);
+};
+
+function GoMark1(){
+  var GTcaret1= localStorage.getItem("CaretPosition1");
+ window.scrollTo(0, GTcaret1);
+};
+function GoMark2(){
+  var GTcaret2= localStorage.getItem("CaretPosition2");
+ window.scrollTo(0, GTcaret2);
+};
+function GoMark3(){
+  var GTcaret3= localStorage.getItem("CaretPosition3");
+ window.scrollTo(0, GTcaret3);
+};
+function GoMark4(){
+  var GTcaret4= localStorage.getItem("CaretPosition4");
+ window.scrollTo(0, GTcaret4);
+};
+function GoMark5(){
+  var GTcaret5= localStorage.getItem("CaretPosition5");
+ window.scrollTo(0, GTcaret5);
+};
+
+
+
+
 
 
 function chooseFile(name) {
@@ -148,7 +447,7 @@ var path_file = localStorage.getItem("FilePathCook").trim();
 var name_file = localStorage.getItem("InputNameSoloC").trim();
 
 db.transaction(function (tx) {
-  tx.executeSql('CREATE TABLE IF NOT EXISTS FilteTab (id integer primary key autoincrement, Path, CaretE INT, CaretP INT, CaretN INT)');
+  tx.executeSql('CREATE TABLE IF NOT EXISTS FilteTab (id integer primary key autoincrement, Path, CaretE INT, CaretP INT, CaretN INT, Caret0 INT, Caret1 INT, Caret2 INT, Caret3 INT, Caret4 INT, Caret5 INT )');
 
     tx.executeSql('SELECT * FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
        var len = results.rows.length, i;
@@ -186,6 +485,54 @@ db.transaction(function (tx) {
             var CoordsInSqlN=(results.rows.item(i).CaretN);
             localStorage.removeItem("CaretPositionN");
             localStorage.setItem("CaretPositionN", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret0);
+            localStorage.removeItem("CaretPosition0");
+            localStorage.setItem("CaretPositionN", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret1);
+            localStorage.removeItem("CaretPosition1");
+            localStorage.setItem("CaretPosition1", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret2);
+            localStorage.removeItem("CaretPosition2");
+            localStorage.setItem("CaretPosition2", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret3);
+            localStorage.removeItem("CaretPosition3");
+            localStorage.setItem("CaretPosition3", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret4);
+            localStorage.removeItem("CaretPosition4");
+            localStorage.setItem("CaretPosition4", CoordsInSqlN);
+         }
+        })
+        tx.executeSql('SELECT CaretN FROM FilteTab WHERE Path='+SqPath, [], function (tx, results) {
+          var len = results.rows.length, i;
+         for (i = 0; i < len; i++) {
+            var CoordsInSqlN=(results.rows.item(i).Caret5);
+            localStorage.removeItem("CaretPosition5");
+            localStorage.setItem("CaretPosition5", CoordsInSqlN);
          }
         })
         console.log("fichier présent");
@@ -259,9 +606,7 @@ function GoCaretP(){
     document.getElementById("editor").style.color = localStorage.getItem("color_sMA");
     document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
     document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_sMA");
-    document.getElementById("bbb").style.width = "auto"; 
-    var shortcut5 = new nw.Shortcut(ShortPauseM);
-    nw.App.registerGlobalHotKey(shortcut5);	
+    document.getElementById("bbb").style.width = "auto"; 	
 
   }
 
@@ -313,6 +658,14 @@ function SAVEBUT() {
     x.style.display = "none";
   }
 }
+function MPBUT() {
+  var x = document.getElementById("MPBUT");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
   function SAVEBUT2() {
     var x = document.getElementById("SAVEBUT");
     if (x.style.display === "none") {
@@ -330,6 +683,7 @@ function SAVEBUT() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 
 function openNavIO() {
@@ -342,6 +696,7 @@ function openNavIO() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 
 function openNavPre() {
@@ -357,19 +712,14 @@ function openNavPre() {
   document.getElementById("GENBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
-    var shortcut = new nw.Shortcut(ShortSave);
-    nw.App.unregisterGlobalHotKey(shortcut);
-    var shortcut2 = new nw.Shortcut(ShortNote);
-    nw.App.unregisterGlobalHotKey(shortcut2);
-    var shortcut3 = new nw.Shortcut(ShortPast);
-    nw.App.unregisterGlobalHotKey(shortcut3);	
-    var shortcut4 = new nw.Shortcut(ShortNoteMean);
-    nw.App.unregisterGlobalHotKey(shortcut4);
-    var shortcut5 = new nw.Shortcut(ShortExitPre);
-    nw.App.registerGlobalHotKey(shortcut5);
+    document.getElementById("MPBUT").style.display = "none";
+    var shortcutEsc = new nw.Shortcut(ShortExitPre);
+    nw.App.registerGlobalHotKey(shortcutEsc);
   Full_Screen();
   pre();
   openGOP();
+  var shortcutC = new nw.Shortcut(ShortPauseM);
+  nw.App.registerGlobalHotKey(shortcutC);
 }
 function openNavPast(){
   document.getElementById("mySidenavPast").style.width = "100%";
@@ -381,6 +731,7 @@ function openNavPast(){
   document.getElementById("GENBUT").style.display = "none"
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
+    document.getElementById("MPBUT").style.display = "none";
 }
 
 function openNavGe(){
@@ -393,6 +744,7 @@ function openNavGe(){
   document.getElementById("IOBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
+    document.getElementById("MPBUT").style.display = "none";
 }
 function openNavSave(){
   document.getElementById("mySidenavSave").style.width = "100%";
@@ -404,6 +756,7 @@ function openNavSave(){
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function openNavSave2(){
   document.getElementById("mySidenavSave2").style.width = "100%";
@@ -415,6 +768,21 @@ function openNavSave2(){
   document.getElementById("IOBUT").style.display = "none";
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
+  
+}
+function openNavMp(){
+  document.getElementById("mySidenavMP").style.width = "100%";
+  document.getElementById("mySidenavMP").style.height = "50px";
+  document.getElementById("MPBUT").style.display = "block";
+   document.getElementById("SAVEBUT2").style.display = "none";
+ document.getElementById("Slide_Button").style.display = "none";
+   document.getElementById("PASTBUT").style.display = "none";
+  document.getElementById("PREBUT").style.display = "none";
+  document.getElementById("IOBUT").style.display = "none";
+  document.getElementById("GENBUT").style.display = "none";
+  document.getElementById("SAVEBUT").style.display = "none";
+  
   
 }
 function closeNav() {
@@ -426,6 +794,7 @@ function closeNav() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavIO() {
   document.getElementById("mySidenavIO").style.width = "0";  
@@ -436,6 +805,7 @@ function closeNavIO() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavPast() {
   document.getElementById("mySidenavPast").style.width = "0";
@@ -446,6 +816,7 @@ function closeNavPast() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavGe() {
   document.getElementById("mySidenavGe").style.width = "0";
@@ -456,6 +827,7 @@ function closeNavGe() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavSav() {
   document.getElementById("mySidenavSave").style.width = "0";
@@ -466,6 +838,7 @@ function closeNavSav() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavSav2() {
   document.getElementById("mySidenavSave2").style.width = "0";
@@ -476,8 +849,13 @@ function closeNavSav2() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
+  document.getElementById("MPBUT").style.display = "none";
 }
 function closeNavPre() {
+var shortcutA = new nw.Shortcut(ShortExitPre);
+nw.App.unregisterGlobalHotKey(shortcutA);
+var shortcutC = new nw.Shortcut(ShortPauseM);
+  nw.App.unregisterGlobalHotKey(shortcutC);
   GetCaretP();
   openGO();
   document.getElementById("Slide_Button").style.display = "block";
@@ -487,10 +865,9 @@ function closeNavPre() {
   document.getElementById("GENBUT").style.display = "none";
   document.getElementById("SAVEBUT").style.display = "none";
   document.getElementById("SAVEBUT2").style.display = "none";
-    var shortcut5 = new nw.Shortcut(ShortExitPre);
-    nw.App.unregisterGlobalHotKey(shortcut5);
-    var shortcut6 = new nw.Shortcut(ShortPauseM);
-nw.App.unregisterGlobalHotKey(shortcut6);	
+  document.getElementById("MPBUT").style.display = "none";
+
+	
 	Full_Screen();
   document.getElementById("mySidenavPre").style.width = "0";
   document.getElementById("editor").style.backgroundColor = localStorage.getItem("colorf_s");
@@ -501,6 +878,9 @@ nw.App.unregisterGlobalHotKey(shortcut6);
   document.getElementById("bbb").style.width = "1300px";
   PauseRouleau();
   location.reload();
+//   var shortcutA = new nw.Shortcut(ShortExitPre);
+// nw.App.unregisterGlobalHotKey(shortcutA);
+
 }
 function closeNavP() {
   document.getElementById("mySidenavPre").style.opacity = "100";
@@ -514,6 +894,18 @@ function closeNavP() {
   document.getElementById("GENBUT").style.display = "none";
     document.getElementById("SAVEBUT").style.display = "none";
     document.getElementById("SAVEBUT2").style.display = "none";
+    document.getElementById("MPBUT").style.display = "none";
+}
+function closeNavMp() {
+  document.getElementById("mySidenavMP").style.width = "0";  
+  document.getElementById("MPBUT").style.display = "none";
+  document.getElementById("Slide_Button").style.display = "block";
+   document.getElementById("PASTBUT").style.display = "none";
+  document.getElementById("PREBUT").style.display = "none";
+  document.getElementById("IOBUT").style.display = "none";
+  document.getElementById("GENBUT").style.display = "none";
+  document.getElementById("SAVEBUT").style.display = "none";
+  document.getElementById("SAVEBUT2").style.display = "none";
 }
 	function toggle(button)
             {
@@ -813,14 +1205,15 @@ var namedata2write = "temp_rest";
 fs.writeFile(namedata2write, text_to_save, (err) => {  
       if (err) throw err;
 });
-var shortcut = new nw.Shortcut(ShortSave);
-nw.App.unregisterGlobalHotKey(shortcut);
-var shortcut2 = new nw.Shortcut(ShortNote);
-nw.App.unregisterGlobalHotKey(shortcut2);
-var shortcut3 = new nw.Shortcut(ShortPast);
-nw.App.unregisterGlobalHotKey(shortcut3);	
-var shortcut4 = new nw.Shortcut(ShortNoteMean);
-nw.App.unregisterGlobalHotKey(shortcut4);
+// var shortcut = new nw.Shortcut(ShortSave);
+// nw.App.unregisterGlobalHotKey(shortcut);
+// var shortcut2 = new nw.Shortcut(ShortNote);
+// nw.App.unregisterGlobalHotKey(shortcut2);
+// var shortcut3 = new nw.Shortcut(ShortPast);
+// nw.App.unregisterGlobalHotKey(shortcut3);	
+// var shortcut4 = new nw.Shortcut(ShortNoteMean);
+// nw.App.unregisterGlobalHotKey(shortcut4);
+UnRegisterShortcut();
  window.location.reload();
 
  fs.readFile("temp_rest", function (err, data) {
@@ -1811,7 +2204,224 @@ function checkTime(i) {
   return i;
 }
 
+// function de marque page
+function StopBlink(){
+  var Markok=0;
+  localStorage.removeItem("ToMarq");
+    localStorage.setItem("ToMarq", Markok);
+  document.getElementById("mp1").style.animationPlayState = "paused";
+    document.getElementById("mp2").style.animationPlayState = "paused";
+    document.getElementById("mp3").style.animationPlayState = "paused";
+    document.getElementById("mp4").style.animationPlayState = "paused";
+    document.getElementById("mp5").style.animationPlayState = "paused";
 
+
+    document.getElementById("mp1").style.visibility="visible";
+    document.getElementById("mp2").style.visibility="visible";
+    document.getElementById("mp3").style.visibility="visible";
+    document.getElementById("mp4").style.visibility="visible";
+    document.getElementById("mp5").style.visibility="visible";
+}
+
+var marque_on=1;
+   function marquepage() { 
+     var Markok=1;
+     localStorage.removeItem("ToMarq");
+    localStorage.setItem("ToMarq", Markok);
+  if (marque_on) {
+    //document.getElementsByClassName("blink").style.animationPlayState = "running",
+   document.getElementById("mp1").style.animationPlayState = "running";
+   document.getElementById("mp2").style.animationPlayState = "running";
+   document.getElementById("mp3").style.animationPlayState = "running";
+   document.getElementById("mp4").style.animationPlayState = "running";
+   document.getElementById("mp5").style.animationPlayState = "running";
+
+   //mp1.play();
+      marque_on = false;
+    
+  } else {
+    StopBlink();
+
+
+    marque_on = true;
+   }
+  
+
+
+
+
+
+  }
+  function RegisterMp1(){
+    if (marque_on=true) {
+      Mark1();
+      StopBlink();
+    
+    marque_on = false;
+    }
+    
+  }
+  function RegisterMp2(){
+    if (marque_on=true) {
+      Mark2();
+      StopBlink();
+    
+    marque_on = false;
+    }
+  }
+  function RegisterMp3(){
+    if (marque_on=true) {
+      Mark3();
+      StopBlink();
+    
+    marque_on = false;
+    }
+  }
+  function RegisterMp4(){
+    if (marque_on=true) {
+      Mark4();
+      StopBlink();
+    
+    marque_on = false;
+    }
+  }
+  function RegisterMp5(){
+    if (marque_on=true) {
+      Mark5();
+      StopBlink();
+    
+    marque_on = false;
+    }
+  }
+
+
+function Mark1(){
+  
+    
+   if (localStorage.getItem("ToMarq") == "1"){
+    var CoordsInShape= window.pageYOffset;
+
+  localStorage.removeItem("CaretPosition1");
+	localStorage.setItem("CaretPosition1", CoordsInShape);
+  var SQLPath= localStorage.getItem("InputFile");
+   db.transaction(function (tx) {
+  tx.executeSql("UPDATE FilteTab SET Caret1='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+  });
+  
+  marque_on = true;
+}
+else{
+  var GTcaret1= localStorage.getItem("CaretPosition1");
+  window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
+function Mark2(){
+  
+    
+  if (localStorage.getItem("ToMarq") == "1"){
+   var CoordsInShape= window.pageYOffset;
+
+ localStorage.removeItem("CaretPosition2");
+ localStorage.setItem("CaretPosition2", CoordsInShape);
+ var SQLPath= localStorage.getItem("InputFile");
+  db.transaction(function (tx) {
+ tx.executeSql("UPDATE FilteTab SET Caret2='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+ });
+ 
+ marque_on = true;
+}
+else{
+ var GTcaret1= localStorage.getItem("CaretPosition2");
+ window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
+function Mark3(){
+  
+    
+  if (localStorage.getItem("ToMarq") == "1"){
+   var CoordsInShape= window.pageYOffset;
+
+ localStorage.removeItem("CaretPosition3");
+ localStorage.setItem("CaretPosition3", CoordsInShape);
+ var SQLPath= localStorage.getItem("InputFile");
+  db.transaction(function (tx) {
+ tx.executeSql("UPDATE FilteTab SET Caret3='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+ });
+ 
+ marque_on = true;
+}
+else{
+ var GTcaret1= localStorage.getItem("CaretPosition3");
+ window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
+
+function Mark4(){
+  
+    
+  if (localStorage.getItem("ToMarq") == "1"){
+   var CoordsInShape= window.pageYOffset;
+
+ localStorage.removeItem("CaretPosition4");
+ localStorage.setItem("CaretPosition4", CoordsInShape);
+ var SQLPath= localStorage.getItem("InputFile");
+  db.transaction(function (tx) {
+ tx.executeSql("UPDATE FilteTab SET Caret4='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+ });
+ 
+ marque_on = true;
+}
+else{
+ var GTcaret1= localStorage.getItem("CaretPosition4");
+ window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
+function Mark5(){
+  
+    
+  if (localStorage.getItem("ToMarq") == "1"){
+   var CoordsInShape= window.pageYOffset;
+
+ localStorage.removeItem("CaretPosition5");
+ localStorage.setItem("CaretPosition5", CoordsInShape);
+ var SQLPath= localStorage.getItem("InputFile");
+  db.transaction(function (tx) {
+ tx.executeSql("UPDATE FilteTab SET Caret5='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+ });
+ 
+ marque_on = true;
+}
+else{
+ var GTcaret1= localStorage.getItem("CaretPosition5");
+ window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
+function Mark0(){
+  
+    
+  if (localStorage.getItem("ToMarq") == "1"){
+   var CoordsInShape= window.pageYOffset;
+
+ localStorage.removeItem("CaretPosition0");
+ localStorage.setItem("CaretPosition0", CoordsInShape);
+ var SQLPath= localStorage.getItem("InputFile");
+  db.transaction(function (tx) {
+ tx.executeSql("UPDATE FilteTab SET Caret0='"+CoordsInShape+"' WHERE Path='"+SQLPath+"'"); 
+ });
+ 
+ marque_on = true;
+}
+else{
+ var GTcaret1= localStorage.getItem("CaretPosition0");
+ window.scrollTo(0, GTcaret1);
+}
+localStorage.setItem("ToMarq", "0")
+}
 
 
 
