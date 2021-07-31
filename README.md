@@ -7,7 +7,7 @@
 - Intégration de Pandoc
 - Intégration de Git
 
-## Changelog
+## Changelog :
 - ajout de raccourcis de pour naviguer dans le texte. 
 On mémorise la position avec Ctrl+D, on se rend à cette position avec Ctrl+G (go). 
 Il est possible de mémoriser 5 positions supplémentaires avec Ctrl+Alt+1-5 et de s'y rendre avec Ctrl+1-5.
