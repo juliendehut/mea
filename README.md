@@ -31,7 +31,7 @@ Idéal pour modifier le YAML de départ. Ces positions sont mémorisées individ
 
 
 ## Bugs connus :
-- Le Chargement des raccourcis peut prendre une minute a être effective. 
+- Le chargement des raccourcis peut prendre une minute a être effective. 
 - L'écriture automatique du fichier à la fermeture de l'application peut induire une consommation de ressources excessives alors que l'application est fermée.
 
 #### _caveat emptor_
