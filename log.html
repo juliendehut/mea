@@ -84,11 +84,12 @@ input[type=text]:focus{
 <input type="button" id="Slide_ButtonLog" class="MainSlideButLog" value="" onclick="openNavLog(); toggleLog(this);">
 
 		<div id="mySidenavlog" class="sidenav">
-  <input type="button" id="1" class="menu_btA" value="Occurence" onclick="searchIt();">
+  <input type="button" id="11a" class="menu_btA" value="Occurence" onclick="searchIt();">
  <input type="text" id="OccuInput" />
-    <input type="button" id="1" class="menu_bt" value="Écrire depuis ce coefficient" onclick="BackInTime();">
+    <input type="button" id="11b" class="menu_bt" value="Écrire depuis ce coefficient" onclick="BackInTime();">
   <input type="text" id="HashBackInput" />
-<input type="button" id="1" class="menu_btV" value="Fermer" onclick="closeGen();">
+<input type="button" id="11c" class="menu_btV" value="Fermer" onclick="closeGen();">
+<!-- <input type="button" id="11d" class="menu_btV" value="reload" onclick="reload();"> -->
 
  </div>
 	<div id="sheet">
@@ -229,16 +230,18 @@ var path = require("path");
 var namefile = localStorage.getItem("InputNameSoloC").trim();
 var pathfile = localStorage.getItem("FilePathCook").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
-
-var name_file = localStorage.getItem("filgit").trim();
-var path_file = localStorage.getItem("fogit").trim();
-var set_location = path_file+name_file;
+var set_location = localStorage.getItem("InputFile").trim();
 var destination = document.getElementById("HashBackInput").value;
 var lasthash = localStorage.getItem("lasthashcook");
+var namedata2write = "temp_rest";
+var temppath = localStorage.getItem("folder_path").trim();
+
+
+
 //  "git revert (--continue | --abort | --quit)" ?
 var process = require("child_process");
-process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "revert --no-commit"+" "+destination+".."+lasthash+" "+"&& "+gitpath+" "+"commit -m 'point de restauration'",function (err,stdout,stderr) {
-
+//process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "checkout"+" "+destination+" "+namefile+" "+"&& "+gitpath+" "+"commit -m 'point de restauration'",function (err,stdout,stderr) {
+  process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "checkout"+" "+destination+" "+namefile+"",function (err,stdout,stderr) {
     if (err) {
 	    document.getElementById("LogTerm").innerText= stderr;
 	               document.getElementById("LogTerm").innerText= stderr;  
@@ -246,22 +249,49 @@ process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "revert --no-commit"
     } else {
         var lasthash= stdout;
             document.getElementById("LogTerm").innerText= lasthash+destination; 
+            
                     
          
- //window.location.reload();
  }    
                 
 })
-	
+process.exec("cd /  && cd "+pathfile+" "+"&& "+gitpath+" "+ "commit -m 'point de restauration'"+" "+namefile+"",function (err,stdout,stderr) {
+    if (err) {
+	    document.getElementById("LogTerm").innerText= stderr;
+	               document.getElementById("LogTerm").innerText= stderr;  
+                 
+
+    } else {
+        var lasthash= stdout;
+            document.getElementById("LogTerm").innerText= lasthash+destination; 
+                    
+         
+ }    
+                
+})
+
+reload();
+
 }
 
 
 
 function closeGen(){
+  var refresh = "false";
+          localStorage.removeItem("refreshmain");
+        localStorage.setItem("refreshmain", refresh);
 	close(); 
 	 
  }	    
    
+ function reload(){
+  var refresh = "true";
+  var refreshed = "false";
+
+  localStorage.removeItem("refreshmain");
+    localStorage.setItem("refreshmain", refresh); 
+    
+ }
 	</script>
 </body>
 </html>

@@ -110,13 +110,13 @@ body {
 .MainSlideButLog {
 	background-color: gold;
 	color:AntiqueWhite;
-  z-index: 1;
+  z-index: 0;
 
 }
 .MpSlideBut {
 	background-color: rgb(183, 0, 255);
 	color:rgb(183, 0, 255);
-  z-index: 1;
+  z-index: 0;
 
 }
 

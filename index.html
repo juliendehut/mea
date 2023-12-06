@@ -10,7 +10,7 @@
 	
 	</head>
 	<body id="bbb">
-		</div>	
+		
 		
 <div class="content">
 <input type="button" id="Slide_Button" class="MainSlideBut" value="" onclick="openNav(); toggle(this)">
@@ -19,13 +19,9 @@
  
 <label for="fileDialog" class="menu_btA">Écrire</label>
 <input id="fileDialog" type="file" class="input-file" nwsaveas="Sans titre.txt">
-
-
-
 <label for="file" class="menu_btB">Lire</label>
 <input id="file" class="input-file"type="file" onclick="chooseFile('#file')"/>
 <input type="button" id="1" class="menu_bt" value="Nouveau" onclick="openNavSave2();">
-
 <input type="button" id="2" class="menu_bt" value="Traduire" onclick="openNavIO();">
 <input type="button" id="3" class="menu_bt" value="Génétique" onclick="openNavGe();">
 <!-- <input type="button" id="1" class="menu_bt" value="Bibliographie" onclick="ShowBibFile();"> -->
@@ -33,26 +29,23 @@
 <input type="button" id="6" class="menu_bt" value="Notes" onclick="openNotes()">
 <input type="button" id="6b" class="menu_bt" value="Σημειοῦν" onclick="openNavMp();">
 <input type="button" id="5b" class="menu_bt" value="Présentation" onclick="openNavPre();">
-
-
 <input type="button" id="7b" class="menu_btV" value="Variables" onclick="open_para();">
-
 </div>
 
 <div id="mySidenavIO" class="sidenav">
 <input type="button" id="IOBUT" class="IoSlideBut" onclick="closeNavIO();">
-<input type="button" id="9" class="menu_bt" value="Pdf" onclick="GenPdf();">
+<input type="button" id="9" class="menu_btA" value="Pdf" onclick="GenPdf();">
 <input type="button" id="11" class="menu_bt" value="Pdf*" onclick="GenPdfFusion();">
-<input type="button" id="8" class="menu_btA" value="Docx" onclick="GenDocx();">
-<input type="button" id="11b" class="menu_bt" value="DocxNote" onclick="GenDocxFusion();">
-<input type="button" id="10" class="menu_bt" value="Pptx" onclick="GenSlide();">
-
+<input type="button" id="8" class="menu_bt" value="Docx" onclick="GenDocx();">
+<input type="button" id="11b" class="menu_bt" value="Docx*" onclick="GenDocxFusion();">
 <input type="button" id="11C" class="menu_bt" value="Epub" onclick="Epub();">
+<input type="button" id="11C" class="menu_bt" value="Epub*" onclick="EpubFusion();">
+<input type="button" id="10" class="menu_bt" value="BeamerSlide" onclick="GenSlide();">
 <label for="file2" class="menu_btB">Réécrire</label>
 <input id="file2" class="input-file2"type="file" onclick="Importdocx('#file')"/>
-
 <span id="ShowTerm" class="term"></span>
 </div>
+
 <div id="mySidenavGe" class="sidenav">
 <input type="button" id="GENBUT" class="GenSlideBut" onclick="closeNavGe();">
 <input type="button" id="12" class="menu_btA" value="Addere" onclick="GitAdd();">
@@ -62,25 +55,23 @@
 </div>
 
 
-</div>
 <div id="mySidenavPre" class="sidenav">
 <input type="button" id="PREBUT" class="PreSlideBut" onclick="toggle3();">
 <span id="toogle">
-  <input type="button" id="5" class="menu_btA" value="Chante" onclick="toggle2();">
-  </span>
-  <input type="button" id="20" class="menu_bt" value="Édition" onclick="closeNavPre();">
-	<span class="linePre">
-    <span class="time" id="difference"></span><span class="time" id="space">&nbsp,-&nbsp,</span>
-    <span class="time" id="timeC"></span>
+<input type="button" id="5" class="menu_btA" value="Chante" onclick="toggle2();">
+</span>
+<input type="button" id="20" class="menu_bt" value="Édition" onclick="closeNavPre();">
+<span class="linePre">
+<span class="time" id="difference"></span><span class="time" id="space">&nbsp,-&nbsp,</span>
+<span class="time" id="timeC"></span>
 <label for="taille"class="menu_btpre" id="emlab">Taille</label>	
 <input type="range" id="em" min="1" value="5" max="10" step="0.5" oninput="outputTaille(value)">
-	<output for="taille" id="taillelevel">0</output>
+<output for="taille" id="taillelevel">0</output>
 	
 <label for="vitesse" class="menu_btpre" id="speedlab">Vitesse</label>
 <input type="range" id="speed" min="1" value=VitesseRouleau max="100" step="1" oninput="outputTachios(value)">
-	<output for="vitesse" id="speedlevel">0</output>
-	</span>
-	
+<output for="vitesse" id="speedlevel">0</output>
+</span>
 </div>
 	
 
@@ -90,27 +81,34 @@
 <input type="button" id="15" class="menu_bt" value="YAML" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(YAML);">
 <input type="button" id="16" class="menu_bt" value="Slide" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Slide);">
 <input type="button" id="17" class="menu_bt" value="Lorem" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Lorem);">
+<input type="button" id="18" class="menu_bt" value="Image" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Picture_past);">
+<input type="button" id="18a" class="menu_bt" value="De Republica" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(Derepublica);">
+<input type="button" id="18b" class="menu_bt" value="YAMLaTeX" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(YAMLaTeX);">
+<input type="button" id="18c" class="menu_bt" value="YAMBeamer" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(YAMLbeamer);">
+<input type="button" id="18d" class="menu_bt" value="Tables" onclick="document.getElementById('editor').focus(); pasteHtmlAtCaret(bibliotoc);">
+
+<!-- <input type="button" id="19" class="menu_bt" value="Typo" onclick="Sedtypo();">-->
+
 </div>
 
 <div id="mySidenavSave" class="sidenav">
-<input type="button" id="SAVEBUT" class="SaveSlideBut" onclick="closeNavSav()">
-
+<input type="button" id="SAVEBUT" class="SaveSlideBut" onclick="closeNavSav();">
 <label for="folderinput2" class="label-file">Répertoire</label>
 <input class="label-file" type="file" id="folderinput2" nwdirectory>
 <input type="text" class="inputnav" id="TempSaveNameInput">
-<input type="button"class="menu_bt" autofocus value="Écrire" onclick="SaveMe()">
+<input type="button"class="menu_bt" autofocus value="Écrire" onclick="SaveMe();">
 </div>
+
 <div id="mySidenavSave2" class="sidenav">
   <input type="button" id="SAVEBUT2" class="SaveSlideBut2" onclick="closeNavSav2();">
-  
   <label for="folderinput3" class="label-file">Répertoire</label>
-  <input class="label-file" type="file" id="folderinput3" nwdirectory>
+  <input id="folderinput3" class="label-file" type="file" nwdirectory>
   <input type="text" class="inputnav" id="TempSaveNameInput2">
   <input type="button"class="menu_bt" autofocus value="Écrire" onclick="LiberNovi();">
   </div>
 
   <div id="mySidenavMP" class="sidenav">
-    <input type="button" id="MPBUT" class="MpSlideBut" onclick="closeNavMp()">
+    <input type="button" id="MPBUT" class="MpSlideBut" onclick="closeNavMp();">
     <input type="button" id="mp0" class="menu_btA" value="Σημειοῦν"onclick="marquepage();" >
     <input type="button" id="mp1" class="menu_bt" value="1" onclick="RegisterMp1();">
     <input type="button" id="mp2" class="menu_bt" value="2" onclick="RegisterMp2();">
@@ -119,15 +117,17 @@
     <input type="button" id="mp5" class="menu_bt" value="5" onclick="RegisterMp5();">
     </div>
 
-
+  </div>
+	
 		<div id="editor" contenteditable="true">
-  <p id="WISINWYG">
+  <!-- <p id="WISINWYG">
 	 
-      </p>
+      </p> -->
       
 </div>
 
 <script>
+  
 
 if (localStorage.getItem("Time") == "true") {
        document.getElementById("timeC").style.display = "inline";
@@ -273,14 +273,14 @@ function actio(){
  window.onunload = function(){
   SaveCaretEP();
 	     if (localStorage.getItem("OpenStartCook")== "false"){
-        localStorage.removeItem("InputFile");
-        localStorage.removeItem("CaretPosition");
-        localStorage.removeItem("CaretPositionN");	 
+        //localStorage.removeItem("InputFile");
+        //localStorage.removeItem("CaretPosition");
+        //localStorage.removeItem("CaretPositionN");	 
 	  }
     else if (localStorage.getItem("OpenStartCook")== null){
-        localStorage.removeItem("InputFile");
-        localStorage.removeItem("CaretPosition");
-        localStorage.removeItem("CaretPositionN");	 
+       // localStorage.removeItem("InputFile");
+        //localStorage.removeItem("CaretPosition");
+       // localStorage.removeItem("CaretPositionN");	 
 	  }
 
       if (localStorage.getItem("check_out_s") == "true")
@@ -300,8 +300,8 @@ saveNullExit();
   	  
 		}
     window.onload = function() {
-     // document.getElementById("editor").scrollTo(1000, 500);
      
+    //document.getElementById("editor").scrollTo(0, 5000);
 window.addEventListener("storage", refresh);	
 document.getElementById("editor").style.textAlign = localStorage.getItem("align_s");
 document.getElementById("editor").style.color = localStorage.getItem("color_s");
@@ -316,50 +316,110 @@ document.getElementById("editor").style.backgroundColor = localStorage.getItem("
 document.getElementById("bbb").style.backgroundColor = localStorage.getItem("colorf_s2");
 document.getElementById("editor").style.zoom = localStorage.getItem("zoom_s");
 
+
+if (localStorage.getItem("Check_MenuOut_cook")== "false"){
+      
+  closeNav();
+    }			
+    else{
+      openNav();
+    }
+
 var fs = require("fs");	
   var path = require("path");	            
-	fs.readFile("temp_rest", function (err, data) {
+	var path_fileA = localStorage.getItem("folder_path");
+  var namedata2writeN = "temp_rest";
+  
+
+  if (localStorage.getItem("InputFile")=== null){
+    document.title = "mĕa";     
+
+  fs.readFile(path_fileA + "/" + namedata2writeN, function (err, data) {
+  
+  //fs.readFile("temp_rest", function (err, data) {
   if (err) throw err,
   console.log(data);
-  document.getElementById("editor").innerText = data,
+  document.getElementById("editor").innerText = data;
   openGO();
 }); 
+  }
+  else{
+    document.title = localStorage.getItem("InputFile");
+    var set_location = localStorage.getItem("InputFile").trim();
+    fs.readFile(set_location, function (err, data) {
+ if (err) throw err;
+ document.getElementById("editor").innerText = data;
+ openGO();
+});
+
+
+  }
+  
+RegisterShortcut();
 
 }	
 	
 	function refresh(event) {
+    
 	var fs = require("fs");
 	var gui = require("nw.gui");
 	var path = require('path');
 	var namedata2write = "temp_rest";
-		
-var text_to_save = document.getElementById("editor").innerText;
-fs.writeFile(namedata2write, text_to_save, (err) => {  
-       if (err) throw err;
-});
-var shortcut = new nw.Shortcut(ShortSave);
-nw.App.unregisterGlobalHotKey(shortcut);
-var shortcut2 = new nw.Shortcut(ShortNote);
-nw.App.unregisterGlobalHotKey(shortcut2);
-var shortcut3 = new nw.Shortcut(ShortPast);
-nw.App.unregisterGlobalHotKey(shortcut3);	
-var shortcut4 = new nw.Shortcut(ShortNoteMean);
-nw.App.unregisterGlobalHotKey(shortcut4);
-	window.location.reload();
+  var path_fileA = localStorage.getItem("folder_path");
+  var namedata2writeN = "temp_rest";
+  let text_to_save = document.getElementById("editor").innerText;
+  var CoordsInShape= window.pageYOffset;
+  localStorage.removeItem("CaretPosition");
   
-        
-	}
-	
+  localStorage.setItem("CaretPosition", CoordsInShape);
+
+  
+  //workingA
+  // fs.writeFileSync(path_fileA + "/" + namedata2writeN, text_to_save, (err) => {
+  //           if (err) throw err;
+  //       });
+
+//working A
+
+//   var temppath = localStorage.getItem("folder_path").trim();
+
+//   var text_to_save = document.getElementById("editor").innerText;
+// fs.writeFile(namedata2write, text_to_save, (err) => {  
+//        if (err) throw err;
+//});
+  
+	//var text_to_save = document.getElementById("editor").innerText;
+
+  if (localStorage.getItem("InputFile")=== null){
+    fs.writeFileSync(path_fileA + "/" + namedata2writeN, text_to_save, (err) => {  
+       if (err) throw err;
+                          });  
+        }	
+        if (localStorage.getItem("refreshmain")=== "true"){
+          
+    
+    
+        }			
+        else{
+          saveHopeR2();
+          
+         
+        }
+
+
+
+
+
+
+UnRegisterShortcut();
+window.location.reload();
+
+}
+
 
 var fs = require("fs");
 var gui = require("nw.gui");
 
-
-function Fenetre(){
-nw.Window.open('index.html', {title: 'bob'}, function(new_win) {
-  
-});
-}
 	        
    function FileDialog(inputId, callback) {
 	   

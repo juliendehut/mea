@@ -73,6 +73,7 @@
 <p>Afficher la durée de la présentation<input type="checkbox" id="Check_timer" onclick="check_timer()"></p>
 <p>Afficher la taille du texte<input type="checkbox" id="Check_Size_Def" onclick="check_size()"></p>
 <p>Afficher la vitesse de défilement<input type="checkbox" id="Check_Speed_Def" onclick="check_speed()"></p>
+<p>Mode Spéctacle<input type="checkbox" id="Check_spectaclebox" onclick="check_spectacle()"></p>
 
 <script>
 document.getElementById("Input_tachios").addEventListener("input", tachios_input);
@@ -105,7 +106,12 @@ if (localStorage.getItem("Time")== "true"){
 			else{
 				document.getElementById("Check_Speed_Def").checked = false;
 			}
-      
+      if (localStorage.getItem("Check_Specacle_cook")== "true"){
+				document.getElementById("Check_spectaclebox").checked = true;
+			}			
+			else{
+				document.getElementById("Check_spectaclebox").checked = false;
+			}
 			//}
 window.onload = function() {
 // 2 charger valeur 			
@@ -183,6 +189,11 @@ function check_time() {
 	//localStorage.removeItem("checksizecook");
 	var CheckSize = document.getElementById("Check_Size_Def").checked;
 	    localStorage.setItem("checksizecook", CheckSize);  	
+  }
+  function check_spectacle() {
+	//localStorage.removeItem("checkspeedcook");
+	var CheckSpctl = document.getElementById("Check_spectaclebox").checked;
+	    localStorage.setItem("Check_Specacle_cook", CheckSpctl);  	
   }
   
 </script>

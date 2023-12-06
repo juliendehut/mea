@@ -64,6 +64,9 @@ function RegisterShortcut(){
   nw.App.registerGlobalHotKey(shortcut17); 
   var shortcut18 = new nw.Shortcut(ShortMG5);
   nw.App.registerGlobalHotKey(shortcut18);
+  var shortcut19 = new nw.Shortcut(ShortPrint);
+  nw.App.registerGlobalHotKey(shortcut19);
+
 }
 
 function UnRegisterShortcut(){
@@ -102,6 +105,8 @@ function UnRegisterShortcut(){
   nw.App.unregisterGlobalHotKey(shortcut17); 
   var shortcut18 = new nw.Shortcut(ShortMG5);
   nw.App.unregisterGlobalHotKey(shortcut18);
+  var shortcut19 = new nw.Shortcut(ShortPrint);
+  nw.App.registerGlobalHotKey(shortcut19);
 }
 
 
@@ -113,7 +118,7 @@ var ShortSave = {
 	  feedback();
 	  if (localStorage.getItem("ctrls")== "true"){
 				 saveHopeR2();
-				 GitAdd();
+				// GitAdd();
 				 GitCommit();
 			}	
 			else{
@@ -202,6 +207,7 @@ var ShortPauseM = {
 var ShortMB0 = {
   key : "Ctrl+D",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape= window.pageYOffset;
     //localStorage.setItem("CaretPosition0", CoordsInShape);
@@ -221,6 +227,7 @@ var ShortMB0 = {
 var ShortMB1 = {
   key : "Ctrl+Alt+1",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape1= window.pageYOffset;
     //localStorage.setItem("CaretPosition1", CoordsInShape);
@@ -240,6 +247,7 @@ var ShortMB1 = {
 var ShortMB2 = {
   key : "Ctrl+Alt+2",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape2= window.pageYOffset;
     //localStorage.setItem("CaretPosition2", CoordsInShape2);
@@ -260,6 +268,7 @@ var ShortMB2 = {
 var ShortMB3 = {
   key : "Ctrl+Alt+3",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape3= window.pageYOffset;
     //localStorage.setItem("CaretPosition2", CoordsInShape3);
@@ -281,6 +290,7 @@ var ShortMB3 = {
 var ShortMB4 = {
   key : "Ctrl+Alt+4",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape4= window.pageYOffset;
     //localStorage.setItem("CaretPosition4", CoordsInShape4);
@@ -301,6 +311,7 @@ var ShortMB4 = {
 var ShortMB5 = {
   key : "Ctrl+Alt+5",
   active : function() {
+    feedbackMarque();
 	  //Mark0();
     var CoordsInShape5= window.pageYOffset;
     //localStorage.setItem("CaretPosition5", CoordsInShape5);
@@ -381,6 +392,19 @@ var ShortMG5 = {
 };
 
 
+var ShortPrint = {
+  key : "Ctrl+P",
+  active : function() {
+	  GenPdfFusion();
+    feedbackPrint();
+    console.log("Global desktop keyboard shortcut: " + this.key + " active."); 
+  },
+  failed : function(msg) {
+    console.log(msg);
+  }
+};
+
+
 function GoMark0(){
   var GTcaret0= localStorage.getItem("CaretPosition0");
  window.scrollTo(0, GTcaret0);
@@ -410,10 +434,10 @@ function GoMark5(){
 
 
 
-
+// fonction Lire
 
 function chooseFile(name) {
-  var fs = require("fs");	
+var fs = require("fs");	
 var path = require("path");
   var chooser = document.querySelector(name);
   chooser.addEventListener("change", function(evt) {
@@ -433,13 +457,10 @@ var path = require("path");
 localStorage.setItem("InputFile", input);
 localStorage.removeItem("FilePathCook");
 localStorage.setItem("FilePathCook", InputPath);
-
 localStorage.removeItem("InputNameSoloC");
 localStorage.setItem("InputNameSoloC", InputNameSolo);
-
 localStorage.removeItem("InputNameNoExtC");
 localStorage.setItem("InputNameNoExtC", InputNameNoExt);
-
 localStorage.removeItem("InputNameExtC");
 localStorage.setItem("InputNameExtC", InputNameExt);
 document.title = localStorage.getItem("InputFile");
@@ -561,6 +582,7 @@ console.log(data);
   }, false);
 }
 
+// fonction qui permet de déplacer le texte en cas de rafraichissement notamment
 function openGO(){
   var NuncScio = localStorage.getItem("CaretPosition");
   window.scrollTo(0, NuncScio);
@@ -607,6 +629,23 @@ function GoCaretP(){
     document.getElementById("editor").style.fontSize = localStorage.getItem("size_s2MA");
     document.getElementById("editor").style.lineHeight = localStorage.getItem("inter_sMA");
     document.getElementById("bbb").style.width = "auto"; 	
+
+    if (localStorage.getItem("Check_Specacle_cook")== "true"){
+      document.getElementById("Slide_Button").style.visibility= "hidden";
+      document.getElementById("MPBUT").style.visibility= "hidden";
+      document.getElementById("SAVEBUT2").style.visibility= "hidden";
+      document.getElementById("SAVEBUT").style.visibility= "hidden";
+      document.getElementById("IOBUT").style.visibility= "hidden";
+      document.getElementById("GENBUT").style.visibility= "hidden";
+      document.getElementById("PREBUT").style.visibility= "hidden";
+      document.getElementById("PASTBUT").style.visibility= "hidden";
+      document.getElementById("mySidenavPre").style.visibility= "hidden";
+      document.getElementById("mySidenav").style.visibility= "hidden";
+
+    
+    }			
+
+
 
   }
 
@@ -867,6 +906,27 @@ var shortcutC = new nw.Shortcut(ShortPauseM);
   document.getElementById("SAVEBUT2").style.display = "none";
   document.getElementById("MPBUT").style.display = "none";
 
+
+  if (localStorage.getItem("Check_Specacle_cook")== "true"){
+    document.getElementById("Slide_Button").style.visibility = "visible";
+    document.getElementById("MPBUT").style.visibility= "visible";
+    document.getElementById("SAVEBUT2").style.visibility= "visible";
+    document.getElementById("SAVEBUT").style.visibility= "visible";
+    document.getElementById("IOBUT").style.visibility= "visible";
+    document.getElementById("GENBUT").style.visibility= "visible";
+    document.getElementById("PREBUT").style.visibility= "visible";
+    document.getElementById("PASTBUT").style.visibility= "visible";
+    document.getElementById("mySidenavPre").style.visibility= "visible";
+    document.getElementById("mySidenav").style.visibility= "hidden";
+
+    
+  }	
+    
+
+  
+
+
+
 	
 	Full_Screen();
   document.getElementById("mySidenavPre").style.width = "0";
@@ -922,7 +982,9 @@ function closeNavMp() {
               }
             }	
 
-function feedback(){
+
+//Coloration du bouton
+  function feedback(){
 var SizeA = localStorage.getItem("SizeFileCook");
 var SizeB = localStorage.getItem("SizeFileCookM");
 
@@ -966,6 +1028,79 @@ else {
 	localStorage.setItem("SizeFileCook", SizeB)
 	
 }
+
+
+
+function feedbackPrint(){
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="rgba(17, 17, 17, 0.9)"; }, 500);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="rgba(17, 17, 17, 0.9)"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="red"; }, 500);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="red"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="silver"; }, 500);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="silver"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="blue"; }, 500);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="blue"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="green"; }, 500);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="green"; }, 1000);
+  
+  
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 500);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 1000);
+  }
+  
+  function feedbackMarque(){
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="rgba(17, 17, 17, 0.9)"; }, 500);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("Slide_Button").style.backgroundColor="rgba(17, 17, 17, 0.9)"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="red"; }, 500);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("IOBUT").style.backgroundColor="red"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="silver"; }, 500);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("GENBUT").style.backgroundColor="silver"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="blue"; }, 500);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("PREBUT").style.backgroundColor="blue"; }, 1000);
+  
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="green"; }, 500);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("PASTBUT").style.backgroundColor="green"; }, 1000);
+  
+  
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="DarkRed"; }, 100);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 500);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="DarkRed"; }, 750);
+    setTimeout(function(){ document.getElementById("SAVEBUT").style.backgroundColor="red"; }, 1000);
+  }
+
+
+
+
+
 
 function GetNewSize() {
 	var path_file = localStorage.getItem("FilePathCook").trim();
@@ -1189,8 +1324,19 @@ if (Run_save == "true"){
      
       localStorage.removeItem("InputFile");
       localStorage.removeItem("CaretPosition");
- var TempFilVar = document.getElementById("TempSaveNameInput2").value;
+      localStorage.removeItem("filgit");
+      localStorage.removeItem("fogitB");
+      localStorage.removeItem("fogit");
+      localStorage.removeItem("InputNameNoExtC");
+      localStorage.removeItem("InputNameSoloC");
+      var TempFilVar = document.getElementById("TempSaveNameInput2").value;
+      //var input = this.value;
+      var InputNameSolo = path.basename(TempFilVar);
+      var InputNameNoExt = path.basename(TempFilVar, path.extname(TempFilVar));
+ 
    localStorage.setItem("InputFile", TempFilVar); 	
+   localStorage.setItem("InputNameSoloC", InputNameSolo);
+   localStorage.setItem("InputNameNoExtC", InputNameNoExt);
    CleanSlate();
       saveHopeT3();
       closeNavSav2();
@@ -1447,7 +1593,7 @@ function GenDocxFusion(){
   var pandocpath = localStorage.getItem("PandocPath").trim();
   var filepath = localStorage.getItem("InputFile").trim();
   var process = require("child_process");
-  process.exec(pandocpath + " -s --citeproc " + filepath +" " +FormPath+ " -o " + filepath + ".docx",function (err,stdout,stderr) {
+  process.exec("cd "+RawPath + "&& "+pandocpath + " -s --citeproc"+" *.md -o " + filepath + ".docx",function (err,stdout,stderr) {
       if (err) {
         document.getElementById("ShowTerm").innerHTML= stderr; 
       } else {
@@ -1456,13 +1602,14 @@ function GenDocxFusion(){
   })
   }
 function GenSlide(){
+var RawPath = localStorage.getItem("FilePathCook").trim();
 var path_file = localStorage.getItem("folder_path").trim();
 var gitpath = localStorage.getItem("GitPath").trim();
 var filepath = localStorage.getItem("InputFile").trim();
 var pandocpath = localStorage.getItem("PandocPath").trim();
-var set_location = path_file+name_file;
+//var set_location = path_file+name_file;
 var process = require("child_process");
-process.exec(pandocpath + " -s " + filepath + " -o " + filepath + ".pptx",function (err,stdout,stderr) {
+process.exec("cd "+RawPath + "&& "+pandocpath + " -t beamer -s " + filepath + " -o " + filepath + ".pdf",function (err,stdout,stderr) {
 
     if (err) {
 	    document.getElementById("ShowTerm").innerHTML= stderr;
@@ -1520,6 +1667,20 @@ var FormPath = RawPath+"/notes.md";
     })
     }
 
+    function EpubFusion(){
+      var RawPath = localStorage.getItem("FilePathCook").trim();
+    var FormPath = RawPath+"/notes.md";
+      var pandocpath = localStorage.getItem("PandocPath").trim();
+      var filepath = localStorage.getItem("InputFile").trim();
+      var process = require("child_process");
+      process.exec("cd "+RawPath + "&& "+pandocpath + " -s --citeproc"+" *.md -o " + filepath + ".epub",function (err,stdout,stderr) {
+          if (err) {
+            document.getElementById("ShowTerm").innerHTML= stderr;
+          } else {
+              document.getElementById("ShowTerm").innerHTML=stdout;
+          }
+      })
+      }
 //import
 function Importdocx() {
   var fs = require("fs");	

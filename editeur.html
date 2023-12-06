@@ -142,6 +142,9 @@
         </select>
         <input type="text" class="input_style" id="Input_FDC2">	
 		</p>
+    <p>
+      Déployer le menu à l'exécution du programme <input type="checkbox" id="Check_MenuOut" onclick="checkMenuOut()">
+    </p>
 <script>
 
 document.getElementById("Input_FTTC").addEventListener("input", font_color_input);
@@ -213,11 +216,21 @@ if (localStorage.getItem("colorf_s2") === null) {
   document.getElementById("selectedSaveTime").text = " ";
 }	
 
+if (localStorage.getItem("Check_MenuOut_cook")== "true"){
+				document.getElementById("Check_MenuOut").checked = true;
+			}			
+			else{
+				document.getElementById("Check_MenuOut").checked = false;
+			}
 
 	
 }	
 
-
+function checkMenuOut() {
+	//localStorage.removeItem("checkspeedcook");
+	var CheckMO = document.getElementById("Check_MenuOut").checked;
+	    localStorage.setItem("Check_MenuOut_cook", CheckMO);  	
+  }
 
 
 </script>
